@@ -10,5 +10,5 @@ export const getTourBySlug = async (slug: string): Promise<Tour | undefined> => 
 }
 
 export const getFeaturedTours = async (): Promise<Tour[]> => {
-  return tours.slice(0, 4)
+  return tours.filter((tour) => tour.isFeatured).slice(0, 3)
 }

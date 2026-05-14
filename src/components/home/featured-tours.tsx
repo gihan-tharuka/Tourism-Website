@@ -2,17 +2,15 @@
 
 import { motion } from 'framer-motion'
 import type { Tour } from '@/types/tour'
-import type { Destination } from '@/types/destination'
 import { Container } from '@/components/ui/container'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { TourCard } from '@/components/home/tour-card'
 
 interface FeaturedToursProps {
   tours: Tour[]
-  destinations: Destination[]
 }
 
-export function FeaturedTours({ tours, destinations }: FeaturedToursProps) {
+export function FeaturedTours({ tours }: FeaturedToursProps) {
   return (
     <section className="py-16 lg:py-20">
       <Container>
@@ -31,7 +29,7 @@ export function FeaturedTours({ tours, destinations }: FeaturedToursProps) {
           className="mt-12 grid gap-8 lg:grid-cols-2"
         >
           {tours.map((tour) => (
-            <TourCard key={tour.id} tour={tour} destinations={destinations} />
+            <TourCard key={tour.id} tour={tour} href={`/tours/${tour.slug}`} />
           ))}
         </motion.div>
       </Container>

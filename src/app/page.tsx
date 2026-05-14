@@ -26,7 +26,7 @@ export default async function Home() {
   return (
     <main className="overflow-hidden">
       <HeroSection />
-      <FeaturedTours tours={tours} destinations={destinations} />
+      <FeaturedTours tours={tours} />
       <DestinationsShowcase destinations={destinations} />
       <WhyChooseUs />
       <TravelExperience />

@@ -4,25 +4,27 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Tour } from '@/types/tour'
-import type { Destination } from '@/types/destination'
 import { cn } from '@/lib/utils'
 
 interface TourCardProps {
   tour: Tour
-  destinations: Destination[]
+  destinationLabels?: string[]
+  href?: string
 }
 
-export function TourCard({ tour, destinations }: TourCardProps) {
-  const tourDestinations = tour.destinationIds
-    .map((id) => destinations.find((destination) => destination.id === id)?.name)
-    .filter(Boolean) as string[]
+export function TourCard({
+  tour,
+  destinationLabels,
+  href,
+}: TourCardProps) {
+  const destinations = destinationLabels ?? tour.destinationIds
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: 'easeOut' }}
-      className="group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/85 shadow-[0_24px_80px_rgba(15,23,42,0.4)]"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/85 shadow-[0_24px_80px_rgba(15,23,42,0.4)] transition-shadow duration-300 hover:shadow-[0_32px_120px_rgba(15,23,42,0.5)]"
     >
       <div className="relative h-72 overflow-hidden">
         <Image
@@ -42,7 +44,7 @@ export function TourCard({ tour, destinations }: TourCardProps) {
       <div className="space-y-4 p-6">
         <p className="text-sm leading-7 text-slate-300">{tour.summary}</p>
         <div className="flex flex-wrap gap-2">
-          {tourDestinations.slice(0, 3).map((destination) => (
+          {destinations.slice(0, 3).map((destination) => (
             <span
               key={destination}
               className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.28em] text-slate-300"
@@ -57,12 +59,12 @@ export function TourCard({ tour, destinations }: TourCardProps) {
             <p className="mt-1 text-xl font-semibold text-white">${tour.startingPrice.toLocaleString()}</p>
           </div>
           <Link
-            href="/tours"
+            href={href ?? `/tours/${tour.slug}`}
             className={cn(
               'rounded-full bg-amber-300 px-5 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-amber-200',
             )}
           >
-            View tours
+            Explore
           </Link>
         </div>
       </div>

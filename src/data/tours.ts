@@ -8,7 +8,9 @@ export const tours: Tour[] = [
     durationDays: 7,
     startingPrice: 2399,
     summary: 'From cultural wonders to coastal luxury, experience Sri Lanka in a single flawless itinerary.',
-    destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
+    destinationIds: ['Sigiriya', 'Kandy', 'Ella', 'Galle'],
+    country: 'Sri Lanka',
+    isFeatured: true,
     image:
       'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80',
     highlights: ['Private guide', 'Luxury stays', 'Cultural tours', 'Sunset coast cruise'],
@@ -24,7 +26,9 @@ export const tours: Tour[] = [
     durationDays: 4,
     startingPrice: 1599,
     summary: 'A short luxury beach escape with private transfers and boutique seaside nights.',
-    destinationIds: ['mirissa', 'galle'],
+    destinationIds: ['Mirissa', 'Galle'],
+    country: 'Sri Lanka',
+    isFeatured: false,
     image:
       'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
     highlights: ['Beachfront villa', 'Whale watching', 'Private chauffeur'],
@@ -40,7 +44,9 @@ export const tours: Tour[] = [
     durationDays: 10,
     startingPrice: 3499,
     summary: 'A deep dive into temples, tea estates, private tours and curated heritage stays.',
-    destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
+    destinationIds: ['Sigiriya', 'Kandy', 'Ella', 'Galle'],
+    country: 'Sri Lanka',
+    isFeatured: true,
     image:
       'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
     highlights: ['Temple visits', 'Discreet hospitality', 'Private transfer', 'Signature dining'],
@@ -56,7 +62,9 @@ export const tours: Tour[] = [
     durationDays: 14,
     startingPrice: 4999,
     summary: 'The ultimate island tour, blending luxury resorts, wildlife, heritage and coastal serenity.',
-    destinationIds: ['sigiriya', 'kandy', 'ella', 'mirissa', 'galle'],
+    destinationIds: ['Sigiriya', 'Kandy', 'Ella', 'Mirissa', 'Galle'],
+    country: 'Sri Lanka',
+    isFeatured: false,
     image:
       'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
     highlights: ['Elite accommodations', 'Wildlife safari', 'Private yacht', 'Cultural journeys'],
