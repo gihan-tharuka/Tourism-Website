@@ -22,9 +22,10 @@ export function TourCard({
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/85 shadow-[0_24px_80px_rgba(15,23,42,0.4)] transition-shadow duration-300 hover:shadow-[0_32px_120px_rgba(15,23,42,0.5)]"
+      className="group overflow-hidden rounded-[2rem] border border-white/15 bg-slate-900/95 shadow-[0_30px_90px_rgba(15,23,42,0.45)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_34px_120px_rgba(15,23,42,0.55)]"
     >
       <div className="relative h-72 overflow-hidden">
         <Image
