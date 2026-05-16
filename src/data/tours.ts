@@ -9,8 +9,7 @@ export const tours: Tour[] = [
     startingPrice: 2399,
     summary: 'From cultural wonders to coastal luxury, experience Sri Lanka in a single flawless itinerary.',
     destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
-    image:
-      'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/sigiriya2.jpg',
     highlights: ['Private guide', 'Luxury stays', 'Cultural tours', 'Sunset coast cruise'],
     itinerary: [
       { day: 1, title: 'Arrival', description: 'Welcome transfer and sunset welcome dinner by the sea.' },
@@ -25,8 +24,7 @@ export const tours: Tour[] = [
     startingPrice: 1599,
     summary: 'A short luxury beach escape with private transfers and boutique seaside nights.',
     destinationIds: ['mirissa', 'galle'],
-    image:
-      'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/mirissa.jpg',
     highlights: ['Beachfront villa', 'Whale watching', 'Private chauffeur'],
     itinerary: [
       { day: 1, title: 'Arrival & unwind', description: 'VIP pickup and private sunset beach dinner.' },
@@ -41,8 +39,7 @@ export const tours: Tour[] = [
     startingPrice: 3499,
     summary: 'A deep dive into temples, tea estates, private tours and curated heritage stays.',
     destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
-    image:
-      'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/kandy.jpg',
     highlights: ['Temple visits', 'Discreet hospitality', 'Private transfer', 'Signature dining'],
     itinerary: [
       { day: 1, title: 'Sacred city', description: 'Evening ceremony at the Temple of the Tooth.' },
@@ -57,8 +54,7 @@ export const tours: Tour[] = [
     startingPrice: 4999,
     summary: 'The ultimate island tour, blending luxury resorts, wildlife, heritage and coastal serenity.',
     destinationIds: ['sigiriya', 'kandy', 'ella', 'mirissa', 'galle'],
-    image:
-      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/Ella_sri_lanka.jpg',
     highlights: ['Elite accommodations', 'Wildlife safari', 'Private yacht', 'Cultural journeys'],
     itinerary: [
       { day: 1, title: 'Welcome', description: 'Private arrival and luxury hotel welcome reception.' },

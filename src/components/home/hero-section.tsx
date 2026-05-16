@@ -12,7 +12,7 @@ export function HeroSection() {
     <section className="relative overflow-hidden pb-20 pt-28">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1680&q=80"
+          src="/images/sigiriya.webp"
           alt="Sri Lanka luxury travel scene"
           fill
           sizes="100vw"
