@@ -9,6 +9,11 @@ export interface Tour {
   country: 'Sri Lanka' | 'Thailand' | 'Malaysia'
   isFeatured?: boolean
   image: string
+  images: string[]
+  activities: string[]
+  priceRange: string
+  bestSeason?: string
+  groupSize?: string
   highlights: string[]
-  itinerary: Array<{ day: number; title: string; description: string }>
+  itinerary: Array<{ day: number; title: string; location?: string; description: string }>
 }
