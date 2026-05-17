@@ -14,6 +14,21 @@ This project was designed with a strong focus on:
 
 ---
 
+# 🎯 What This Project Demonstrates
+
+This project demonstrates my ability to:
+
+* build scalable frontend architectures
+* design real-world business systems
+* create premium UI/UX experiences
+* implement modular React/Next.js applications
+* architect future-ready systems
+* optimize conversion-focused interfaces
+* work with TypeScript at scale
+* structure maintainable codebases
+
+---
+
 # ✨ Features
 
 ## 🌍 Tourism Experience Platform
@@ -227,21 +242,6 @@ Planned future upgrades:
 
 ---
 
-# 🎯 What This Project Demonstrates
-
-This project demonstrates my ability to:
-
-* build scalable frontend architectures
-* design real-world business systems
-* create premium UI/UX experiences
-* implement modular React/Next.js applications
-* architect future-ready systems
-* optimize conversion-focused interfaces
-* work with TypeScript at scale
-* structure maintainable codebases
-
----
-
 # 👨‍💻 Developer
 
 **Gihan Tharuka**
@@ -259,14 +259,6 @@ Full Stack Developer
 * Tailwind CSS
 * MySQL
 * REST APIs
-
----
-
-# 📬 Contact
-
-* GitHub: add-your-link
-* LinkedIn: add-your-link
-* Portfolio: add-your-link
 
 ---
 
