@@ -10,16 +10,14 @@ const sections = [
     title: 'Travel that feels cinematic every step of the way.',
     description:
       'Enjoy a luxury rhythm of travel that blends elegant stays, private drives, and soulful cultural encounters curated by local experts.',
-    image:
-      'https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/cinematic.webp',
     reverse: false,
   },
   {
     title: 'Moments designed for meaningful discovery.',
     description:
       'From sunrise temples to seaside restaurants, our journeys are shaped around stories that elevate each destination into a memorable escape.',
-    image:
-      'https://images.unsplash.com/photo-1517821365206-3c8d0adebb1a?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/meaningful.webp',
     reverse: true,
   },
 ]

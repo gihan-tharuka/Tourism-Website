@@ -12,7 +12,7 @@ export const tours: Tour[] = [
     destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
     country: 'Sri Lanka',
     isFeatured: true,
-    image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80',
+  
     images: [
       'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
@@ -22,6 +22,7 @@ export const tours: Tour[] = [
     activities: ['Private temple tour', 'Luxury train ride', 'Sunset coastal dinner', 'Tea estate walk'],
     bestSeason: 'November - April',
     groupSize: '2–8 guests',
+    image: '/images/sigiriya2.jpg',
     highlights: ['Private guide', 'Luxury stays', 'Cultural tours', 'Sunset coast cruise'],
     itinerary: [
       {
@@ -61,7 +62,6 @@ export const tours: Tour[] = [
     destinationIds: ['mirissa', 'galle'],
     country: 'Sri Lanka',
     isFeatured: false,
-    image: 'https://images.unsplash.com/photo-1501621965065-c6e1cf6b53e2?auto=format&fit=crop&w=1200&q=80',
     images: [
       'https://images.unsplash.com/photo-1501621965065-c6e1cf6b53e2?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
@@ -70,6 +70,7 @@ export const tours: Tour[] = [
     activities: ['Beachfront sunset dinner', 'Whale watching', 'Private yacht cruise', 'Spa retreat'],
     bestSeason: 'December - April',
     groupSize: '2–6 guests',
+    image: '/images/mirissa.jpg',
     highlights: ['Beachfront villa', 'Whale watching', 'Private chauffeur'],
     itinerary: [
       {
@@ -103,7 +104,6 @@ export const tours: Tour[] = [
     destinationIds: ['sigiriya', 'kandy', 'ella', 'galle'],
     country: 'Sri Lanka',
     isFeatured: true,
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
     images: [
       'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
@@ -113,6 +113,7 @@ export const tours: Tour[] = [
     activities: ['Cultural ceremonies', 'Tea estate tour', 'Heritage dining', 'Wildlife safari'],
     bestSeason: 'November - April',
     groupSize: '2–10 guests',
+    image: '/images/kandy.jpg',
     highlights: ['Temple visits', 'Discreet hospitality', 'Private transfer', 'Signature dining'],
     itinerary: [
       {
@@ -152,7 +153,6 @@ export const tours: Tour[] = [
     destinationIds: ['sigiriya', 'kandy', 'ella', 'mirissa', 'galle'],
     country: 'Sri Lanka',
     isFeatured: false,
-    image: 'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
     images: [
       'https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
@@ -162,6 +162,7 @@ export const tours: Tour[] = [
     activities: ['Luxury resorts', 'Safari adventure', 'Historical tours', 'Private yacht dining'],
     bestSeason: 'December - March',
     groupSize: '2–12 guests',
+    image: '/images/Ella_sri_lanka.jpg',
     highlights: ['Elite accommodations', 'Wildlife safari', 'Private yacht', 'Cultural journeys'],
     itinerary: [
       {
