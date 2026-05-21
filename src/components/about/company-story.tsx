@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container } from '@/components/ui/container'
 
 export function CompanyStory() {
@@ -17,7 +18,7 @@ export function CompanyStory() {
             className="space-y-6"
           >
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">Our Journey</span>
+              <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">Our Journey</span>
               <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">Built on Passion for Travel</h2>
             </div>
 
@@ -41,17 +42,15 @@ export function CompanyStory() {
 
             <div className="space-y-3 pt-4">
               <div className="flex items-start gap-3">
-                <span className="text-2xl">🎯</span>
                 <div>
                   <p className="font-semibold text-white">Our Mission</p>
-                  <p className="text-sm text-gray-400">To create personalized, authentic travel experiences that connect people with Sri Lanka&apos;s culture, nature, and people.</p>
+                  <p className="text-sm text-gray-400">To create personalized, authentic travel experiences that connect people with Sri Lanka's culture, nature, and people.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <span className="text-2xl">💫</span>
                 <div>
                   <p className="font-semibold text-white">Our Vision</p>
-                  <p className="text-sm text-gray-400">To be Sri Lanka&apos;s most trusted luxury travel partner for meaningful, transformative journeys.</p>
+                  <p className="text-sm text-gray-400">To be Sri Lanka's most trusted luxury travel partner for meaningful, transformative journeys.</p>
                 </div>
               </div>
             </div>
@@ -63,16 +62,13 @@ export function CompanyStory() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative aspect-square overflow-hidden rounded-lg border border-white/10"
           >
-            <div
-              className="aspect-square overflow-hidden rounded-lg border border-white/10"
-              style={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+            <Image
+              src="/images/Ella_sri_lanka.jpg"
+              alt="Ella Sri Lanka - scenic landscape"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-slate-950/40 via-transparent to-transparent" />
           </motion.div>

@@ -37,7 +37,7 @@ export function BudgetSelector({ options, value, onChange }: BudgetSelectorProps
                   {option.label}
                 </h4>
                 <p className="mb-3 text-sm text-gray-400">{option.description}</p>
-                <p className="font-bold text-emerald-400">{option.priceRange}</p>
+                <p className="font-bold text-amber-300">{option.priceRange}</p>
               </div>
 
               {value === option.value && (

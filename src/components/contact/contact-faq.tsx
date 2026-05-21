@@ -48,7 +48,7 @@ export function ContactFAQ() {
           className="mx-auto max-w-2xl"
         >
           <div className="mb-12 text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
               Questions
             </span>
             <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">Frequently Asked Questions</h2>

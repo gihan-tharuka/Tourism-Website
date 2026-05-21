@@ -5,32 +5,26 @@ import { Container } from '@/components/ui/container'
 
 const whyChooseUsItems = [
   {
-    icon: '🎯',
     title: 'Private Tours',
     description: 'Personalized itineraries designed specifically for your interests and preferences.',
   },
   {
-    icon: '🗺️',
     title: 'Local Expertise',
     description: 'Deep knowledge of hidden gems, cultural sites, and authentic Sri Lankan experiences.',
   },
   {
-    icon: '✍️',
     title: 'Custom Itineraries',
     description: 'Flexible travel plans that adapt to your pace, budget, and travel style.',
   },
   {
-    icon: '🚗',
     title: 'Premium Transport',
     description: 'Air-conditioned vehicles and professional drivers for comfortable journeys.',
   },
   {
-    icon: '👨‍🎓',
     title: 'Expert Guides',
     description: 'Knowledgeable, engaging guides who share cultural insights and fascinating stories.',
   },
   {
-    icon: '🌱',
     title: 'Authentic Experiences',
     description: 'Off-the-beaten-path adventures that create meaningful connections with local communities.',
   },
@@ -47,7 +41,7 @@ export function WhyChooseUs() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">Why Choose Us</span>
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">Why Choose Us</span>
           <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">What Sets Us Apart</h2>
         </motion.div>
 
@@ -61,7 +55,7 @@ export function WhyChooseUs() {
               viewport={{ once: true }}
               className="group rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/8"
             >
-              <div className="mb-4 text-4xl">{item.icon}</div>
+              
               <h3 className="mb-2 font-semibold text-white">{item.title}</h3>
               <p className="text-sm text-gray-400">{item.description}</p>
             </motion.div>

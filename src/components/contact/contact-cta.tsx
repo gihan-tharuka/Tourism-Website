@@ -27,7 +27,7 @@ export function ContactCTA() {
               href="/tours"
               className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-8 py-3 font-semibold text-white transition-all hover:bg-emerald-600"
             >
-              🗺️ Explore Tours
+              Explore Tours
             </Link>
             <a
               href="https://wa.me/?text=Hello%20Beyond%20Sea%20Travels%2C%20I%20would%20like%20to%20plan%20a%20trip%20to%20Sri%20Lanka"
@@ -35,7 +35,7 @@ export function ContactCTA() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-lg border border-white/20 px-8 py-3 font-semibold text-white transition-all hover:bg-white/10"
             >
-              💬 Chat on WhatsApp
+              Chat on WhatsApp
             </a>
           </div>
         </motion.div>

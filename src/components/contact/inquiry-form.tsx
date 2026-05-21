@@ -39,7 +39,7 @@ export function InquiryForm() {
 
     // Prepare WhatsApp message
     const message = [
-      '📝 *New Inquiry From Website* 📝',
+      '*New Inquiry From Website*',
       '',
       `*Name:* ${formData.fullName}`,
       `*Country:* ${formData.country}`,
@@ -76,7 +76,7 @@ export function InquiryForm() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
             Send us a message
           </span>
           <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">Inquiry Form</h2>
@@ -195,7 +195,7 @@ export function InquiryForm() {
                 disabled={!canSubmit || isSubmitting}
                 className="w-full bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50"
               >
-                {isSubmitting ? '💬 Sending to WhatsApp...' : '💬 Send via WhatsApp'}
+                {isSubmitting ? 'Sending to WhatsApp...' : 'Send via WhatsApp'}
               </Button>
 
               <p className="text-center text-xs text-gray-400">

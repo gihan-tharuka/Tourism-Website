@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container } from '@/components/ui/container'
 
 export function ServiceMap() {
@@ -14,7 +15,7 @@ export function ServiceMap() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
             Our Reach
           </span>
           <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">Service Coverage</h2>
@@ -29,15 +30,14 @@ export function ServiceMap() {
             viewport={{ once: true }}
             className="relative overflow-hidden rounded-lg border border-white/10 bg-white/5"
           >
-            <div
-              className="aspect-square"
-              style={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
+            <div className="relative aspect-square">
+              <Image
+                src="/images/mirissa.jpg"
+                alt="Mirissa beach, Sri Lanka"
+                fill
+                className="object-cover"
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>
 
@@ -59,28 +59,24 @@ export function ServiceMap() {
 
             <div className="space-y-3">
               <div className="flex gap-3">
-                <span className="text-2xl">🏙️</span>
                 <div>
                   <p className="font-semibold text-white">Major Cities</p>
                   <p className="text-sm text-gray-400">Colombo, Kandy, Galle, Mirissa, Ella</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <span className="text-2xl">🌳</span>
                 <div>
                   <p className="font-semibold text-white">National Parks</p>
                   <p className="text-sm text-gray-400">Yala Safari, Horton Plains, Peak Wilderness</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <span className="text-2xl">✈️</span>
                 <div>
                   <p className="font-semibold text-white">Airport Access</p>
                   <p className="text-sm text-gray-400">Bandaranaike International & Regional Airports</p>
                 </div>
               </div>
               <div className="flex gap-3">
-                <span className="text-2xl">🏖️</span>
                 <div>
                   <p className="font-semibold text-white">Coastal Coverage</p>
                   <p className="text-sm text-gray-400">South & West coasts including all beach resorts</p>

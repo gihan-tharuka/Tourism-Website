@@ -20,7 +20,7 @@ export function TestimonialsPreview({ testimonials }: TestimonialsPreviewProps) 
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
             Guest Stories
           </span>
           <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">What Our Travelers Say</h2>
@@ -39,7 +39,7 @@ export function TestimonialsPreview({ testimonials }: TestimonialsPreviewProps) 
               {/* Stars */}
               <div className="mb-4 flex gap-1">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <span key={i} className="text-lg text-emerald-400">
+                  <span key={i} className="text-lg text-amber-300">
                     ★
                   </span>
                 ))}

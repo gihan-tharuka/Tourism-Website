@@ -35,7 +35,7 @@ export function TransferHero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
               🚗 Premium Transportation
             </span>
           </motion.div>

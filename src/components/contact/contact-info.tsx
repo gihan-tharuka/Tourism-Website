@@ -5,25 +5,21 @@ import { Container } from '@/components/ui/container'
 
 const contactInfoItems = [
   {
-    icon: '💬',
     title: 'WhatsApp',
     value: '+94 76 123 4567',
     description: 'Chat with us for instant replies',
   },
   {
-    icon: '📧',
     title: 'Email',
     value: 'hello@beyondseafravels.com',
     description: 'For detailed inquiries',
   },
   {
-    icon: '🕐',
     title: 'Availability',
     value: '24/7',
     description: 'Typically reply within 15 mins',
   },
   {
-    icon: '📍',
     title: 'Service Area',
     value: 'All of Sri Lanka',
     description: 'From Colombo to the southern coast',
@@ -41,7 +37,7 @@ export function ContactInfo() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
             Get In Touch
           </span>
           <h2 className="mt-2 text-4xl font-bold text-white md:text-5xl">Contact Information</h2>
@@ -57,9 +53,8 @@ export function ContactInfo() {
               viewport={{ once: true }}
               className="rounded-lg border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
-              <div className="mb-3 text-4xl">{item.icon}</div>
               <h3 className="mb-1 font-semibold text-white">{item.title}</h3>
-              <p className="mb-2 font-bold text-emerald-400">{item.value}</p>
+              <p className="mb-2 font-bold text-amber-300">{item.value}</p>
               <p className="text-xs text-gray-400">{item.description}</p>
             </motion.div>
           ))}

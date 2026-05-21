@@ -41,7 +41,7 @@ export function ExperienceStats() {
               className="text-center"
             >
               <div className="mb-4">
-                <p className="text-5xl font-bold text-emerald-400 md:text-6xl">{stat.number}</p>
+                <p className="text-5xl font-bold text-amber-300 md:text-6xl">{stat.number}</p>
               </div>
               <h3 className="mb-2 text-xl font-semibold text-white">{stat.label}</h3>
               <p className="text-sm text-gray-400">{stat.description}</p>

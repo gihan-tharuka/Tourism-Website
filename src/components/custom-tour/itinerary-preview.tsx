@@ -55,7 +55,7 @@ export function ItineraryPreview({ itinerary, isLoading }: ItineraryPreviewProps
               <div className="space-y-1">
                 {day.activities.map((activity, i) => (
                   <p key={i} className="flex items-center gap-2 text-sm text-gray-400">
-                    <span className="text-emerald-400">•</span>
+                    <span className="text-amber-300">•</span>
                     {activity}
                   </p>
                 ))}
