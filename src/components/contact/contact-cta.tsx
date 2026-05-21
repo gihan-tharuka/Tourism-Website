@@ -6,7 +6,7 @@ import { Container } from '@/components/ui/container'
 
 export function ContactCTA() {
   return (
-    <section className="border-t border-white/5 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 py-12 md:py-20">
+    <section className="border-t border-white/5 bg-gradient-to-r from-amber-900/20 to-blue-900/20 py-12 md:py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -19,13 +19,13 @@ export function ContactCTA() {
             Your Sri Lankan Adventure Starts Here
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            Whether you&apos;re ready to book or just exploring options, our team is excited to help plan your perfect journey.
+            Whether you're ready to book or just exploring options, our team is excited to help plan your perfect journey.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/tours"
-              className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-8 py-3 font-semibold text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-8 py-3 font-semibold text-white transition-all hover:bg-amber-600"
             >
               Explore Tours
             </Link>

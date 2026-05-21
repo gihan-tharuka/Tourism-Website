@@ -1,21 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container } from '@/components/ui/container'
 
 export function TransferHero() {
   return (
     <section className="relative min-h-[500px] overflow-hidden bg-slate-950">
       {/* Background image with overlay */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/galle-fort-1050x700-1.jpg"
+          alt="Galle Fort, Sri Lanka - scenic coastal destination"
+          fill
+          className="object-cover"
+          priority
+        />
         {/* Multi-layer overlay for text readability */}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
@@ -36,7 +36,7 @@ export function TransferHero() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
-              🚗 Premium Transportation
+              Premium Transportation
             </span>
           </motion.div>
 

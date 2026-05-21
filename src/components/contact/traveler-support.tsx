@@ -55,7 +55,7 @@ export function TravelerSupport() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
               viewport={{ once: true }}
-              className="rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-emerald-400/50 hover:bg-white/8"
+              className="rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-amber-400/50 hover:bg-white/8"
             >
               <h3 className="mb-2 font-semibold text-white">{reason.title}</h3>
               <p className="text-sm text-gray-400">{reason.description}</p>

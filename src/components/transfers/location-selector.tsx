@@ -28,7 +28,7 @@ export function LocationSelector({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+        className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
       >
         <option value="">Select a location...</option>
         {locations.map((location) => (

@@ -12,14 +12,14 @@ export function WhatsAppContact() {
   }
 
   return (
-    <section className="border-t border-white/5 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 py-12 md:py-20">
+    <section className="border-t border-white/5 bg-gradient-to-r from-amber-900/20 to-blue-900/20 py-12 md:py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-2xl rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-8 md:p-12 backdrop-blur-sm"
+          className="mx-auto max-w-2xl rounded-lg border border-amber-400/30 bg-amber-400/10 p-8 md:p-12 backdrop-blur-sm"
         >
           <div className="text-center">
             
@@ -47,7 +47,7 @@ export function WhatsAppContact() {
 
             <button
               onClick={handleWhatsAppClick}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-8 py-4 font-semibold text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-8 py-4 font-semibold text-white transition-all hover:bg-amber-600"
             >
               Start WhatsApp Chat
             </button>

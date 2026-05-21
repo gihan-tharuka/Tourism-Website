@@ -57,7 +57,7 @@ export const vehicleTypes: VehicleType[] = [
     name: 'Sedan',
     passengers: '1–2',
     description: 'Comfortable sedan for solo travelers or couples',
-    icon: '🚗',
+    icon: '',
     luggage: 'Up to 2 large suitcases',
   },
   {
@@ -65,7 +65,7 @@ export const vehicleTypes: VehicleType[] = [
     name: 'SUV',
     passengers: '3–5',
     description: 'Spacious SUV for small groups',
-    icon: '🚙',
+    icon: '',
     luggage: 'Up to 4 large suitcases',
   },
   {
@@ -73,7 +73,7 @@ export const vehicleTypes: VehicleType[] = [
     name: 'Van',
     passengers: '6–9',
     description: 'Comfortable van for medium groups',
-    icon: '🚐',
+    icon: '',
     luggage: 'Up to 8 large suitcases',
   },
   {
@@ -81,7 +81,7 @@ export const vehicleTypes: VehicleType[] = [
     name: 'Mini Coach',
     passengers: '10–14',
     description: 'Luxury mini coach for larger groups',
-    icon: '🚌',
+    icon: '',
     luggage: 'Up to 14 large suitcases + storage',
   },
   {
@@ -89,7 +89,7 @@ export const vehicleTypes: VehicleType[] = [
     name: 'Large Coach',
     passengers: '15+',
     description: 'Full-size coach for large groups',
-    icon: '🚌',
+    icon: '',
     luggage: 'Unlimited luggage storage',
   },
 ]
@@ -142,7 +142,7 @@ export const pricingRoutes: PricingRoute[] = [
 
   // From Sigiriya
   { from: 'sigiriya', to: 'colombo', distance: 165, basePrice: 240, pricePerKm: 1.8 },
-  { from: 'sigiriya', to: 'kandy', distance: 70, basePrice: 120, pricePerKm: 2.5 },
+  { from: 'sigiriya', to: 'kandy', distance: 70, basePrice: 120, pricePerKm: 2 },
   { from: 'sigiriya', to: 'ella', distance: 120, basePrice: 180, pricePerKm: 2 },
   { from: 'sigiriya', to: 'airport', distance: 185, basePrice: 260, pricePerKm: 1.8 },
 
@@ -158,42 +158,42 @@ export const recommendedStops: RecommendedStop[] = [
     id: 'turtle-hatchery',
     name: 'Bentota Turtle Hatchery',
     description: 'Visit the sea turtle conservation center',
-    icon: '🐢',
+    icon: '',
     routes: ['colombo-galle', 'airport-galle', 'colombo-mirissa', 'airport-mirissa'],
   },
   {
     id: 'madu-safari',
     name: 'Madu River Safari',
     description: 'Scenic boat tour through mangrove forests',
-    icon: '🚤',
+    icon: '',
     routes: ['colombo-galle', 'airport-galle', 'colombo-mirissa', 'airport-mirissa'],
   },
   {
     id: 'tea-plantation',
     name: 'Tea Plantation Tours',
     description: 'Visit working tea estates in the highlands',
-    icon: '🍵',
+    icon: '',
     routes: ['colombo-ella', 'airport-ella', 'colombo-kandy', 'airport-kandy'],
   },
   {
     id: 'waterfall',
     name: 'Ella Waterfall',
     description: 'Scenic waterfall hike with panoramic views',
-    icon: '💧',
+    icon: '',
     routes: ['colombo-ella', 'airport-ella', 'kandy-ella'],
   },
   {
     id: 'sigiriya-rock',
     name: 'Sigiriya Rock Fortress',
     description: 'Climb the ancient rock fortress',
-    icon: '🏔️',
+    icon: '',
     routes: ['colombo-sigiriya', 'airport-sigiriya', 'kandy-sigiriya'],
   },
   {
     id: 'safari-yala',
     name: 'Yala Safari',
     description: 'Wildlife watching in Yala National Park',
-    icon: '🦁',
+    icon: '',
     routes: ['colombo-yala', 'airport-yala', 'mirissa-yala'],
   },
 ]

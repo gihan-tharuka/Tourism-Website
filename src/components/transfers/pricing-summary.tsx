@@ -21,10 +21,10 @@ export function PricingSummary({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-lg border border-emerald-400/30 bg-gradient-to-br from-emerald-400/10 to-blue-400/5 p-6"
+      className="rounded-lg border border-amber-400/30 bg-gradient-to-br from-amber-400/10 to-blue-400/5 p-6"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-white">💰 Estimated Price</h3>
+        <h3 className="text-lg font-semibold text-white">Estimated Price</h3>
         <div className="text-right">
           <p className="text-4xl font-bold text-amber-300">${estimatedPrice}</p>
           <p className="text-xs text-gray-400">estimated total</p>

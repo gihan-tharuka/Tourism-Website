@@ -16,13 +16,12 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-6"
+      className="rounded-lg border border-amber-400/30 bg-amber-400/10 p-6"
     >
       <div className="flex items-start justify-between">
         <div>
           <p className="mb-1 text-xs font-semibold uppercase text-gray-400">Recommended Vehicle</p>
-          <h3 className="mb-2 flex items-center gap-3 text-2xl font-bold text-emerald-300">
-            <span className="text-4xl">{vehicle.icon}</span>
+          <h3 className="mb-2 flex items-center gap-3 text-2xl font-bold text-amber-300">
             {vehicle.name}
           </h3>
           <p className="mb-3 text-sm text-gray-300">{vehicle.description}</p>

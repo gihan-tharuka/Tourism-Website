@@ -123,7 +123,7 @@ export function TransferForm() {
                     type="date"
                     value={formData.travelDate || ''}
                     onChange={(e) => setFormData({ ...formData, travelDate: e.target.value })}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </motion.div>
               </div>
@@ -146,7 +146,7 @@ export function TransferForm() {
                   placeholder="Full Name"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                 />
 
                 <motion.input
@@ -157,7 +157,7 @@ export function TransferForm() {
                   placeholder="Country"
                   value={formData.country}
                   onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                 />
 
                 <motion.input
@@ -168,16 +168,16 @@ export function TransferForm() {
                   placeholder="WhatsApp Number (e.g., +1234567890)"
                   value={formData.whatsappNumber}
                   onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                 />
               </div>
 
               <Button
                 onClick={handleSubmitWhatsApp}
                 disabled={!canSubmit || isSubmitting}
-                className="mt-6 w-full bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50"
+                className="mt-6 w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50"
               >
-                {isSubmitting ? '💬 Sending...' : '💬 Book Transfer on WhatsApp'}
+                {isSubmitting ? 'Sending...' : 'Book Transfer on WhatsApp'}
               </Button>
             </motion.div>
 
@@ -222,7 +222,7 @@ export function TransferForm() {
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-lg border border-blue-400/30 bg-blue-400/10 p-4 text-sm text-gray-300"
               >
-                <p className="mb-2 font-semibold text-blue-300">ℹ️ About Our Service</p>
+                <p className="mb-2 font-semibold text-blue-300">About Our Service</p>
                 <ul className="space-y-1 text-xs">
                   <li>✓ Professional & experienced drivers</li>
                   <li>✓ All vehicles air-conditioned</li>

@@ -103,7 +103,7 @@ export function InquiryForm() {
                   placeholder="Full Name *"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   required
                 />
                 <motion.input
@@ -115,7 +115,7 @@ export function InquiryForm() {
                   placeholder="Country *"
                   value={formData.country}
                   onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   required
                 />
               </div>
@@ -131,7 +131,7 @@ export function InquiryForm() {
                   placeholder="Email Address *"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   required
                 />
                 <motion.input
@@ -143,7 +143,7 @@ export function InquiryForm() {
                   placeholder="WhatsApp Number *"
                   value={formData.whatsappNumber}
                   onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   required
                 />
               </div>
@@ -156,7 +156,7 @@ export function InquiryForm() {
                 viewport={{ once: true }}
                 value={formData.inquiryType}
                 onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
               >
                 <option value="general" className="bg-slate-900">
                   General Inquiry
@@ -185,7 +185,7 @@ export function InquiryForm() {
                 rows={5}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                 required
               />
 
@@ -193,13 +193,13 @@ export function InquiryForm() {
               <Button
                 type="submit"
                 disabled={!canSubmit || isSubmitting}
-                className="w-full bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50"
+                className="w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50"
               >
                 {isSubmitting ? 'Sending to WhatsApp...' : 'Send via WhatsApp'}
               </Button>
 
               <p className="text-center text-xs text-gray-400">
-                * Required fields. We&apos;ll respond on WhatsApp typically within 15 minutes.
+                * Required fields. We'll respond on WhatsApp typically within 15 minutes.
               </p>
             </div>
           </motion.form>

@@ -15,7 +15,7 @@ export function RecommendedStops({ stops }: RecommendedStopsProps) {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
       <div className="mb-6">
-        <h3 className="mb-2 text-lg font-semibold text-white">✨ Recommended Stops on Route</h3>
+        <h3 className="mb-2 text-lg font-semibold text-white">Recommended Stops on Route</h3>
         <p className="text-sm text-gray-400">Optional attractions along your journey</p>
       </div>
 
@@ -28,7 +28,6 @@ export function RecommendedStops({ stops }: RecommendedStopsProps) {
             transition={{ delay: index * 0.05 }}
             className="flex gap-3 rounded-lg border border-white/10 bg-white/5 p-4 transition-all hover:bg-white/8"
           >
-            <span className="flex-shrink-0 text-2xl">{stop.icon}</span>
             <div className="flex-1">
               <h4 className="font-semibold text-white">{stop.name}</h4>
               <p className="text-sm text-gray-400">{stop.description}</p>

@@ -44,7 +44,6 @@ export default function TransfersPage() {
                 key={index}
                 className="rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:bg-white/8"
               >
-                <div className="mb-4 text-4xl">{item.icon}</div>
                 <h3 className="mb-2 font-semibold text-white">{item.title}</h3>
                 <p className="text-sm text-gray-400">{item.description}</p>
               </div>
@@ -87,7 +86,7 @@ export default function TransfersPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="border-t border-white/5 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 py-12 md:py-20">
+      <section className="border-t border-white/5 bg-gradient-to-r from-amber-900/20 to-blue-900/20 py-12 md:py-20">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Ready for Your Journey?</h2>
@@ -96,9 +95,9 @@ export default function TransfersPage() {
             </p>
             <a
               href="#"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-8 py-3 font-semibold text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-8 py-3 font-semibold text-white transition-all hover:bg-amber-600"
             >
-              ↑ Book Your Transfer
+              Book Your Transfer
             </a>
           </div>
         </Container>
@@ -109,32 +108,26 @@ export default function TransfersPage() {
 
 const trustItems = [
   {
-    icon: '👨‍✈️',
     title: 'Professional Drivers',
     description: 'Experienced, courteous drivers who know Sri Lanka inside out.',
   },
   {
-    icon: '❄️',
     title: 'Comfort First',
     description: 'All vehicles are modern, air-conditioned, and well-maintained.',
   },
   {
-    icon: '🛑',
     title: 'Flexible Stops',
     description: 'Stop at attractions, restaurants, or shops along the way.',
   },
   {
-    icon: '✈️',
     title: 'Airport Specialists',
     description: 'Seamless airport pickups and drop-offs on time, every time.',
   },
   {
-    icon: '📱',
     title: '24/7 Support',
     description: 'WhatsApp support available round-the-clock for your needs.',
   },
   {
-    icon: '💰',
     title: 'Transparent Pricing',
     description: 'No hidden charges. What you see is what you pay.',
   },
@@ -163,8 +156,7 @@ const faqItems = [
   },
   {
     question: 'What if I need to cancel or reschedule?',
-    answer:
-      'Cancellations are flexible. If you cancel 24 hours before, there&apos;s no charge. For late cancellations, we charge a small fee. Rescheduling is usually free.',
+    answer: "Cancellations are flexible. If you cancel 24 hours before, there's no charge. For late cancellations, we charge a small fee. Rescheduling is usually free.",
   },
   {
     question: 'Are child seats available for infants?',
