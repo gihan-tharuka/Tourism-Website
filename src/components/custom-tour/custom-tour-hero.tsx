@@ -1,21 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container } from '@/components/ui/container'
 
 export function CustomTourHero() {
   return (
     <section className="relative min-h-[600px] overflow-hidden bg-slate-950">
       {/* Background image with overlay */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/kandy.jpg"
+          alt="Kandy, Sri Lanka - cultural destination"
+          fill
+          className="object-cover"
+          priority
+        />
         {/* Multi-layer overlay for text readability */}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
@@ -36,7 +36,7 @@ export function CustomTourHero() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-amber-300">
-              ✨ Personalized Travel
+              Personalized Travel
             </span>
           </motion.div>
 
@@ -65,15 +65,15 @@ export function CustomTourHero() {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <div className="flex items-center gap-2">
-              <span className="text-lg">🗺️</span>
+              <span className="text-lg">✓</span>
               <span>Choose Destinations</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-lg">📅</span>
+              <span className="text-lg">✓</span>
               <span>Select Duration</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-lg">💬</span>
+              <span className="text-lg">✓</span>
               <span>Get Instant Quote</span>
             </div>
           </motion.div>

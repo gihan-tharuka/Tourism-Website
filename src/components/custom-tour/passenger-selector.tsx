@@ -31,11 +31,11 @@ export function PassengerSelector({ options, value, onChange }: PassengerSelecto
             onClick={() => onChange(option.value)}
             className={`rounded-lg border-2 px-6 py-4 font-semibold transition-all duration-300 ${
               value === option.value
-                ? 'border-emerald-400 bg-emerald-400/10 text-emerald-300'
-                : 'border-white/10 bg-white/5 text-white hover:border-emerald-400/50'
+                ? 'border-amber-400 bg-amber-400/10 text-amber-300'
+                : 'border-white/10 bg-white/5 text-white hover:border-amber-400/50'
             }`}
           >
-            👥 {option.label}
+            {option.label}
           </motion.button>
         ))}
       </div>

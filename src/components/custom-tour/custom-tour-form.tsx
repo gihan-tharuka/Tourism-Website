@@ -158,9 +158,9 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                     transition={{ delay: index * 0.05 }}
                     className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-semibold transition-all ${
                       isActive
-                        ? 'bg-emerald-400 text-slate-900'
+                        ? 'bg-amber-400 text-slate-900'
                         : isComplete
-                          ? 'bg-emerald-400/30 text-emerald-300'
+                          ? 'bg-amber-400/30 text-amber-300'
                           : 'bg-white/10 text-gray-400'
                     }`}
                   >
@@ -170,7 +170,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                   {index < steps.length - 1 && (
                     <div
                       className={`h-1 w-8 transition-colors md:w-12 ${
-                        isComplete ? 'bg-emerald-400/30' : 'bg-white/10'
+                        isComplete ? 'bg-amber-400/30' : 'bg-white/10'
                       }`}
                     />
                   )}
@@ -248,7 +248,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                     placeholder="Full Name"
                     value={formData.fullName}
                     onChange={(e) => handleContactChange('fullName', e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
 
                   <motion.input
@@ -259,7 +259,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                     placeholder="Country"
                     value={formData.country}
                     onChange={(e) => handleContactChange('country', e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
 
                   <motion.input
@@ -270,7 +270,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                     placeholder="WhatsApp Number (e.g., +1234567890)"
                     value={formData.whatsappNumber}
                     onChange={(e) => handleContactChange('whatsappNumber', e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
 
                   <motion.input
@@ -281,7 +281,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                     placeholder="Preferred Travel Date (Optional)"
                     value={formData.travelDate || ''}
                     onChange={(e) => handleContactChange('travelDate', e.target.value)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
                   />
                 </div>
               </div>
@@ -382,7 +382,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
               variant="ghost"
               className="flex-1"
             >
-              ← Back
+              Back
             </Button>
 
             {currentStep !== 'review' ? (
@@ -391,15 +391,15 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                 disabled={!canProceedToNext()}
                 className="flex-1"
               >
-                Next →
+                Next
               </Button>
             ) : (
               <Button
                 onClick={handleSubmitWhatsApp}
                 disabled={isSubmitting}
-                className="flex-1 bg-emerald-500 hover:bg-emerald-600"
+                className="flex-1 bg-amber-500 hover:bg-amber-600"
               >
-                {isSubmitting ? 'Sending...' : '💬 Send to WhatsApp'}
+                {isSubmitting ? 'Sending...' : 'Send to WhatsApp'}
               </Button>
             )}
           </div>

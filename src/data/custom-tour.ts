@@ -22,13 +22,13 @@ export const budgetOptions: BudgetRange[] = [
 ]
 
 export const interestOptions = [
-  { id: 'beaches', label: 'Beaches', icon: '🏖️' },
-  { id: 'wildlife', label: 'Wildlife', icon: '🦁' },
-  { id: 'adventure', label: 'Adventure', icon: '🧗' },
-  { id: 'culture', label: 'Culture', icon: '🏛️' },
-  { id: 'food', label: 'Food', icon: '🍜' },
-  { id: 'hiking', label: 'Hiking', icon: '⛰️' },
-  { id: 'relaxation', label: 'Luxury Relaxation', icon: '🧘' },
+  { id: 'beaches', label: 'Beaches' },
+  { id: 'wildlife', label: 'Wildlife' },
+  { id: 'adventure', label: 'Adventure' },
+  { id: 'culture', label: 'Culture' },
+  { id: 'food', label: 'Food' },
+  { id: 'hiking', label: 'Hiking' },
+  { id: 'relaxation', label: 'Luxury Relaxation' },
 ]
 
 export const passengerOptions = [

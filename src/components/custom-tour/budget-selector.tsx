@@ -13,7 +13,7 @@ export function BudgetSelector({ options, value, onChange }: BudgetSelectorProps
   return (
     <div className="space-y-4">
       <div className="mb-6">
-        <h3 className="mb-2 text-lg font-semibold text-white">What&apos;s your budget?</h3>
+        <h3 className="mb-2 text-lg font-semibold text-white">What's your budget?</h3>
         <p className="text-sm text-gray-400">Select your daily budget range</p>
       </div>
 
@@ -27,13 +27,13 @@ export function BudgetSelector({ options, value, onChange }: BudgetSelectorProps
             onClick={() => onChange(option.value)}
             className={`group rounded-lg border-2 p-6 text-left transition-all duration-300 ${
               value === option.value
-                ? 'border-emerald-400 bg-emerald-400/10'
-                : 'border-white/10 bg-white/5 hover:border-emerald-400/50'
+                ? 'border-amber-400 bg-amber-400/10'
+                : 'border-white/10 bg-white/5 hover:border-amber-400/50'
             }`}
           >
             <div className="flex items-start justify-between">
               <div>
-                <h4 className={`mb-1 font-semibold ${value === option.value ? 'text-emerald-300' : 'text-white'}`}>
+                <h4 className={`mb-1 font-semibold ${value === option.value ? 'text-amber-300' : 'text-white'}`}>
                   {option.label}
                 </h4>
                 <p className="mb-3 text-sm text-gray-400">{option.description}</p>
@@ -41,7 +41,7 @@ export function BudgetSelector({ options, value, onChange }: BudgetSelectorProps
               </div>
 
               {value === option.value && (
-                <div className="rounded-full bg-emerald-400 p-1">
+                <div className="rounded-full bg-amber-400 p-1">
                   <svg className="h-5 w-5 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"

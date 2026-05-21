@@ -22,10 +22,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/95 backdrop-blur-xl">
       <Container>
         <div className="flex h-20 items-center justify-between gap-4">
-          <Link href="/" className="inline-flex items-center gap-3 text-lg font-semibold uppercase tracking-[0.28em] text-white/90 transition hover:text-white">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-300 text-slate-950 shadow-lg shadow-amber-300/20">
-              BS
-            </span>
+          <Link href="/" className="inline-flex items-center gap-3 text-lg font-semibold uppercase tracking-[0.28em] text-amber-300 transition hover:text-amber-200">
             Beyond Sea Travels
           </Link>
 

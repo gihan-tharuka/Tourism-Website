@@ -36,8 +36,8 @@ export function DestinationSelector({ destinations, selectedIds, onChange }: Des
             onClick={() => toggleDestination(destination.id)}
             className={`group relative overflow-hidden rounded-lg border-2 transition-all duration-300 ${
               selectedIds.includes(destination.id)
-                ? 'border-emerald-400 bg-emerald-400/10'
-                : 'border-white/10 bg-white/5 hover:border-emerald-400/50'
+                ? 'border-amber-400 bg-amber-400/10'
+                : 'border-white/10 bg-white/5 hover:border-amber-400/50'
             }`}
           >
             <div className="relative h-40 w-full">
@@ -58,7 +58,7 @@ export function DestinationSelector({ destinations, selectedIds, onChange }: Des
             </div>
 
             {selectedIds.includes(destination.id) && (
-              <div className="absolute right-3 top-3 rounded-full bg-emerald-400 p-1">
+              <div className="absolute right-3 top-3 rounded-full bg-amber-400 p-1">
                 <svg className="h-4 w-4 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"

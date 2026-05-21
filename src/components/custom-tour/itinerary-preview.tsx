@@ -33,7 +33,7 @@ export function ItineraryPreview({ itinerary, isLoading }: ItineraryPreviewProps
       className="space-y-4"
     >
       <div className="mb-6">
-        <h3 className="mb-2 text-lg font-semibold text-white">✨ Your Suggested Itinerary</h3>
+        <h3 className="mb-2 text-lg font-semibold text-white">Your Suggested Itinerary</h3>
         <p className="text-sm text-gray-400">Based on your preferences</p>
       </div>
 
@@ -46,8 +46,8 @@ export function ItineraryPreview({ itinerary, isLoading }: ItineraryPreviewProps
             transition={{ delay: index * 0.1 }}
             className="flex gap-4 rounded-lg border border-white/10 bg-white/5 p-4 transition-all hover:bg-white/8"
           >
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-300">
-              <span className="font-bold">Day {day.day}</span>
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-400/20">
+              <span className="font-bold text-amber-300">Day {day.day}</span>
             </div>
 
             <div className="flex-1">
@@ -69,7 +69,7 @@ export function ItineraryPreview({ itinerary, isLoading }: ItineraryPreviewProps
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: itinerary.length * 0.1 }}
-        className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-400/10 p-4 text-sm text-emerald-300"
+        className="mt-4 flex items-center gap-2 rounded-lg bg-amber-400/10 p-4 text-sm text-amber-300"
       >
         <svg className="h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
           <path

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 interface InterestOption {
   id: string
   label: string
-  icon: string
 }
 
 interface InterestsSelectorProps {
@@ -40,17 +39,16 @@ export function InterestsSelector({ options, selected, onChange }: InterestsSele
             onClick={() => toggleInterest(option.id)}
             className={`group flex items-center gap-3 rounded-lg border-2 p-4 transition-all duration-300 ${
               selected.includes(option.id)
-                ? 'border-emerald-400 bg-emerald-400/10'
-                : 'border-white/10 bg-white/5 hover:border-emerald-400/50'
+                ? 'border-amber-400 bg-amber-400/10'
+                : 'border-white/10 bg-white/5 hover:border-amber-400/50'
             }`}
           >
-            <span className="text-2xl">{option.icon}</span>
-            <span className={`font-medium ${selected.includes(option.id) ? 'text-emerald-300' : 'text-white'}`}>
+            <span className={`font-medium ${selected.includes(option.id) ? 'text-amber-300' : 'text-white'}`}>
               {option.label}
             </span>
 
             {selected.includes(option.id) && (
-              <div className="ml-auto rounded-full bg-emerald-400 p-1">
+              <div className="ml-auto rounded-full bg-amber-400 p-1">
                 <svg className="h-4 w-4 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
