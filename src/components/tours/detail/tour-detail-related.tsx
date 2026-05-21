@@ -14,7 +14,7 @@ export function TourDetailRelated({ tours }: TourDetailRelatedProps) {
 
   return (
     <section className="py-14">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 space-y-3">
           <p className="text-xs uppercase tracking-[0.36em] text-amber-200/80">Related tours</p>
           <h2 className="text-3xl font-semibold text-white">Explore similar journeys.</h2>

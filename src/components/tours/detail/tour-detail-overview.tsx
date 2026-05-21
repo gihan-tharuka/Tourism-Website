@@ -10,7 +10,7 @@ interface TourDetailOverviewProps {
 export function TourDetailOverview({ tour }: TourDetailOverviewProps) {
   return (
     <section className="py-14">
-      <div className="mx-auto max-w-6xl space-y-10">
+      <div className="mx-auto max-w-6xl space-y-10 px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Tour overview"
           title="An immersive journey built for luxury, authenticity and effortless exploration."
