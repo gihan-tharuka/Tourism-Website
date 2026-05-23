@@ -11,7 +11,7 @@ const contactInfoItems = [
   },
   {
     title: 'Email',
-    value: 'hello@beyondseafravels.com',
+    value: 'hello@beyondseatravels.com',
     description: 'For detailed inquiries',
   },
   {

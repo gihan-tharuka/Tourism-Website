@@ -13,7 +13,7 @@ export function BudgetSelector({ options, value, onChange }: BudgetSelectorProps
   return (
     <div className="space-y-4">
       <div className="mb-6">
-        <h3 className="mb-2 text-lg font-semibold text-white">What's your budget?</h3>
+        <h3 className="mb-2 text-lg font-semibold text-white">What&apos;s your budget?</h3>
         <p className="text-sm text-gray-400">Select your daily budget range</p>
       </div>
 

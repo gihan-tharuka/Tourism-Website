@@ -2,33 +2,25 @@ import { TransferHero } from '@/components/transfers/transfer-hero'
 import { TransferForm } from '@/components/transfers/transfer-form'
 import { Container } from '@/components/ui/container'
 import type { Metadata } from 'next'
+import { createFaqJsonLd, createPageMetadata, JsonLd } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Private Sri Lanka Transfers | Beyond Sea Travels',
   description:
     'Book reliable private transfers across Sri Lanka with premium vehicles and personalized travel experiences. Instant WhatsApp quotes and 24/7 customer support.',
   keywords: ['transfers', 'private transport', 'Sri Lanka', 'airport pickups', 'luxury transport'],
-  openGraph: {
-    title: 'Private Sri Lanka Transfers | Beyond Sea Travels',
-    description: 'Comfortable, reliable, and personalized transport experiences for every journey.',
-    type: 'website',
-    url: 'https://beyondseafravels.com/transfers',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
-        width: 1200,
-        height: 630,
-        alt: 'Private Transfer Service',
-      },
-    ],
-  },
-}
+  pathname: '/transfers',
+  image: '/images/galle-fort-1050x700-1.jpg',
+})
 
 export default function TransfersPage() {
   return (
     <main className="min-h-screen bg-slate-950">
+      <JsonLd data={createFaqJsonLd(faqItems)} />
       <TransferHero />
-      <TransferForm />
+      <section id="transfer-booking" className="scroll-mt-24">
+        <TransferForm />
+      </section>
 
       {/* Trust Section */}
       <section className="border-t border-white/5 py-12 md:py-20">
@@ -94,7 +86,7 @@ export default function TransfersPage() {
               Get instant transfer quotes and book directly through WhatsApp. Our team is available 24/7 to assist you.
             </p>
             <a
-              href="#"
+              href="#transfer-booking"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-8 py-3 font-semibold text-white transition-all hover:bg-amber-600"
             >
               Book Your Transfer

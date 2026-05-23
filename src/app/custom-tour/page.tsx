@@ -3,8 +3,9 @@ import { CustomTourForm } from '@/components/custom-tour/custom-tour-form'
 import { Container } from '@/components/ui/container'
 import { destinations } from '@/data/destinations'
 import type { Metadata } from 'next'
+import { createFaqJsonLd, createPageMetadata, JsonLd } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Custom Sri Lanka Tours | Beyond Sea Travels',
   description:
     'Build a personalized Sri Lanka travel itinerary based on your interests, destinations, and budget. Get instant WhatsApp quotes from our luxury tour experts.',
@@ -15,28 +16,18 @@ export const metadata: Metadata = {
     'luxury tours',
     'tour builder',
   ],
-  openGraph: {
-    title: 'Custom Sri Lanka Tours | Beyond Sea Travels',
-    description:
-      'Build your dream journey with personalized itineraries tailored to your interests and budget.',
-    type: 'website',
-    url: 'https://beyondseafravels.com/custom-tour',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
-        width: 1200,
-        height: 630,
-        alt: 'Custom Tour Builder',
-      },
-    ],
-  },
-}
+  pathname: '/custom-tour',
+  image: '/images/kandy.jpg',
+})
 
 export default function CustomTourPage() {
   return (
     <main className="min-h-screen bg-slate-950">
+      <JsonLd data={createFaqJsonLd(faqItems)} />
       <CustomTourHero />
-      <CustomTourForm destinations={destinations} />
+      <section id="custom-tour-builder" className="scroll-mt-24">
+        <CustomTourForm destinations={destinations} />
+      </section>
 
       {/* FAQ Section */}
       <section className="border-t border-white/5 py-12 md:py-20">
@@ -83,7 +74,7 @@ export default function CustomTourPage() {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <a
-                href="#"
+                href="#custom-tour-builder"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-8 py-3 font-semibold text-white transition-all hover:bg-amber-600"
               >
                 Build Custom Tour

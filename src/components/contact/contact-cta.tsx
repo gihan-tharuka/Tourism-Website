@@ -19,7 +19,7 @@ export function ContactCTA() {
             Your Sri Lankan Adventure Starts Here
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            Whether you're ready to book or just exploring options, our team is excited to help plan your perfect journey.
+            Whether you&apos;re ready to book or just exploring options, our team is excited to help plan your perfect journey.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">

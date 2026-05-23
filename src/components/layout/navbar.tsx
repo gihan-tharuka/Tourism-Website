@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { cn } from '@/lib/utils'
 
@@ -22,7 +21,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/95 backdrop-blur-xl">
       <Container>
         <div className="flex h-20 items-center justify-between gap-4">
-          <Link href="/" className="inline-flex items-center gap-3 text-lg font-semibold uppercase tracking-[0.28em] text-amber-300 transition hover:text-amber-200">
+          <Link href="/" className="inline-flex max-w-[220px] items-center gap-3 text-base font-semibold uppercase tracking-[0.16em] text-amber-300 transition hover:text-amber-200 sm:max-w-none sm:text-lg sm:tracking-[0.28em]">
             Beyond Sea Travels
           </Link>
 
@@ -74,9 +73,13 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
-              <Button variant="primary" className="w-full">
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-950 transition hover:bg-amber-200"
+              >
                 Start Inquiry
-              </Button>
+              </Link>
             </div>
           </Container>
         </div>

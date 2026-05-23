@@ -13,6 +13,7 @@ export function CustomTourHero() {
           src="/images/kandy.jpg"
           alt="Kandy, Sri Lanka - cultural destination"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -41,7 +42,7 @@ export function CustomTourHero() {
           </motion.div>
 
           <motion.h1
-            className="mb-6 text-5xl font-bold text-white md:text-6xl"
+            className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -50,7 +51,7 @@ export function CustomTourHero() {
           </motion.h1>
 
           <motion.p
-            className="mb-8 text-xl text-gray-200 md:text-2xl"
+            className="mb-8 text-lg leading-8 text-gray-200 md:text-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}

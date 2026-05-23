@@ -7,17 +7,17 @@ const faqItems = [
   {
     question: 'How quickly will you respond to my inquiry?',
     answer:
-      'We typically respond to WhatsApp inquiries within 15 minutes during business hours. For emails, expect a response within 2-4 hours. We&apos;re available 24/7 to support your travel plans.',
+      "We typically respond to WhatsApp inquiries within 15 minutes during business hours. For emails, expect a response within 2-4 hours. We're available 24/7 to support your travel plans.",
   },
   {
     question: 'What is your booking process?',
     answer:
-      'Simply contact us via WhatsApp or email with your travel dates, interests, and budget. We&apos;ll create a customized proposal with pricing. Once you confirm, we secure your bookings and handle all logistics.',
+      "Simply contact us via WhatsApp or email with your travel dates, interests, and budget. We'll create a customized proposal with pricing. Once you confirm, we secure your bookings and handle all logistics.",
   },
   {
     question: 'What payment methods do you accept?',
     answer:
-      'We accept bank transfers, credit/debit cards, PayPal, and other online payment methods. Payment can be made after you receive your quote, and we&apos;re flexible with payment schedules.',
+      "We accept bank transfers, credit/debit cards, PayPal, and other online payment methods. Payment can be made after you receive your quote, and we're flexible with payment schedules.",
   },
   {
     question: 'Can you arrange custom tours?',
@@ -32,7 +32,7 @@ const faqItems = [
   {
     question: 'Can I get travel recommendations?',
     answer:
-      'Of course! Our team loves sharing local insights. Whether you need restaurant recommendations, hidden gem locations, or cultural tips, we&apos;re here to help you discover the best of Sri Lanka.',
+      "Of course! Our team loves sharing local insights. Whether you need restaurant recommendations, hidden gem locations, or cultural tips, we're here to help you discover the best of Sri Lanka.",
   },
 ]
 

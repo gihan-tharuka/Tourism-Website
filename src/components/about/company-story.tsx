@@ -44,13 +44,13 @@ export function CompanyStory() {
               <div className="flex items-start gap-3">
                 <div>
                   <p className="font-semibold text-white">Our Mission</p>
-                  <p className="text-sm text-gray-400">To create personalized, authentic travel experiences that connect people with Sri Lanka's culture, nature, and people.</p>
+                  <p className="text-sm text-gray-400">To create personalized, authentic travel experiences that connect people with Sri Lanka&apos;s culture, nature, and people.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <div>
                   <p className="font-semibold text-white">Our Vision</p>
-                  <p className="text-sm text-gray-400">To be Sri Lanka's most trusted luxury travel partner for meaningful, transformative journeys.</p>
+                  <p className="text-sm text-gray-400">To be Sri Lanka&apos;s most trusted luxury travel partner for meaningful, transformative journeys.</p>
                 </div>
               </div>
             </div>
@@ -68,6 +68,7 @@ export function CompanyStory() {
               src="/images/Ella_sri_lanka.jpg"
               alt="Ella Sri Lanka - scenic landscape"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-slate-950/40 via-transparent to-transparent" />

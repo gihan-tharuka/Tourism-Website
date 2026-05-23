@@ -11,6 +11,7 @@ import { TourDetailVehicles } from '@/components/tours/detail/tour-detail-vehicl
 import { TourDetailCTA } from '@/components/tours/detail/tour-detail-cta'
 import { TourDetailRelated } from '@/components/tours/detail/tour-detail-related'
 import type { Metadata } from 'next'
+import { createPageMetadata, createTourMetadata, createTourPackageJsonLd, JsonLd } from '@/lib/seo'
 
 interface TourPageProps {
   params: Promise<{ slug: string }>
@@ -21,21 +22,22 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   const tour = await getTourBySlug(slug)
 
   if (!tour) {
-    return {
+    return createPageMetadata({
       title: 'Tour Not Found | Beyond Sea Travels',
       description: 'The requested tour could not be found.',
-    }
+      pathname: '/tours',
+    })
   }
 
-  return {
-    title: `${tour.title} | ${tour.country} Tour Package | Beyond Sea Travels`,
-    description: `${tour.title} is a ${tour.durationDays}-day luxury tour in ${tour.country}, featuring ${tour.highlights.join(", ")} and private travel experiences.`,
-    openGraph: {
-      title: `${tour.title} | Beyond Sea Travels`,
-      description: `${tour.title} is a ${tour.durationDays}-day luxury tour in ${tour.country}, featuring ${tour.highlights.join(", ")}.`,
-      images: [tour.image],
-    },
-  }
+  return createTourMetadata(tour)
+}
+
+export async function generateStaticParams() {
+  const tours = await getTours()
+
+  return tours.map((tour) => ({
+    slug: tour.slug,
+  }))
 }
 
 export default async function TourDetailPage({ params }: TourPageProps) {
@@ -53,6 +55,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
 
   return (
     <main className="overflow-hidden">
+      <JsonLd data={createTourPackageJsonLd(tour)} />
       <TourDetailHero tour={tour} />
       <div className="relative bg-slate-950/95 py-12">
         <TourDetailQuickInfo tour={tour} />

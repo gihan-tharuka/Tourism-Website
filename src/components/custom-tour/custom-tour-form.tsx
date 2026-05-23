@@ -241,6 +241,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
 
                 <div className="space-y-4">
                   <motion.input
+                    aria-label="Full name"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0 }}
@@ -252,6 +253,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                   />
 
                   <motion.input
+                    aria-label="Country"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
@@ -263,6 +265,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                   />
 
                   <motion.input
+                    aria-label="WhatsApp number"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -274,6 +277,7 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                   />
 
                   <motion.input
+                    aria-label="Preferred travel date"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}

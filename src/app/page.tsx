@@ -9,12 +9,15 @@ import { WhatsAppCTA } from '@/components/home/whatsapp-cta'
 import { getFeaturedTours } from '@/services/tour.service'
 import { getDestinations } from '@/services/destination.service'
 import { getTestimonials } from '@/services/testimonial.service'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Beyond Sea Travels — Luxury Sri Lanka Tours',
+export const metadata = createPageMetadata({
+  title: 'Luxury Sri Lanka Tours',
   description:
     'Discover premium Sri Lanka travel experiences with luxury tours, private transfers, custom itineraries and expert local guides.',
-}
+  pathname: '/',
+  keywords: ['luxury Sri Lanka tours', 'Sri Lanka private guides', 'Sri Lanka custom tours'],
+})
 
 export default async function Home() {
   const [tours, destinations, testimonials] = await Promise.all([

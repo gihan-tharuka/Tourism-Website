@@ -38,7 +38,7 @@ export function TourDetailHero({ tour }: TourDetailHeroProps) {
           <p className="mb-4 inline-flex rounded-full border border-amber-200/20 bg-amber-300/10 px-4 py-2 text-xs uppercase tracking-[0.36em] text-amber-200">
             {tour.country}
           </p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
             {tour.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">

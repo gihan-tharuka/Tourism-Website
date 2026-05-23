@@ -95,6 +95,7 @@ export function InquiryForm() {
               {/* Name and Country Row */}
               <div className="grid gap-4 md:grid-cols-2">
                 <motion.input
+                  aria-label="Full name"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0 }}
@@ -107,6 +108,7 @@ export function InquiryForm() {
                   required
                 />
                 <motion.input
+                  aria-label="Country"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 }}
@@ -123,6 +125,7 @@ export function InquiryForm() {
               {/* Email and WhatsApp Row */}
               <div className="grid gap-4 md:grid-cols-2">
                 <motion.input
+                  aria-label="Email address"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
@@ -135,6 +138,7 @@ export function InquiryForm() {
                   required
                 />
                 <motion.input
+                  aria-label="WhatsApp number"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
@@ -150,6 +154,7 @@ export function InquiryForm() {
 
               {/* Inquiry Type */}
               <motion.select
+                aria-label="Inquiry type"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -177,6 +182,7 @@ export function InquiryForm() {
 
               {/* Message */}
               <motion.textarea
+                aria-label="Your message"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
@@ -199,7 +205,7 @@ export function InquiryForm() {
               </Button>
 
               <p className="text-center text-xs text-gray-400">
-                * Required fields. We'll respond on WhatsApp typically within 15 minutes.
+                * Required fields. We&apos;ll respond on WhatsApp typically within 15 minutes.
               </p>
             </div>
           </motion.form>
