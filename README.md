@@ -1,267 +1,93 @@
-# Beyond Sea Travels — Luxury Tourism Platform
+# Beyond Sea Travels
 
-A modern, scalable, conversion-focused tourism website built using **Next.js 15**, **TypeScript**, and **Tailwind CSS** for a Sri Lankan travel agency.
+Beyond Sea Travels is now structured as a fullstack monorepo-style tourism platform with a Next.js frontend and an Express/PostgreSQL backend foundation.
 
-This project was designed with a strong focus on:
+## Structure
 
-* premium tourism UX
-* modular frontend architecture
-* scalability for future backend integration
-* lead generation through WhatsApp
-* SEO optimization
-* mobile-first design
-* clean engineering practices
-
----
-
-# 🎯 What This Project Demonstrates
-
-This project demonstrates my ability to:
-
-* build scalable frontend architectures
-* design real-world business systems
-* create premium UI/UX experiences
-* implement modular React/Next.js applications
-* architect future-ready systems
-* optimize conversion-focused interfaces
-* work with TypeScript at scale
-* structure maintainable codebases
-
----
-
-# ✨ Features
-
-## 🌍 Tourism Experience Platform
-
-* Luxury tourism landing page
-* Dynamic tour listing system
-* Tour detail pages with itineraries
-* Custom tour builder
-* Private transfer booking system
-* WhatsApp-based inquiry flow
-* About & trust-building pages
-* SEO-ready architecture
-
----
-
-# 🧭 Key Pages
-
-## 🏠 Homepage
-
-* cinematic hero section
-* featured tours
-* destination showcases
-* testimonials
-* conversion-focused CTAs
-
-## 🎒 Tours Listing
-
-* responsive tour grid
-* country filtering
-* featured tour highlights
-
-## 🗺️ Dynamic Tour Detail Pages
-
-* itinerary timeline
-* activities showcase
-* pricing sections
-* vehicle & pax guidance
-* related tours
-* WhatsApp booking CTA
-
-## ✨ Custom Tour Builder
-
-Users can:
-
-* select destinations
-* choose duration
-* choose budget
-* select travel interests
-* generate itinerary preview
-* send inquiry directly to WhatsApp
-
-## 🚐 Private Transfers
-
-* pickup/drop-off selection
-* passenger-based vehicle recommendations
-* dynamic pricing estimation
-* route attraction suggestions
-* WhatsApp booking flow
-
-## 🏝️ About Page
-
-* brand storytelling
-* travel philosophy
-* featured destinations
-* testimonials
-* trust-building UX
-
-## 📞 Contact Page
-
-* inquiry forms
-* WhatsApp integration
-* FAQ section
-* travel support information
-
----
-
-# 🛠️ Tech Stack
+```txt
+Tourism-Website/
+├── frontend/   # Next.js App Router tourism website
+├── backend/    # Express API, TypeScript, Prisma, PostgreSQL
+├── docs/       # Architecture and project documentation
+├── README.md
+└── .gitignore
+```
 
 ## Frontend
 
-* Next.js
-* React
-* TypeScript
-* Tailwind CSS
-
-## UI & Animation
-
-* Framer Motion
-* Lucide React
-* Swiper.js
-
-## Forms & Validation
-
-* React Hook Form
-* Zod
-
-## Architecture
-
-* Service-layer architecture
-* Modular component structure
-* Reusable UI system
-* Mobile-first responsive design
-
----
-
-# 🧱 Project Architecture
+The frontend preserves the existing Next.js App Router application, routes, components, services, data, TypeScript config, ESLint config, and public assets.
 
 ```bash
-src/
-├── app/
-├── components/
-│   ├── home/
-│   ├── tours/
-│   ├── custom-tour/
-│   ├── transfers/
-│   ├── about/
-│   ├── contact/
-│   ├── shared/
-│   └── ui/
-├── services/
-├── data/
-├── types/
-├── hooks/
-├── lib/
-└── assets/
+cd frontend
+npm install
+npm run dev
+npm run lint
+npm run build
 ```
 
----
+Default local URL:
 
-# 🚀 Engineering Highlights
+```txt
+http://localhost:3000
+```
 
-## ✅ Scalable Frontend Architecture
+Frontend environment values live in `frontend/.env.local`.
 
-The project was intentionally designed to scale later into:
+```env
+NEXT_PUBLIC_WHATSAPP_NUMBER=
+NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-* MERN stack
-* Node.js backend
-* Laravel backend
-* admin dashboard system
-* booking management system
+## Backend
 
-## ✅ SEO-Focused Development
-
-* semantic structure
-* metadata optimization
-* dynamic SEO pages
-* clean URLs
-* image optimization
-
-## ✅ Conversion-Focused UX
-
-The platform prioritizes:
-
-* WhatsApp lead generation
-* tourism storytelling
-* trust-building design
-* premium visual experience
-
-## ✅ Mobile-First Design
-
-Optimized for:
-
-* mobile tourism users
-* responsive interactions
-* fast-loading UI
-* touch-friendly navigation
-
----
-
-# ⚡ Performance & Quality
-
-* Type-safe codebase
-* ESLint configured
-* Optimized Next.js images
-* Static pre-rendering where applicable
-* Component reusability
-* Clean folder architecture
-
----
-
-# 📦 Installation
+The backend is ready for API implementation with Express, TypeScript, Prisma, and PostgreSQL.
 
 ```bash
-# Clone repository
-git clone <your-repository-url>
-
-# Navigate into project
-cd beyond-sea-travels
-
-# Install dependencies
+cd backend
 npm install
-
-# Start development server
 npm run dev
 ```
 
----
+Default API URL:
 
-# 🔮 Future Scalability
+```txt
+http://localhost:5000
+```
 
-Planned future upgrades:
+Health check:
 
-* backend API integration
-* admin dashboard
-* CMS integration
-* dynamic booking system
-* payment gateway
-* multilingual support
-* Google Maps integration
-* automated itinerary generation
+```txt
+GET /api/health
+```
 
----
+Expected response:
 
-# 👨‍💻 Developer
+```json
+{
+  "status": "ok"
+}
+```
 
-**Gihan Tharuka**
-Full Stack Developer
+Backend environment values live in `backend/.env`.
 
-## Skills
+```env
+PORT=5000
+FRONTEND_URL=http://localhost:3000
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/beyond_sea_travels?schema=public"
+JWT_SECRET="replace-with-a-secure-jwt-secret"
+```
 
-* Laravel
-* PHP
-* React
-* Next.js
-* Node.js
-* TypeScript
-* JavaScript
-* Tailwind CSS
-* MySQL
-* REST APIs
+## Backend Scripts
 
----
+```bash
+npm run dev
+npm run build
+npm run start
+npm run prisma:generate
+npm run prisma:migrate
+```
 
-# ⭐ Notes
+## Deployment Direction
 
-This project was built as a production-style tourism MVP with scalability, maintainability, and real-world business requirements in mind.
+This layout supports separate frontend and backend deployments, clean environment separation, future Docker support, and incremental API integration without disturbing the existing tourism website.

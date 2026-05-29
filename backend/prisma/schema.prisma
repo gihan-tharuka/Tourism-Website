@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
+enum TourStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum InquiryStatus {
+  NEW
+  IN_PROGRESS
+  RESPONDED
+  CLOSED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Destination {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  country     String   @default("Sri Lanka")
+  summary     String?
+  description String?
+  imageUrl    String?
+  tours       Tour[]
+  inquiries   Inquiry[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("destinations")
+}
+
+model Tour {
+  id            String       @id @default(cuid())
+  title         String
+  slug          String       @unique
+  summary       String?
+  description   String?
+  durationDays  Int
+  basePrice     Decimal?     @db.Decimal(10, 2)
+  currency      String       @default("USD")
+  status        TourStatus   @default(DRAFT)
+  destinationId String?
+  destination   Destination? @relation(fields: [destinationId], references: [id], onDelete: SetNull)
+  inquiries     Inquiry[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([destinationId])
+  @@map("tours")
+}
+
+model Inquiry {
+  id            String        @id @default(cuid())
+  fullName      String
+  email         String?
+  phone         String?
+  message       String
+  travelDate    DateTime?
+  travelers     Int?
+  status        InquiryStatus @default(NEW)
+  tourId        String?
+  tour          Tour?         @relation(fields: [tourId], references: [id], onDelete: SetNull)
+  destinationId String?
+  destination   Destination?  @relation(fields: [destinationId], references: [id], onDelete: SetNull)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([tourId])
+  @@index([destinationId])
+  @@map("inquiries")
+}
