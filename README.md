@@ -41,11 +41,14 @@ NEXT_PUBLIC_API_URL=http://localhost:5000
 
 ## Backend
 
-The backend is ready for API implementation with Express, TypeScript, Prisma, and PostgreSQL.
+The backend provides the Phase 1 public API layer with Express, TypeScript, Prisma, PostgreSQL models, migrations, and seed data.
 
 ```bash
 cd backend
 npm install
+npm run prisma:generate
+npm run prisma:migrate -- --name init
+npm run prisma:seed
 npm run dev
 ```
 
@@ -65,7 +68,10 @@ Expected response:
 
 ```json
 {
-  "status": "ok"
+  "success": true,
+  "data": {
+    "status": "ok"
+  }
 }
 ```
 
@@ -86,6 +92,19 @@ npm run build
 npm run start
 npm run prisma:generate
 npm run prisma:migrate
+npm run prisma:seed
+```
+
+Public API routes:
+
+```txt
+GET /api/tours
+GET /api/tours/:slug
+GET /api/destinations
+GET /api/testimonials
+GET /api/transfers/locations
+GET /api/transfers/routes
+GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4
 ```
 
 ## Deployment Direction

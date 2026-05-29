@@ -7,89 +7,135 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum UserRole {
-  ADMIN
-  STAFF
+model Tour {
+  id               String         @id @default(cuid())
+  slug             String         @unique
+  title            String
+  country          String
+  durationDays     Int
+  shortDescription String
+  overview         String
+  startingPrice    Decimal        @db.Decimal(10, 2)
+  priceMin         Decimal        @db.Decimal(10, 2)
+  priceMax         Decimal        @db.Decimal(10, 2)
+  bestSeason       String
+  groupSize        String
+  featuredImage    String
+  isFeatured       Boolean        @default(false)
+  images           TourImage[]
+  itineraryDays    ItineraryDay[]
+  activities       Activity[]
+  destinations     Destination[]  @relation("DestinationToTour")
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@index([country])
+  @@index([durationDays])
+  @@index([isFeatured])
+  @@map("tours")
 }
 
-enum TourStatus {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
+model TourImage {
+  id     String @id @default(cuid())
+  url    String
+  alt    String
+  tourId String
+  tour   Tour   @relation(fields: [tourId], references: [id], onDelete: Cascade)
+
+  @@index([tourId])
+  @@map("tour_images")
 }
 
-enum InquiryStatus {
-  NEW
-  IN_PROGRESS
-  RESPONDED
-  CLOSED
+model ItineraryDay {
+  id          String   @id @default(cuid())
+  dayNumber   Int
+  title       String
+  location    String
+  description String
+  highlights  String[]
+  tourId      String
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+
+  @@unique([tourId, dayNumber])
+  @@index([tourId])
+  @@map("itinerary_days")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      UserRole @default(STAFF)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Activity {
+  id             String   @id @default(cuid())
+  title          String
+  description    String
+  icon           String
+  image          String
+  estimatedPrice Decimal? @db.Decimal(10, 2)
+  tourId         String?
+  tour           Tour?    @relation(fields: [tourId], references: [id], onDelete: SetNull)
 
-  @@map("users")
+  @@index([tourId])
+  @@map("activities")
 }
 
 model Destination {
   id          String   @id @default(cuid())
-  name        String
   slug        String   @unique
-  country     String   @default("Sri Lanka")
-  summary     String?
-  description String?
-  imageUrl    String?
-  tours       Tour[]
-  inquiries   Inquiry[]
+  name        String
+  country     String
+  description String
+  image       String
+  highlights  String[]
+  isFeatured  Boolean  @default(false)
+  tours       Tour[]   @relation("DestinationToTour")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  @@index([country])
+  @@index([isFeatured])
   @@map("destinations")
 }
 
-model Tour {
-  id            String       @id @default(cuid())
-  title         String
-  slug          String       @unique
-  summary       String?
-  description   String?
-  durationDays  Int
-  basePrice     Decimal?     @db.Decimal(10, 2)
-  currency      String       @default("USD")
-  status        TourStatus   @default(DRAFT)
-  destinationId String?
-  destination   Destination? @relation(fields: [destinationId], references: [id], onDelete: SetNull)
-  inquiries     Inquiry[]
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+model Testimonial {
+  id         String   @id @default(cuid())
+  name       String
+  country    String
+  message    String
+  rating     Int
+  avatar     String
+  role       String
+  isFeatured Boolean  @default(false)
+  createdAt  DateTime @default(now())
 
-  @@index([destinationId])
-  @@map("tours")
+  @@index([isFeatured])
+  @@map("testimonials")
 }
 
-model Inquiry {
-  id            String        @id @default(cuid())
-  fullName      String
-  email         String?
-  phone         String?
-  message       String
-  travelDate    DateTime?
-  travelers     Int?
-  status        InquiryStatus @default(NEW)
-  tourId        String?
-  tour          Tour?         @relation(fields: [tourId], references: [id], onDelete: SetNull)
-  destinationId String?
-  destination   Destination?  @relation(fields: [destinationId], references: [id], onDelete: SetNull)
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+model TransferLocation {
+  id            String          @id @default(cuid())
+  slug          String          @unique
+  name          String
+  type          String
+  description   String
+  pickupRoutes  TransferRoute[] @relation("PickupLocation")
+  dropoffRoutes TransferRoute[] @relation("DropoffLocation")
 
-  @@index([tourId])
-  @@index([destinationId])
-  @@map("inquiries")
+  @@index([type])
+  @@map("transfer_locations")
+}
+
+model TransferRoute {
+  id                String           @id @default(cuid())
+  pickupLocationId  String
+  dropoffLocationId String
+  distanceKm        Int
+  basePrice         Decimal          @db.Decimal(10, 2)
+  estimatedDuration String
+  recommendedStops  String[]
+  pickupLocation    TransferLocation @relation("PickupLocation", fields: [pickupLocationId], references: [id], onDelete: Cascade)
+  dropoffLocation   TransferLocation @relation("DropoffLocation", fields: [dropoffLocationId], references: [id], onDelete: Cascade)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@unique([pickupLocationId, dropoffLocationId])
+  @@index([pickupLocationId])
+  @@index([dropoffLocationId])
+  @@map("transfer_routes")
 }
