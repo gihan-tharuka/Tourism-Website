@@ -22,19 +22,8 @@ This project demonstrates real-world fullstack engineering across frontend archi
 
 ## Live Demo
 
-| Resource | Link |
-| --- | --- |
-| Live Website | `[Add Vercel URL]` |
-| API URL | `[Add Render API URL]` |
-| GitHub Repository | `[Add GitHub repository URL]` |
+Live Website - https://beyondsea.gihantharukaweb.online/ 
 
-Recommended demo flow:
-
-1. Visit the public tourism website.
-2. Submit a contact, tour, custom tour, or transfer inquiry.
-3. Confirm WhatsApp opens after the inquiry is saved.
-4. Log into the admin dashboard.
-5. View and update inquiry status.
 
 ---
 
@@ -316,22 +305,6 @@ flowchart LR
 
 ---
 
-## Screenshots
-
-Add screenshots to `docs/screenshots/` and replace the placeholders below.
-
-| Screen | Preview |
-| --- | --- |
-| Home | `docs/screenshots/home.png` |
-| Tours | `docs/screenshots/tours.png` |
-| Custom Tour Builder | `docs/screenshots/custom-tour-builder.png` |
-| Transfers | `docs/screenshots/transfers.png` |
-| Admin Login | `docs/screenshots/admin-login.png` |
-| Admin Dashboard | `docs/screenshots/admin-dashboard.png` |
-| Inquiry Management | `docs/screenshots/inquiry-management.png` |
-
----
-
 ## Local Setup
 
 ### Prerequisites
@@ -397,12 +370,6 @@ FRONTEND_URL=http://localhost:3000
 PORT=5001
 ```
 
-Seeded admin:
-
-```txt
-Email: admin@beyondsea.com
-Password: Admin123!
-```
 
 ### Useful Commands
 
