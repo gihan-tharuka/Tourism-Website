@@ -20,6 +20,16 @@ export const metadata: Metadata = {
   title: 'Beyond Sea Travels',
   description:
     'Luxury Sri Lanka travel and private tours crafted for immersive experiences, seamless transfers, and premium service.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png' }],
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({

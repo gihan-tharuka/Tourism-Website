@@ -12,10 +12,11 @@ export function HeroSection() {
     <section className="relative overflow-hidden pb-20 pt-28">
       <div className="absolute inset-0">
         <Image
-          src="/images/sigiriya.webp"
-          alt="Sri Lanka luxury travel scene"
+          src="/images/sigiriya2.avif"
+          alt="Sigiriya Rock Fortress, Sri Lanka"
           fill
           sizes="100vw"
+          priority
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-slate-950/70" />
