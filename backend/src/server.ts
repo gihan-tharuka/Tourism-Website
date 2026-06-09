@@ -1,6 +1,7 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express, { Request, Response } from "express";
+import authRoutes from "./routes/auth.routes";
 import destinationRoutes from "./routes/destination.routes";
 import inquiryRoutes from "./routes/inquiry.routes";
 import testimonialRoutes from "./routes/testimonial.routes";
@@ -25,6 +26,7 @@ app.get("/api/health", (_req: Request, res: Response) => {
   res.status(200).json({ success: true, data: { status: "ok" } });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/tours", tourRoutes);
 app.use("/api/destinations", destinationRoutes);
 app.use("/api/testimonials", testimonialRoutes);

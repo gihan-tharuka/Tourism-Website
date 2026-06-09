@@ -31,6 +31,7 @@ FRONTEND_URL=http://localhost:3000
 DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
 DIRECT_URL="postgresql://USER:PASSWORD@DIRECT_HOST/neondb?sslmode=require&channel_binding=require"
 JWT_SECRET="replace-with-long-random-secret"
+JWT_EXPIRES_IN=7d
 ```
 
 `FRONTEND_URL` controls the CORS origin. `DATABASE_URL` is used by Prisma Client at runtime. `DIRECT_URL` is used by Prisma migrations.
@@ -92,7 +93,32 @@ CONFIRMED
 CANCELLED
 ```
 
-Admin authentication will be added in Backend Phase 3. Until then, read/update inquiry endpoints are intentionally marked in code with TODO comments.
+Read/update inquiry endpoints require an admin JWT.
+
+## Auth Endpoints
+
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `POST /api/auth/logout`
+
+Login response includes a JWT. Send it on protected routes:
+
+```txt
+Authorization: Bearer <token>
+```
+
+Seeded local admin credentials:
+
+```txt
+Email: admin@beyondsea.com
+Password: Admin123!
+```
+
+Protected inquiry routes:
+
+- `GET /api/inquiries`
+- `GET /api/inquiries/:type/:id`
+- `PATCH /api/inquiries/:type/:id/status`
 
 ### Contact Inquiry
 

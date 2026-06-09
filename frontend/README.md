@@ -36,6 +36,31 @@ Integrated forms:
 
 If the backend request fails, WhatsApp is not opened and the user sees an error message.
 
+## Admin Dashboard
+
+Admin routes:
+
+- `/admin/login`
+- `/admin/dashboard`
+- `/admin/inquiries`
+
+Seeded development credentials:
+
+```txt
+Email: admin@beyondsea.com
+Password: Admin123!
+```
+
+The admin login stores the JWT in `localStorage`. Protected admin pages read the token and call:
+
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `GET /api/inquiries`
+- `GET /api/inquiries/:type/:id`
+- `PATCH /api/inquiries/:type/:id/status`
+
+The dashboard shows total, new, contacted, confirmed, and cancelled inquiry counts from the live backend. The inquiry page provides type/status filters, a details modal, and inline status updates.
+
 ## Development
 
 ```bash

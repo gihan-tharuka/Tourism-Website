@@ -15,6 +15,22 @@ enum InquiryStatus {
   CANCELLED
 }
 
+enum UserRole {
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  fullName     String
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
 model Tour {
   id               String         @id @default(cuid())
   slug             String         @unique

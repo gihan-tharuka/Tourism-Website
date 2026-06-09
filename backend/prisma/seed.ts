@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -369,6 +370,27 @@ const transferRoutes = [
 ];
 
 const main = async () => {
+  const passwordHash = await bcrypt.hash("Admin123!", 12);
+
+  await prisma.user.upsert({
+    where: { email: "admin@beyondsea.com" },
+    update: {
+      fullName: "Beyond Sea Admin",
+      passwordHash,
+      role: "ADMIN",
+    },
+    create: {
+      fullName: "Beyond Sea Admin",
+      email: "admin@beyondsea.com",
+      passwordHash,
+      role: "ADMIN",
+    },
+  });
+
+  await prisma.contactInquiry.deleteMany();
+  await prisma.tourInquiry.deleteMany();
+  await prisma.customTourInquiry.deleteMany();
+  await prisma.transferInquiry.deleteMany();
   await prisma.activity.deleteMany();
   await prisma.itineraryDay.deleteMany();
   await prisma.tourImage.deleteMany();
