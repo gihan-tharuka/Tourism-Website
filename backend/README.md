@@ -26,13 +26,14 @@ The API defaults to `http://localhost:5000`.
 ## Environment
 
 ```env
-PORT=5000
+PORT=5001
 FRONTEND_URL=http://localhost:3000
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/beyond_sea_travels?schema=public"
-JWT_SECRET="replace-with-a-secure-jwt-secret"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
+DIRECT_URL="postgresql://USER:PASSWORD@DIRECT_HOST/neondb?sslmode=require&channel_binding=require"
+JWT_SECRET="replace-with-long-random-secret"
 ```
 
-`FRONTEND_URL` controls the CORS origin. `DATABASE_URL` must point to a running PostgreSQL database before migrations or seed scripts can run.
+`FRONTEND_URL` controls the CORS origin. `DATABASE_URL` is used by Prisma Client at runtime. `DIRECT_URL` is used by Prisma migrations.
 
 ## Health Check
 
@@ -60,3 +61,101 @@ Returns:
 - `GET /api/transfers/locations`
 - `GET /api/transfers/routes`
 - `GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4`
+
+## Inquiry Endpoints
+
+Customer inquiry capture is public so frontend forms can save leads before opening WhatsApp.
+
+- `POST /api/inquiries/contact`
+- `POST /api/inquiries/tour`
+- `POST /api/inquiries/custom-tour`
+- `POST /api/inquiries/transfer`
+- `GET /api/inquiries`
+- `GET /api/inquiries/:type/:id`
+- `PATCH /api/inquiries/:type/:id/status`
+
+Supported inquiry types for read/update routes:
+
+```txt
+contact
+tour
+custom-tour
+transfer
+```
+
+Inquiry statuses:
+
+```txt
+NEW
+CONTACTED
+CONFIRMED
+CANCELLED
+```
+
+Admin authentication will be added in Backend Phase 3. Until then, read/update inquiry endpoints are intentionally marked in code with TODO comments.
+
+### Contact Inquiry
+
+```json
+{
+  "fullName": "John Smith",
+  "email": "john@example.com",
+  "whatsapp": "+49123456789",
+  "country": "Germany",
+  "inquiryType": "Custom Tour",
+  "message": "I want to plan a 10 day Sri Lanka trip."
+}
+```
+
+### Tour Inquiry
+
+```json
+{
+  "fullName": "Anna Muller",
+  "email": "anna@example.com",
+  "whatsapp": "+49123456789",
+  "country": "Germany",
+  "tourSlug": "sri-lanka-7-day-escape",
+  "tourTitle": "Sri Lanka 7 Day Escape",
+  "travelDate": "2026-08-15",
+  "passengerCount": 4,
+  "message": "Please send me the full quote."
+}
+```
+
+### Custom Tour Inquiry
+
+```json
+{
+  "fullName": "David Lee",
+  "email": "david@example.com",
+  "whatsapp": "+86123456789",
+  "country": "China",
+  "travelDate": "2026-09-10",
+  "duration": "14 Days",
+  "budget": "Luxury",
+  "passengerCount": 2,
+  "destinations": ["Sigiriya", "Kandy", "Ella", "Mirissa"],
+  "interests": ["Culture", "Beaches", "Wildlife"],
+  "message": "We want a private honeymoon tour."
+}
+```
+
+### Transfer Inquiry
+
+```json
+{
+  "fullName": "Sarah Wilson",
+  "email": "sarah@example.com",
+  "whatsapp": "+44123456789",
+  "country": "United Kingdom",
+  "travelDate": "2026-07-20",
+  "pickupLocation": "Colombo",
+  "dropoffLocation": "Galle",
+  "passengerCount": 4,
+  "estimatedVehicle": "SUV",
+  "estimatedPrice": 207,
+  "distanceKm": 120,
+  "message": "We need airport-style luggage space."
+}
+```
