@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
+import { trackInquiryCreated, trackWhatsAppClick } from '@/lib/analytics'
+import { createContactInquiry } from '@/services/inquiry.service'
+import type { ContactInquiryPayload } from '@/types/inquiry'
 
 interface InquiryFormData {
   fullName: string
@@ -25,6 +28,8 @@ export function InquiryForm() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const canSubmit =
     formData.fullName.trim() &&
@@ -35,7 +40,13 @@ export function InquiryForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) {
+      return
+    }
+
     setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
 
     // Prepare WhatsApp message
     const message = [
@@ -51,19 +62,44 @@ export function InquiryForm() {
       formData.message,
     ].join('\n')
 
-    const encoded = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/?text=${encoded}`
-    window.open(whatsappUrl, '_blank')
+    const inquiryTypeMap: Record<string, ContactInquiryPayload['inquiryType']> = {
+      general: 'General Inquiry',
+      tour: 'Tour Inquiry',
+      'custom-tour': 'Custom Tour',
+      transfers: 'Transfers',
+      other: 'General Inquiry',
+    }
 
-    setIsSubmitting(false)
-    setFormData({
-      fullName: '',
-      country: '',
-      email: '',
-      whatsappNumber: '',
-      inquiryType: 'general',
-      message: '',
-    })
+    try {
+      await createContactInquiry({
+        fullName: formData.fullName,
+        country: formData.country,
+        email: formData.email,
+        whatsapp: formData.whatsappNumber,
+        inquiryType: inquiryTypeMap[formData.inquiryType] ?? 'General Inquiry',
+        message: formData.message,
+      })
+
+      trackInquiryCreated('contact')
+      const encoded = encodeURIComponent(message)
+      const whatsappUrl = `https://wa.me/?text=${encoded}`
+      window.open(whatsappUrl, '_blank')
+      trackWhatsAppClick('contact')
+      setSubmitSuccess(true)
+
+      setFormData({
+        fullName: '',
+        country: '',
+        email: '',
+        whatsappNumber: '',
+        inquiryType: 'general',
+        message: '',
+      })
+    } catch {
+      setSubmitError('Unable to save inquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -201,8 +237,18 @@ export function InquiryForm() {
                 disabled={!canSubmit || isSubmitting}
                 className="w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50"
               >
-                {isSubmitting ? 'Sending to WhatsApp...' : 'Send via WhatsApp'}
+                {isSubmitting ? 'Saving Inquiry...' : 'Send via WhatsApp'}
               </Button>
+
+              {submitError && (
+                <p className="text-center text-sm font-medium text-red-300">{submitError}</p>
+              )}
+
+              {submitSuccess && (
+                <p className="text-center text-sm font-medium text-emerald-300">
+                  Inquiry saved. Opening WhatsApp...
+                </p>
+              )}
 
               <p className="text-center text-xs text-gray-400">
                 * Required fields. We&apos;ll respond on WhatsApp typically within 15 minutes.

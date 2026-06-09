@@ -1,7 +1,5 @@
-'use client'
-
-import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 import type { Tour } from '@/types/tour'
+import { TourInquiryButton } from './tour-inquiry-button'
 
 interface TourDetailCTAProps {
   tour: Tour
@@ -9,7 +7,6 @@ interface TourDetailCTAProps {
 
 export function TourDetailCTA({ tour }: TourDetailCTAProps) {
   const message = `Hello Beyond Sea Travels, I am interested in the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send details and availability.`
-  const link = getWhatsAppInquiryLink(message)
 
   return (
     <section className="py-14">
@@ -26,14 +23,14 @@ export function TourDetailCTA({ tour }: TourDetailCTAProps) {
               </p>
             </div>
             <div className="flex items-center justify-start lg:justify-end">
-              <a
-                href={link}
-                target="_blank"
-                rel="noreferrer"
+              <TourInquiryButton
+                tour={tour}
+                message={message}
+                source="tour-detail-cta"
                 className="inline-flex rounded-full bg-amber-300 px-8 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-amber-200"
               >
                 Message on WhatsApp
-              </a>
+              </TourInquiryButton>
             </div>
           </div>
         </div>

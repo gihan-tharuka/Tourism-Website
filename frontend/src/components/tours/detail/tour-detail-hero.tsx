@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Tour } from '@/types/tour'
-import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
+import { TourInquiryButton } from './tour-inquiry-button'
 
 interface TourDetailHeroProps {
   tour: Tour
@@ -12,7 +12,6 @@ interface TourDetailHeroProps {
 
 export function TourDetailHero({ tour }: TourDetailHeroProps) {
   const message = `Hello Beyond Sea Travels, I would like to book the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send more details.`
-  const whatsappLink = getWhatsAppInquiryLink(message)
 
   return (
     <section className="relative overflow-hidden bg-slate-950 text-white">
@@ -61,14 +60,14 @@ export function TourDetailHero({ tour }: TourDetailHeroProps) {
           </div>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
+            <TourInquiryButton
+              tour={tour}
+              message={message}
+              source="tour-detail-hero"
               className="inline-flex items-center justify-center rounded-full bg-amber-300 px-7 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-amber-200"
             >
               Book on WhatsApp
-            </a>
+            </TourInquiryButton>
             <Link
               href="/custom-tour"
               className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:border-amber-200 hover:bg-white/10"

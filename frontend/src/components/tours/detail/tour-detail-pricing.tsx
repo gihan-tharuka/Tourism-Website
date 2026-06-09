@@ -2,7 +2,7 @@
 
 import { ChevronRight } from 'lucide-react'
 import type { Tour } from '@/types/tour'
-import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
+import { TourInquiryButton } from './tour-inquiry-button'
 
 interface TourDetailPricingProps {
   tour: Tour
@@ -10,7 +10,6 @@ interface TourDetailPricingProps {
 
 export function TourDetailPricing({ tour }: TourDetailPricingProps) {
   const message = `Hello Beyond Sea Travels, I would like a precise quote for the ${tour.title} (${tour.durationDays} days, ${tour.country}).`
-  const link = getWhatsAppInquiryLink(message)
 
   return (
     <section className="py-14">
@@ -28,15 +27,15 @@ export function TourDetailPricing({ tour }: TourDetailPricingProps) {
             <div className="rounded-[2rem] bg-slate-900/80 p-6 text-center text-white shadow-[0_24px_80px_rgba(15,23,42,0.2)]">
               <p className="text-sm uppercase tracking-[0.36em] text-amber-200/80">Starting price</p>
               <p className="mt-3 text-4xl font-semibold">${tour.startingPrice.toLocaleString()}</p>
-              <a
-                href={link}
-                target="_blank"
-                rel="noreferrer"
+              <TourInquiryButton
+                tour={tour}
+                message={message}
+                source="tour-detail-pricing"
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-amber-200"
               >
                 Get Exact Quote
                 <ChevronRight size={16} />
-              </a>
+              </TourInquiryButton>
             </div>
           </div>
         </div>

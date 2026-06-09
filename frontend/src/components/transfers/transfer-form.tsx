@@ -17,11 +17,20 @@ import {
   buildTransferMessage,
 } from '@/services/transfer.service'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
-import { transferLocations, passengerOptions } from '@/data/transfers'
+import { trackInquiryCreated, trackWhatsAppClick } from '@/lib/analytics'
+import { transferLocations, passengerOptions, pricingRoutes } from '@/data/transfers'
+import { createTransferInquiry } from '@/services/inquiry.service'
 import type { TransferFormData } from '@/types/transfer'
+
+const getPassengerCount = (value: string) => {
+  const match = value.match(/\d+/)
+  return match ? Number(match[0]) : 1
+}
 
 export function TransferForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
   const [formData, setFormData] = useState<TransferFormData>({
     pickupLocation: '',
     dropoffLocation: '',
@@ -55,11 +64,42 @@ export function TransferForm() {
       : []
 
   const handleSubmitWhatsApp = async () => {
+    if (isSubmitting) {
+      return
+    }
+
     setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
     try {
       const message = buildTransferMessage(formData)
+      const route = pricingRoutes.find(
+        (pricingRoute) =>
+          pricingRoute.from === formData.pickupLocation &&
+          pricingRoute.to === formData.dropoffLocation
+      )
+
+      await createTransferInquiry({
+        fullName: formData.fullName,
+        whatsapp: formData.whatsappNumber,
+        country: formData.country,
+        travelDate: formData.travelDate,
+        pickupLocation: getLocationName(formData.pickupLocation),
+        dropoffLocation: getLocationName(formData.dropoffLocation),
+        passengerCount: getPassengerCount(formData.passengerCount),
+        estimatedVehicle: recommendedVehicle?.name,
+        estimatedPrice,
+        distanceKm: route?.distance,
+        message,
+      })
+
+      trackInquiryCreated('transfer')
       const whatsappLink = getWhatsAppInquiryLink(message)
       window.open(whatsappLink, '_blank')
+      trackWhatsAppClick('transfer')
+      setSubmitSuccess(true)
+    } catch {
+      setSubmitError('Unable to save inquiry. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -180,8 +220,18 @@ export function TransferForm() {
                 disabled={!canSubmit || isSubmitting}
                 className="mt-6 w-full bg-amber-500 hover:bg-amber-600 disabled:opacity-50"
               >
-                {isSubmitting ? 'Sending...' : 'Book Transfer on WhatsApp'}
+                {isSubmitting ? 'Saving Inquiry...' : 'Book Transfer on WhatsApp'}
               </Button>
+
+              {submitError && (
+                <p className="mt-4 text-center text-sm font-medium text-red-300">{submitError}</p>
+              )}
+
+              {submitSuccess && (
+                <p className="mt-4 text-center text-sm font-medium text-emerald-300">
+                  Inquiry saved. Opening WhatsApp...
+                </p>
+              )}
             </motion.div>
 
             {/* Recommended Stops */}

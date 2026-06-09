@@ -15,7 +15,9 @@ import {
   buildCustomTourMessage,
 } from '@/services/custom-tour.service'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
+import { trackInquiryCreated, trackWhatsAppClick } from '@/lib/analytics'
 import { budgetOptions, interestOptions, passengerOptions } from '@/data/custom-tour'
+import { createCustomTourInquiry } from '@/services/inquiry.service'
 import type { CustomTourFormData, ItineraryDay } from '@/types/custom-tour'
 import type { Destination } from '@/types/destination'
 
@@ -37,9 +39,16 @@ const stepTitles: Record<FormStep, string> = {
 
 const steps: FormStep[] = ['destinations', 'duration', 'budget', 'interests', 'passengers', 'contact', 'review']
 
+const getPassengerCount = (value: string) => {
+  const match = value.match(/\d+/)
+  return match ? Number(match[0]) : 1
+}
+
 export function CustomTourForm({ destinations }: CustomTourFormProps) {
   const [currentStep, setCurrentStep] = useState<FormStep>('destinations')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState<CustomTourFormData>({
@@ -130,11 +139,39 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
   }
 
   const handleSubmitWhatsApp = async () => {
+    if (isSubmitting) {
+      return
+    }
+
     setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
     try {
       const message = buildCustomTourMessage(formData)
+      const selectedDestinationNames = destinations
+        .filter((destination) => formData.destinations.includes(destination.id))
+        .map((destination) => destination.name)
+
+      await createCustomTourInquiry({
+        fullName: formData.fullName,
+        whatsapp: formData.whatsappNumber,
+        country: formData.country,
+        travelDate: formData.travelDate,
+        duration: formData.duration === 'custom' ? 'Custom duration' : `${formData.duration} Days`,
+        budget: formData.budget,
+        passengerCount: getPassengerCount(formData.passengerCount),
+        destinations: selectedDestinationNames,
+        interests: formData.interests,
+        message,
+      })
+
+      trackInquiryCreated('custom-tour')
       const whatsappLink = getWhatsAppInquiryLink(message)
       window.open(whatsappLink, '_blank')
+      trackWhatsAppClick('custom-tour')
+      setSubmitSuccess(true)
+    } catch {
+      setSubmitError('Unable to save inquiry. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -403,10 +440,20 @@ export function CustomTourForm({ destinations }: CustomTourFormProps) {
                 disabled={isSubmitting}
                 className="flex-1 bg-amber-500 hover:bg-amber-600"
               >
-                {isSubmitting ? 'Sending...' : 'Send to WhatsApp'}
+                {isSubmitting ? 'Saving Inquiry...' : 'Send to WhatsApp'}
               </Button>
             )}
           </div>
+
+          {submitError && (
+            <p className="mt-4 text-center text-sm font-medium text-red-300">{submitError}</p>
+          )}
+
+          {submitSuccess && (
+            <p className="mt-4 text-center text-sm font-medium text-emerald-300">
+              Inquiry saved. Opening WhatsApp...
+            </p>
+          )}
         </motion.div>
       </Container>
     </section>
