@@ -10,7 +10,7 @@ export function TransferHero() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/galle-fort-1050x700-1.jpg"
+          src="/images/Galle-Fort2.jpg"
           alt="Galle Fort, Sri Lanka - scenic coastal destination"
           fill
           sizes="100vw"

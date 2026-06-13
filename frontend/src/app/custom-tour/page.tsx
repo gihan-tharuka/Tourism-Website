@@ -17,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
     'tour builder',
   ],
   pathname: '/custom-tour',
-  image: '/images/kandy.jpg',
+  image: '/images/kandy2.avif',
 })
 
 export default function CustomTourPage() {

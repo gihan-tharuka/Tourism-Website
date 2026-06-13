@@ -10,7 +10,7 @@ export const metadata: Metadata = createPageMetadata({
     'Book reliable private transfers across Sri Lanka with premium vehicles and personalized travel experiences. Instant WhatsApp quotes and 24/7 customer support.',
   keywords: ['transfers', 'private transport', 'Sri Lanka', 'airport pickups', 'luxury transport'],
   pathname: '/transfers',
-  image: '/images/galle-fort-1050x700-1.jpg',
+  image: '/images/Galle-Fort2.jpg',
 })
 
 export default function TransfersPage() {
