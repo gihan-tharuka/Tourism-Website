@@ -36,7 +36,7 @@ Frontend environment values live in `frontend/.env.local`.
 ```env
 NEXT_PUBLIC_WHATSAPP_NUMBER=
 NEXT_PUBLIC_SITE_URL=
-NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_API_URL=http://localhost:5001/api
 ```
 
 ## Backend
@@ -55,7 +55,7 @@ npm run dev
 Default API URL:
 
 ```txt
-http://localhost:5000
+http://localhost:5001/api
 ```
 
 Health check:
@@ -78,10 +78,12 @@ Expected response:
 Backend environment values live in `backend/.env`.
 
 ```env
-PORT=5000
+PORT=5001
 FRONTEND_URL=http://localhost:3000
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/beyond_sea_travels?schema=public"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
+DIRECT_URL="postgresql://USER:PASSWORD@DIRECT_HOST/neondb?sslmode=require&channel_binding=require"
 JWT_SECRET="replace-with-a-secure-jwt-secret"
+JWT_EXPIRES_IN=7d
 ```
 
 ## Backend Scripts
@@ -107,6 +109,75 @@ GET /api/transfers/routes
 GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4
 ```
 
+## Docker
+
+Docker support is provided for local development only. It does not change the existing production deployment model:
+
+```txt
+Frontend: Vercel, root = frontend/
+Backend: Render, root = backend/
+Database: Neon PostgreSQL
+```
+
+### Local Docker With Neon
+
+This mode runs the frontend and backend in containers while the backend continues to use the existing `backend/.env` Neon connection.
+
+```bash
+docker compose build
+docker compose up
+```
+
+Open:
+
+```txt
+Frontend: http://localhost:3000
+Backend health: http://localhost:5001/api/health
+```
+
+Stop containers:
+
+```bash
+docker compose down
+```
+
+### Local Docker With PostgreSQL
+
+Use the optional override when you want a local PostgreSQL container instead of Neon:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml up --build
+```
+
+Then run migrations and seed data against the backend container:
+
+```bash
+docker compose exec backend npx prisma migrate dev
+docker compose exec backend npm run prisma:seed
+```
+
+Stop containers and keep the database volume:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml down
+```
+
+Remove the local PostgreSQL volume:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml down -v
+```
+
+### Docker Environment
+
+See `.env.docker.example` for non-secret Docker environment documentation.
+
+Important:
+
+- `docker-compose.yml` uses `backend/.env` for backend variables.
+- Do not commit real `.env` secrets.
+- `NEXT_PUBLIC_API_URL` is set to `http://localhost:5001/api` for local containers.
+
 ## Deployment Direction
 
-This layout supports separate frontend and backend deployments, clean environment separation, future Docker support, and incremental API integration without disturbing the existing tourism website.
+This layout supports separate frontend and backend deployments, clean environment separation, Docker-based local development, and incremental API integration without disturbing the existing tourism website.
