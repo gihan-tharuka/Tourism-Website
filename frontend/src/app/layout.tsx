@@ -20,6 +20,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  manifest: '/beyond-sea-travels-favicon-yellow/site.webmanifest',
   ...createPageMetadata({
     title: 'Beyond Sea Travels',
     description:

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Beyond Sea Travels favicon</title>
+  <desc id="desc">A premium BS monogram with a yellow wave accent on deep navy.</desc>
+  <circle cx="256" cy="256" r="236" fill="#0B1F3A"/>
+  <path d="M118 342 C165 310, 210 374, 256 342 S347 310, 394 342" fill="none" stroke="#FFD230" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="374" cy="150" r="18" fill="#FFD230"/>
+  <text x="256" y="280" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="188" font-weight="700" fill="#FFFFFF">BS</text>
+</svg>
