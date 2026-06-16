@@ -1,5 +1,7 @@
 # Beyond Sea Travels
 
+[![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+
 Beyond Sea Travels is now structured as a fullstack monorepo-style tourism platform with a Next.js frontend and an Express/PostgreSQL backend foundation.
 
 ## Structure
@@ -92,6 +94,7 @@ JWT_EXPIRES_IN=7d
 npm run dev
 npm run build
 npm run start
+npm run test
 npm run prisma:generate
 npm run prisma:migrate
 npm run prisma:seed
@@ -108,6 +111,41 @@ GET /api/transfers/locations
 GET /api/transfers/routes
 GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4
 ```
+
+## Continuous Integration
+
+GitHub Actions runs on every `push` and `pull_request` using Node.js 20.
+
+Frontend CI:
+
+```bash
+cd frontend
+npm ci
+npm run lint
+npm run build
+```
+
+Backend CI:
+
+```bash
+cd backend
+npm ci
+npx prisma validate
+npx prisma generate
+npx prisma migrate deploy
+npm run prisma:seed
+npm run build
+npm run test
+npm audit --audit-level=high
+```
+
+Docker CI:
+
+```bash
+docker compose build
+```
+
+The backend CI job uses an ephemeral PostgreSQL service with placeholder environment variables. It does not require Neon, Vercel, Render, or production secrets, and it does not reset or mutate production data.
 
 ## Docker
 
