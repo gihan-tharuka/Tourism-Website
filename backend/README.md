@@ -19,6 +19,8 @@ The API defaults to `http://localhost:5000`.
 - `npm run dev` starts the development server with `ts-node-dev`
 - `npm run build` compiles TypeScript into `dist/`
 - `npm run start` runs the compiled server
+- `npm run test` runs the Mocha integration test suite
+- `npm run test:watch` reruns backend tests in watch mode
 - `npm run prisma:generate` generates the Prisma client
 - `npm run prisma:migrate` runs a development migration
 - `npm run prisma:seed` loads public catalogue and transfer seed data
@@ -35,6 +37,16 @@ JWT_EXPIRES_IN=7d
 ```
 
 `FRONTEND_URL` controls the CORS origin. `DATABASE_URL` is used by Prisma Client at runtime. `DIRECT_URL` is used by Prisma migrations.
+
+## Testing
+
+Backend tests use Mocha, Chai, and Supertest against the exported Express app in `src/app.ts`.
+
+```bash
+npm run test
+```
+
+The test suite covers health, auth, tours, transfer estimates, inquiry authentication, and public inquiry validation. Database-backed tests use the configured Prisma database and seeded admin credentials, so run migrations and seed data before testing a fresh environment.
 
 ## Health Check
 
