@@ -53,6 +53,36 @@ Returns:
 }
 ```
 
+## Swagger API Documentation
+
+Interactive OpenAPI documentation is available from the running backend:
+
+```txt
+http://localhost:5001/api/docs
+```
+
+The raw OpenAPI 3.0 document is also available for API tooling:
+
+```txt
+GET /api/docs.json
+```
+
+Swagger includes public catalogue routes, transfer routes, inquiry capture routes, admin auth routes, and protected inquiry management routes.
+
+### JWT Authorization in Swagger
+
+1. Start the backend.
+2. Open `http://localhost:5001/api/docs`.
+3. Run `POST /api/auth/login` with the seeded admin credentials.
+4. Copy the returned `token`.
+5. Click **Authorize** and paste the raw JWT token into the `bearerAuth` field.
+
+Swagger UI will send protected requests with:
+
+```txt
+Authorization: Bearer <token>
+```
+
 ## Public Endpoints
 
 - `GET /api/tours`
