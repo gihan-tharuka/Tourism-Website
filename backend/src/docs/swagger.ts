@@ -30,6 +30,7 @@ export const swaggerSpec = swaggerJsdoc({
       { name: "Testimonials", description: "Public testimonial endpoints" },
       { name: "Transfers", description: "Transfer location, route, and estimate endpoints" },
       { name: "Inquiries", description: "Inquiry capture and protected inquiry management" },
+      { name: "Search", description: "PostgreSQL-powered tour and destination search" },
     ],
     components: {
       securitySchemes: {
@@ -301,6 +302,58 @@ export const swaggerSpec = swaggerJsdoc({
             },
           },
         },
+        TourSearchResponse: {
+          type: "object",
+          properties: {
+            success: { type: "boolean", example: true },
+            data: {
+              type: "object",
+              properties: {
+                query: { type: "string", example: "ella" },
+                results: {
+                  type: "array",
+                  items: { $ref: "#/components/schemas/Tour" },
+                },
+              },
+            },
+          },
+        },
+        DestinationSearchResponse: {
+          type: "object",
+          properties: {
+            success: { type: "boolean", example: true },
+            data: {
+              type: "object",
+              properties: {
+                query: { type: "string", example: "ella" },
+                results: {
+                  type: "array",
+                  items: { $ref: "#/components/schemas/Destination" },
+                },
+              },
+            },
+          },
+        },
+        GlobalSearchResponse: {
+          type: "object",
+          properties: {
+            success: { type: "boolean", example: true },
+            data: {
+              type: "object",
+              properties: {
+                query: { type: "string", example: "safari" },
+                tours: {
+                  type: "array",
+                  items: { $ref: "#/components/schemas/Tour" },
+                },
+                destinations: {
+                  type: "array",
+                  items: { $ref: "#/components/schemas/Destination" },
+                },
+              },
+            },
+          },
+        },
         SuccessResponse: {
           type: "object",
           properties: {
@@ -486,6 +539,75 @@ export const swaggerSpec = swaggerJsdoc({
                 },
               },
             },
+          },
+        },
+      },
+      "/api/search/tours": {
+        get: {
+          tags: ["Search"],
+          summary: "Search tours",
+          description:
+            "Searches tours using PostgreSQL through Prisma across tour text fields, destination names, and activity text.",
+          parameters: [
+            { name: "q", in: "query", required: true, schema: { type: "string" }, example: "sri" },
+            { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 20 }, example: 10 },
+          ],
+          responses: {
+            "200": {
+              description: "Tour search results.",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/TourSearchResponse" },
+                },
+              },
+            },
+            "400": { $ref: "#/components/responses/ValidationError" },
+          },
+        },
+      },
+      "/api/search/destinations": {
+        get: {
+          tags: ["Search"],
+          summary: "Search destinations",
+          description:
+            "Searches destinations using PostgreSQL through Prisma across destination text fields and highlights.",
+          parameters: [
+            { name: "q", in: "query", required: true, schema: { type: "string" }, example: "ella" },
+            { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 20 }, example: 10 },
+          ],
+          responses: {
+            "200": {
+              description: "Destination search results.",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/DestinationSearchResponse" },
+                },
+              },
+            },
+            "400": { $ref: "#/components/responses/ValidationError" },
+          },
+        },
+      },
+      "/api/search/global": {
+        get: {
+          tags: ["Search"],
+          summary: "Search tours and destinations",
+          description:
+            "Runs the same PostgreSQL/Prisma search across tours and destinations and returns grouped results.",
+          parameters: [
+            { name: "q", in: "query", required: true, schema: { type: "string" }, example: "safari" },
+            { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 20 }, example: 10 },
+          ],
+          responses: {
+            "200": {
+              description: "Grouped global search results.",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/GlobalSearchResponse" },
+                },
+              },
+            },
+            "400": { $ref: "#/components/responses/ValidationError" },
           },
         },
       },

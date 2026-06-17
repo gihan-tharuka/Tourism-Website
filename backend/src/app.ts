@@ -5,6 +5,7 @@ import { swaggerSpec, swaggerUiServe, swaggerUiSetup } from "./docs/swagger";
 import authRoutes from "./routes/auth.routes";
 import destinationRoutes from "./routes/destination.routes";
 import inquiryRoutes from "./routes/inquiry.routes";
+import searchRoutes from "./routes/search.routes";
 import testimonialRoutes from "./routes/testimonial.routes";
 import tourRoutes from "./routes/tour.routes";
 import transferRoutes from "./routes/transfer.routes";
@@ -38,6 +39,7 @@ app.use("/api/destinations", destinationRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/transfers", transferRoutes);
 app.use("/api/inquiries", inquiryRoutes);
+app.use("/api/search", searchRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

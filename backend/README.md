@@ -104,6 +104,27 @@ Authorization: Bearer <token>
 - `GET /api/transfers/locations`
 - `GET /api/transfers/routes`
 - `GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4`
+- `GET /api/search/tours?q=sri`
+- `GET /api/search/destinations?q=ella`
+- `GET /api/search/global?q=safari`
+
+## Search Endpoints
+
+Search uses PostgreSQL through Prisma `findMany` queries. No external search service is required.
+
+```txt
+GET /api/search/tours?q=sri&limit=10
+GET /api/search/destinations?q=ella&limit=10
+GET /api/search/global?q=safari&limit=10
+```
+
+Rules:
+
+- `q` is required and trimmed.
+- Empty `q` returns `400`.
+- Search is case-insensitive.
+- `limit` is optional and capped at `20`.
+- Global search returns grouped `tours` and `destinations`.
 
 ## Inquiry Endpoints
 
