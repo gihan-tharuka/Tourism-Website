@@ -24,6 +24,7 @@ export const swaggerSpec = swaggerJsdoc({
       },
     ],
     tags: [
+      { name: "Admin", description: "Protected admin utility endpoints" },
       { name: "Auth", description: "Admin authentication and session endpoints" },
       { name: "Tours", description: "Public tour catalogue endpoints" },
       { name: "Destinations", description: "Public destination endpoints" },
@@ -48,6 +49,21 @@ export const swaggerSpec = swaggerJsdoc({
             message: { type: "string", example: "Unauthorized" },
           },
           required: ["success", "message"],
+        },
+        ActivityLog: {
+          type: "object",
+          properties: {
+            id: { type: "string", example: "665f0dd41edfcf85ba92a111" },
+            actorId: { type: "string", nullable: true, example: "cmq62a9kc0000r5w1jjf0l2aj" },
+            actorEmail: { type: "string", nullable: true, example: "admin@beyondsea.com" },
+            action: { type: "string", example: "ADMIN_VIEWED_INQUIRIES" },
+            entityType: { type: "string", nullable: true, example: "contact" },
+            entityId: { type: "string", nullable: true, example: "cmq7example0001" },
+            metadata: { type: "object", nullable: true },
+            ipAddress: { type: "string", nullable: true, example: "::1" },
+            userAgent: { type: "string", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
+          },
         },
         LoginRequest: {
           type: "object",
@@ -390,6 +406,35 @@ export const swaggerSpec = swaggerJsdoc({
       },
     },
     paths: {
+      "/api/admin/activity-logs": {
+        get: {
+          tags: ["Admin"],
+          summary: "List recent admin activity logs",
+          description:
+            "Returns recent MongoDB activity logs when optional MongoDB logging is enabled. Returns an empty array when logging is disabled or unavailable.",
+          security: [{ bearerAuth: [] }],
+          responses: {
+            "200": {
+              description: "Recent activity logs.",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      success: { type: "boolean", example: true },
+                      data: {
+                        type: "array",
+                        items: { $ref: "#/components/schemas/ActivityLog" },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "401": { $ref: "#/components/responses/UnauthorizedError" },
+          },
+        },
+      },
       "/api/auth/login": {
         post: {
           tags: ["Auth"],

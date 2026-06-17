@@ -34,9 +34,38 @@ DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
 DIRECT_URL="postgresql://USER:PASSWORD@DIRECT_HOST/neondb?sslmode=require&channel_binding=require"
 JWT_SECRET="replace-with-long-random-secret"
 JWT_EXPIRES_IN=7d
+MONGODB_URI=
+MONGODB_LOGGING_ENABLED=false
 ```
 
 `FRONTEND_URL` controls the CORS origin. `DATABASE_URL` is used by Prisma Client at runtime. `DIRECT_URL` is used by Prisma migrations.
+
+## Optional MongoDB Activity Logging
+
+PostgreSQL remains the source of truth for tours, destinations, transfers, users, and inquiries. MongoDB is optional and is used only for admin activity/audit logs.
+
+Enable MongoDB Atlas logging with:
+
+```env
+MONGODB_URI="mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/beyond-sea-travels"
+MONGODB_LOGGING_ENABLED=true
+```
+
+If `MONGODB_LOGGING_ENABLED` is not `true`, or if `MONGODB_URI` is missing/unavailable, the backend continues running and activity logging becomes a safe no-op.
+
+Protected activity log endpoint:
+
+```txt
+GET /api/admin/activity-logs
+```
+
+Logged admin actions:
+
+- `ADMIN_LOGIN_SUCCESS`
+- `ADMIN_LOGIN_FAILED`
+- `ADMIN_VIEWED_INQUIRIES`
+- `ADMIN_VIEWED_INQUIRY_DETAIL`
+- `ADMIN_UPDATED_INQUIRY_STATUS`
 
 ## Testing
 

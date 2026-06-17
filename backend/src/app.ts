@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import { swaggerSpec, swaggerUiServe, swaggerUiSetup } from "./docs/swagger";
+import adminRoutes from "./routes/admin.routes";
 import authRoutes from "./routes/auth.routes";
 import destinationRoutes from "./routes/destination.routes";
 import inquiryRoutes from "./routes/inquiry.routes";
@@ -33,6 +34,7 @@ app.get("/api/docs.json", (_req: Request, res: Response) => {
 
 app.use("/api/docs", swaggerUiServe, swaggerUiSetup);
 
+app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/tours", tourRoutes);
 app.use("/api/destinations", destinationRoutes);
