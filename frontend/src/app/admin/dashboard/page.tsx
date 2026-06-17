@@ -85,6 +85,29 @@ export default function AdminDashboardPage() {
               customer details, filter lead types, and update each status as your team follows up.
             </p>
           </section>
+
+          <section className="mt-6 grid gap-4 md:grid-cols-2">
+            <Link
+              href="/admin/inquiries"
+              className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6 transition hover:border-amber-300/40 hover:bg-white/[0.08]"
+            >
+              <p className="text-xs uppercase tracking-[0.28em] text-amber-200">Lead Operations</p>
+              <h2 className="mt-3 text-xl font-semibold">Manage inquiries</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Review new leads, inspect customer details, and update inquiry status.
+              </p>
+            </Link>
+            <Link
+              href="/admin/activity-logs"
+              className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6 transition hover:border-amber-300/40 hover:bg-white/[0.08]"
+            >
+              <p className="text-xs uppercase tracking-[0.28em] text-amber-200">Audit Trail</p>
+              <h2 className="mt-3 text-xl font-semibold">View activity logs</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Monitor admin logins, inquiry views, and status changes recorded in MongoDB.
+              </p>
+            </Link>
+          </section>
         </div>
       </main>
     </ProtectedRoute>
