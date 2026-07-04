@@ -16,13 +16,13 @@ export const tours: Tour[] = [
     images: [
       '/images/sigiriya.webp',
       '/images/Ella_sri_lanka.jpg',
-      '/images/galle-fort-1050x700-1.jpg',
-      '/images/kandy.jpg',
+      '/images/Galle-Fort2.jpg',
+      '/images/kandy2.avif',
     ],
     activities: ['Private temple tour', 'Luxury train ride', 'Sunset coastal dinner', 'Tea estate walk'],
     bestSeason: 'November - April',
     groupSize: '2–8 guests',
-    image: '/images/sigiriya2.jpg',
+    image: '/images/homehero2.jpg',
     highlights: ['Private guide', 'Luxury stays', 'Cultural tours', 'Sunset coast cruise'],
     itinerary: [
       {
@@ -105,15 +105,15 @@ export const tours: Tour[] = [
     country: 'Sri Lanka',
     isFeatured: true,
     images: [
-      '/images/kandy.jpg',
+      '/images/kandy2.avif',
       '/images/sigiriya.webp',
       '/images/Ella_sri_lanka.jpg',
-      '/images/galle-fort-1050x700-1.jpg',
+      '/images/Galle-Fort2.jpg',
     ],
     activities: ['Cultural ceremonies', 'Tea estate tour', 'Heritage dining', 'Wildlife safari'],
     bestSeason: 'November - April',
     groupSize: '2–10 guests',
-    image: '/images/kandy.jpg',
+    image: '/images/kandy2.avif',
     highlights: ['Temple visits', 'Discreet hospitality', 'Private transfer', 'Signature dining'],
     itinerary: [
       {
@@ -157,7 +157,7 @@ export const tours: Tour[] = [
       '/images/cinematic.webp',
       '/images/mirissa.jpg',
       '/images/meaningful.webp',
-      '/images/sigiriya2.jpg',
+      '/images/homehero2.jpg',
     ],
     activities: ['Luxury resorts', 'Safari adventure', 'Historical tours', 'Private yacht dining'],
     bestSeason: 'December - March',

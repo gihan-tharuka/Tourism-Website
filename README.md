@@ -17,6 +17,7 @@ This project demonstrates real-world fullstack engineering across frontend archi
 ![Frontend](https://img.shields.io/badge/Frontend-Vercel-black?style=flat-square&logo=vercel)
 ![Backend](https://img.shields.io/badge/Backend-Render-46E3B7?style=flat-square&logo=render&logoColor=black)
 ![Database](https://img.shields.io/badge/Database-Neon-00E599?style=flat-square&logo=postgresql&logoColor=white)
+[![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
 ---
 
@@ -379,6 +380,11 @@ Frontend:
 cd frontend
 npm run lint
 npm run build
+npm run start
+npm run test
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:seed
 ```
 
 Backend:
@@ -441,3 +447,110 @@ It demonstrates how a modern fullstack application can connect marketing, lead c
 The project shows practical software engineering judgment: clean architecture, typed APIs, database modeling, protected admin workflows, SEO-minded frontend development, and business-focused product thinking.
 
 For recruiters and technical interviewers, this project demonstrates the ability to build more than screens. It shows the ability to design and ship a real fullstack product that solves an operational problem.
+## Continuous Integration
+
+GitHub Actions runs on every `push` and `pull_request` using Node.js 20.
+
+Frontend CI:
+
+```bash
+cd frontend
+npm ci
+npm run lint
+npm run build
+```
+
+Backend CI:
+
+```bash
+cd backend
+npm ci
+npx prisma validate
+npx prisma generate
+npx prisma migrate deploy
+npm run prisma:seed
+npm run build
+npm run test
+npm audit --audit-level=high
+```
+
+Docker CI:
+
+```bash
+docker compose build
+```
+
+The backend CI job uses an ephemeral PostgreSQL service with placeholder environment variables. It does not require Neon, Vercel, Render, or production secrets, and it does not reset or mutate production data.
+
+## Docker
+
+Docker support is provided for local development only. It does not change the existing production deployment model:
+
+```txt
+Frontend: Vercel, root = frontend/
+Backend: Render, root = backend/
+Database: Neon PostgreSQL
+```
+
+### Local Docker With Neon
+
+This mode runs the frontend and backend in containers while the backend continues to use the existing `backend/.env` Neon connection.
+
+```bash
+docker compose build
+docker compose up
+```
+
+Open:
+
+```txt
+Frontend: http://localhost:3000
+Backend health: http://localhost:5001/api/health
+```
+
+Stop containers:
+
+```bash
+docker compose down
+```
+
+### Local Docker With PostgreSQL
+
+Use the optional override when you want a local PostgreSQL container instead of Neon:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml up --build
+```
+
+Then run migrations and seed data against the backend container:
+
+```bash
+docker compose exec backend npx prisma migrate dev
+docker compose exec backend npm run prisma:seed
+```
+
+Stop containers and keep the database volume:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml down
+```
+
+Remove the local PostgreSQL volume:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.local-db.yml down -v
+```
+
+### Docker Environment
+
+See `.env.docker.example` for non-secret Docker environment documentation.
+
+Important:
+
+- `docker-compose.yml` uses `backend/.env` for backend variables.
+- Do not commit real `.env` secrets.
+- `NEXT_PUBLIC_API_URL` is set to `http://localhost:5001/api` for local containers.
+
+## Deployment Direction
+
+This layout supports separate frontend and backend deployments, clean environment separation, Docker-based local development, and incremental API integration without disturbing the existing tourism website.

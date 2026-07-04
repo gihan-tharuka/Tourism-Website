@@ -12,15 +12,15 @@ export function HeroSection() {
     <section className="relative overflow-hidden pb-20 pt-28">
       <div className="absolute inset-0">
         <Image
-          src="/images/sigiriya.webp"
+          src="/images/homehero2.jpg"
           alt="Sri Lanka luxury travel scene"
           fill
           sizes="100vw"
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-slate-950/70" />
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-slate-950/90 to-transparent" />
+        <div className="absolute inset-0 bg-slate-950/35" />
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-slate-950/55 to-transparent" />
       </div>
 
       <Container>

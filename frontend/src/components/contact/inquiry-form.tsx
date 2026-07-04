@@ -2,6 +2,25 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/shadcn/dialog'
+import { Input } from '@/components/shadcn/input'
+import { Label } from '@/components/shadcn/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/shadcn/select'
+import { Textarea } from '@/components/shadcn/textarea'
 import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { trackInquiryCreated, trackWhatsAppClick } from '@/lib/analytics'
@@ -30,6 +49,7 @@ export function InquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [whatsappUrl, setWhatsappUrl] = useState('')
 
   const canSubmit =
     formData.fullName.trim() &&
@@ -82,9 +102,7 @@ export function InquiryForm() {
 
       trackInquiryCreated('contact')
       const encoded = encodeURIComponent(message)
-      const whatsappUrl = `https://wa.me/?text=${encoded}`
-      window.open(whatsappUrl, '_blank')
-      trackWhatsAppClick('contact')
+      setWhatsappUrl(`https://wa.me/?text=${encoded}`)
       setSubmitSuccess(true)
 
       setFormData({
@@ -99,6 +117,23 @@ export function InquiryForm() {
       setSubmitError('Unable to save inquiry. Please try again.')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleOpenWhatsApp = () => {
+    if (!whatsappUrl) {
+      return
+    }
+
+    window.open(whatsappUrl, '_blank')
+    trackWhatsAppClick('contact')
+  }
+
+  const handleSuccessDialogChange = (open: boolean) => {
+    setSubmitSuccess(open)
+
+    if (!open) {
+      setWhatsappUrl('')
     }
   }
 
@@ -130,106 +165,154 @@ export function InquiryForm() {
             <div className="space-y-4">
               {/* Name and Country Row */}
               <div className="grid gap-4 md:grid-cols-2">
-                <motion.input
-                  aria-label="Full name"
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0 }}
                   viewport={{ once: true }}
-                  type="text"
-                  placeholder="Full Name *"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  required
-                />
-                <motion.input
-                  aria-label="Country"
+                >
+                  <Label htmlFor="contact-full-name" className="sr-only">
+                    Full name
+                  </Label>
+                  <Input
+                    id="contact-full-name"
+                    aria-label="Full name"
+                    type="text"
+                    placeholder="Full Name *"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    className="h-auto w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    required
+                  />
+                </motion.div>
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 }}
                   viewport={{ once: true }}
-                  type="text"
-                  placeholder="Country *"
-                  value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  required
-                />
+                >
+                  <Label htmlFor="contact-country" className="sr-only">
+                    Country
+                  </Label>
+                  <Input
+                    id="contact-country"
+                    aria-label="Country"
+                    type="text"
+                    placeholder="Country *"
+                    value={formData.country}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    className="h-auto w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    required
+                  />
+                </motion.div>
               </div>
 
               {/* Email and WhatsApp Row */}
               <div className="grid gap-4 md:grid-cols-2">
-                <motion.input
-                  aria-label="Email address"
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
-                  type="email"
-                  placeholder="Email Address *"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  required
-                />
-                <motion.input
-                  aria-label="WhatsApp number"
+                >
+                  <Label htmlFor="contact-email" className="sr-only">
+                    Email address
+                  </Label>
+                  <Input
+                    id="contact-email"
+                    aria-label="Email address"
+                    type="email"
+                    placeholder="Email Address *"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="h-auto w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    required
+                  />
+                </motion.div>
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
                   viewport={{ once: true }}
-                  type="tel"
-                  placeholder="WhatsApp Number *"
-                  value={formData.whatsappNumber}
-                  onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                  required
-                />
+                >
+                  <Label htmlFor="contact-whatsapp" className="sr-only">
+                    WhatsApp number
+                  </Label>
+                  <Input
+                    id="contact-whatsapp"
+                    aria-label="WhatsApp number"
+                    type="tel"
+                    placeholder="WhatsApp Number *"
+                    value={formData.whatsappNumber}
+                    onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
+                    className="h-auto w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                    required
+                  />
+                </motion.div>
               </div>
 
               {/* Inquiry Type */}
-              <motion.select
-                aria-label="Inquiry type"
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 viewport={{ once: true }}
-                value={formData.inquiryType}
-                onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
               >
-                <option value="general" className="bg-slate-900">
-                  General Inquiry
-                </option>
-                <option value="tour" className="bg-slate-900">
-                  Tour Inquiry
-                </option>
-                <option value="custom-tour" className="bg-slate-900">
-                  Custom Tour
-                </option>
-                <option value="transfers" className="bg-slate-900">
-                  Transfers
-                </option>
-                <option value="other" className="bg-slate-900">
-                  Other
-                </option>
-              </motion.select>
+                <Label htmlFor="contact-inquiry-type" className="sr-only">
+                  Inquiry type
+                </Label>
+                <Select
+                value={formData.inquiryType}
+                  onValueChange={(value) => setFormData({ ...formData, inquiryType: value })}
+                >
+                  <SelectTrigger
+                    id="contact-inquiry-type"
+                    aria-label="Inquiry type"
+                    className="h-auto w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                  >
+                    <SelectValue placeholder="Inquiry Type" />
+                  </SelectTrigger>
+                  <SelectContent className="border-white/10 bg-slate-900 text-white">
+                    <SelectItem value="general" className="focus:bg-white/10 focus:text-white">
+                      General Inquiry
+                    </SelectItem>
+                    <SelectItem value="tour" className="focus:bg-white/10 focus:text-white">
+                      Tour Inquiry
+                    </SelectItem>
+                    <SelectItem value="custom-tour" className="focus:bg-white/10 focus:text-white">
+                      Custom Tour
+                    </SelectItem>
+                    <SelectItem value="transfers" className="focus:bg-white/10 focus:text-white">
+                      Transfers
+                    </SelectItem>
+                    <SelectItem value="other" className="focus:bg-white/10 focus:text-white">
+                      Other
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </motion.div>
 
               {/* Message */}
-              <motion.textarea
-                aria-label="Your message"
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
                 viewport={{ once: true }}
-                placeholder="Your Message *"
-                rows={5}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                required
-              />
+              >
+                <Label htmlFor="contact-message" className="sr-only">
+                  Your message
+                </Label>
+                <Textarea
+                  id="contact-message"
+                  aria-label="Your message"
+                  placeholder="Your Message *"
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="min-h-0 w-full rounded-lg border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 transition-all focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                  required
+                />
+              </motion.div>
 
               {/* Submit Button */}
               <Button
@@ -244,18 +327,31 @@ export function InquiryForm() {
                 <p className="text-center text-sm font-medium text-red-300">{submitError}</p>
               )}
 
-              {submitSuccess && (
-                <p className="text-center text-sm font-medium text-emerald-300">
-                  Inquiry saved. Opening WhatsApp...
-                </p>
-              )}
-
               <p className="text-center text-xs text-gray-400">
                 * Required fields. We&apos;ll respond on WhatsApp typically within 15 minutes.
               </p>
             </div>
           </motion.form>
         </div>
+
+        <Dialog open={submitSuccess} onOpenChange={handleSuccessDialogChange}>
+          <DialogContent className="max-w-md rounded-2xl border-white/10 bg-slate-900 p-8 text-white shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+            <DialogHeader>
+              <DialogTitle className="text-2xl text-white">Inquiry saved</DialogTitle>
+              <DialogDescription className="leading-6 text-slate-300">
+                Your inquiry has been saved. Continue to WhatsApp to begin the conversation.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="secondary">Close</Button>
+              </DialogClose>
+              <DialogClose asChild>
+                <Button onClick={handleOpenWhatsApp}>Open WhatsApp</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </Container>
     </section>
   )

@@ -19,6 +19,8 @@ The API defaults to `http://localhost:5000`.
 - `npm run dev` starts the development server with `ts-node-dev`
 - `npm run build` compiles TypeScript into `dist/`
 - `npm run start` runs the compiled server
+- `npm run test` runs the Mocha integration test suite
+- `npm run test:watch` reruns backend tests in watch mode
 - `npm run prisma:generate` generates the Prisma client
 - `npm run prisma:migrate` runs a development migration
 - `npm run prisma:seed` loads public catalogue and transfer seed data
@@ -32,9 +34,48 @@ DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
 DIRECT_URL="postgresql://USER:PASSWORD@DIRECT_HOST/neondb?sslmode=require&channel_binding=require"
 JWT_SECRET="replace-with-long-random-secret"
 JWT_EXPIRES_IN=7d
+MONGODB_URI=
+MONGODB_LOGGING_ENABLED=false
 ```
 
 `FRONTEND_URL` controls the CORS origin. `DATABASE_URL` is used by Prisma Client at runtime. `DIRECT_URL` is used by Prisma migrations.
+
+## Optional MongoDB Activity Logging
+
+PostgreSQL remains the source of truth for tours, destinations, transfers, users, and inquiries. MongoDB is optional and is used only for admin activity/audit logs.
+
+Enable MongoDB Atlas logging with:
+
+```env
+MONGODB_URI="mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/beyond-sea-travels"
+MONGODB_LOGGING_ENABLED=true
+```
+
+If `MONGODB_LOGGING_ENABLED` is not `true`, or if `MONGODB_URI` is missing/unavailable, the backend continues running and activity logging becomes a safe no-op.
+
+Protected activity log endpoint:
+
+```txt
+GET /api/admin/activity-logs
+```
+
+Logged admin actions:
+
+- `ADMIN_LOGIN_SUCCESS`
+- `ADMIN_LOGIN_FAILED`
+- `ADMIN_VIEWED_INQUIRIES`
+- `ADMIN_VIEWED_INQUIRY_DETAIL`
+- `ADMIN_UPDATED_INQUIRY_STATUS`
+
+## Testing
+
+Backend tests use Mocha, Chai, and Supertest against the exported Express app in `src/app.ts`.
+
+```bash
+npm run test
+```
+
+The test suite covers health, auth, tours, transfer estimates, inquiry authentication, and public inquiry validation. Database-backed tests use the configured Prisma database and seeded admin credentials, so run migrations and seed data before testing a fresh environment.
 
 ## Health Check
 
@@ -53,6 +94,36 @@ Returns:
 }
 ```
 
+## Swagger API Documentation
+
+Interactive OpenAPI documentation is available from the running backend:
+
+```txt
+http://localhost:5001/api/docs
+```
+
+The raw OpenAPI 3.0 document is also available for API tooling:
+
+```txt
+GET /api/docs.json
+```
+
+Swagger includes public catalogue routes, transfer routes, inquiry capture routes, admin auth routes, and protected inquiry management routes.
+
+### JWT Authorization in Swagger
+
+1. Start the backend.
+2. Open `http://localhost:5001/api/docs`.
+3. Run `POST /api/auth/login` with the seeded admin credentials.
+4. Copy the returned `token`.
+5. Click **Authorize** and paste the raw JWT token into the `bearerAuth` field.
+
+Swagger UI will send protected requests with:
+
+```txt
+Authorization: Bearer <token>
+```
+
 ## Public Endpoints
 
 - `GET /api/tours`
@@ -62,6 +133,27 @@ Returns:
 - `GET /api/transfers/locations`
 - `GET /api/transfers/routes`
 - `GET /api/transfers/estimate?pickup=colombo&dropoff=galle&passengers=4`
+- `GET /api/search/tours?q=sri`
+- `GET /api/search/destinations?q=ella`
+- `GET /api/search/global?q=safari`
+
+## Search Endpoints
+
+Search uses PostgreSQL through Prisma `findMany` queries. No external search service is required.
+
+```txt
+GET /api/search/tours?q=sri&limit=10
+GET /api/search/destinations?q=ella&limit=10
+GET /api/search/global?q=safari&limit=10
+```
+
+Rules:
+
+- `q` is required and trimmed.
+- Empty `q` returns `400`.
+- Search is case-insensitive.
+- `limit` is optional and capped at `20`.
+- Global search returns grouped `tours` and `destinations`.
 
 ## Inquiry Endpoints
 

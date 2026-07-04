@@ -10,7 +10,7 @@ export function CustomTourHero() {
       {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/kandy.jpg"
+          src="/images/kandy2.avif"
           alt="Kandy, Sri Lanka - cultural destination"
           fill
           sizes="100vw"

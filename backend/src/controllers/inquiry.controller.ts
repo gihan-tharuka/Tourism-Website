@@ -1,5 +1,7 @@
 import { InquiryStatus } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
+import { AuthenticatedRequest } from "../middleware/auth.middleware";
+import { logActivity } from "../services/activity-log.service";
 import * as inquiryService from "../services/inquiry.service";
 import { sendSuccess, AppError } from "../utils/api-response";
 import {
@@ -56,12 +58,23 @@ export const createTransferInquiry = async (req: Request, res: Response, next: N
   }
 };
 
-// TODO: Protect admin inquiry reads with authentication in Backend Phase 3.
-export const getAllInquiries = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllInquiries = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const query = inquiryListQuerySchema.parse(req.query);
     const inquiries = await inquiryService.getAllInquiries({
       status: query.status as InquiryStatus | undefined,
+    });
+    await logActivity({
+      actorId: req.user?.id,
+      actorEmail: req.user?.email,
+      action: "ADMIN_VIEWED_INQUIRIES",
+      metadata: { status: query.status },
+      ipAddress: req.ip,
+      userAgent: req.headers["user-agent"],
     });
 
     return sendSuccess(res, inquiries);
@@ -70,8 +83,11 @@ export const getAllInquiries = async (req: Request, res: Response, next: NextFun
   }
 };
 
-// TODO: Protect admin inquiry reads with authentication in Backend Phase 3.
-export const getInquiryByTypeAndId = async (req: Request, res: Response, next: NextFunction) => {
+export const getInquiryByTypeAndId = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const params = inquiryTypeParamSchema.parse(req.params);
     const inquiry = await inquiryService.getInquiryByTypeAndId(params.type, params.id);
@@ -79,6 +95,15 @@ export const getInquiryByTypeAndId = async (req: Request, res: Response, next: N
     if (!inquiry) {
       throw new AppError("Inquiry not found", 404);
     }
+    await logActivity({
+      actorId: req.user?.id,
+      actorEmail: req.user?.email,
+      action: "ADMIN_VIEWED_INQUIRY_DETAIL",
+      entityType: params.type,
+      entityId: params.id,
+      ipAddress: req.ip,
+      userAgent: req.headers["user-agent"],
+    });
 
     return sendSuccess(res, inquiry);
   } catch (error) {
@@ -86,8 +111,11 @@ export const getInquiryByTypeAndId = async (req: Request, res: Response, next: N
   }
 };
 
-// TODO: Protect admin inquiry status updates with authentication in Backend Phase 3.
-export const updateInquiryStatus = async (req: Request, res: Response, next: NextFunction) => {
+export const updateInquiryStatus = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const params = inquiryTypeParamSchema.parse(req.params);
     const body = updateInquiryStatusSchema.parse(req.body);
@@ -96,6 +124,16 @@ export const updateInquiryStatus = async (req: Request, res: Response, next: Nex
       params.id,
       body.status as InquiryStatus,
     );
+    await logActivity({
+      actorId: req.user?.id,
+      actorEmail: req.user?.email,
+      action: "ADMIN_UPDATED_INQUIRY_STATUS",
+      entityType: params.type,
+      entityId: params.id,
+      metadata: { status: body.status },
+      ipAddress: req.ip,
+      userAgent: req.headers["user-agent"],
+    });
 
     return sendSuccess(res, inquiry);
   } catch (error) {
