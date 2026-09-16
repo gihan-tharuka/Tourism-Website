@@ -56,7 +56,7 @@ export function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Beyond Sea Travels creates personalized journeys across Sri Lanka with authenticity, comfort, and local expertise.
+            IslandSea Travels creates personalized journeys across Sri Lanka with authenticity, comfort, and local expertise.
           </motion.p>
 
           <motion.div

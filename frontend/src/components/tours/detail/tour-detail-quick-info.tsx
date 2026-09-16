@@ -1,6 +1,6 @@
 'use client'
 
-import { Clock3, MapPin, Users, CalendarDays, DollarSign } from 'lucide-react'
+import { Clock3, MapPin, Users, CalendarDays } from 'lucide-react'
 import type { Tour } from '@/types/tour'
 
 const infoItems = [
@@ -8,7 +8,7 @@ const infoItems = [
   { label: 'Country', icon: MapPin, key: 'country' },
   { label: 'Group size', icon: Users, key: 'groupSize' },
   { label: 'Best season', icon: CalendarDays, key: 'bestSeason' },
-  { label: 'Price range', icon: DollarSign, key: 'priceRange' },
+  // { label: 'Price range', icon: DollarSign, key: 'priceRange' },
 ] as const
 
 interface TourDetailQuickInfoProps {
@@ -19,7 +19,7 @@ export function TourDetailQuickInfo({ tour }: TourDetailQuickInfoProps) {
   return (
     <section className="py-14">
       <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-slate-950/85 p-6 shadow-[0_26px_90px_rgba(15,23,42,0.25)] backdrop-blur-2xl sm:p-8">
-        <div className="grid gap-4 sm:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-4">
           {infoItems.map((item) => {
             const Icon = item.icon
             const value = item.key === 'durationDays'

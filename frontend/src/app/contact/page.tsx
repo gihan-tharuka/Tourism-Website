@@ -10,9 +10,9 @@ import type { Metadata } from 'next'
 import { createFaqJsonLd, createPageMetadata, JsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Contact Beyond Sea Travels | Sri Lanka Travel Experts',
+  title: 'Contact IslandSea Travels | Sri Lanka Travel Experts',
   description:
-    'Contact Beyond Sea Travels for personalized Sri Lanka tours, private transfers, and custom travel experiences. Get instant WhatsApp support 24/7.',
+    'Contact IslandSea Travels for personalized Sri Lanka tours, private transfers, and custom travel experiences. Get instant WhatsApp support 24/7.',
   keywords: [
     'contact',
     'Sri Lanka travel',

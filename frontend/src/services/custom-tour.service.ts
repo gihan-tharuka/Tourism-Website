@@ -93,7 +93,7 @@ export const buildCustomTourMessage = (formData: CustomTourFormData): string => 
   const lines = [
     '🌴 *Custom Tour Inquiry* 🌴',
     '',
-    `Hello Beyond Sea Travels!`,
+    `Hello IslandSea Travels!`,
     '',
     `I would like to create a custom tour. Here are my preferences:`,
     '',

@@ -9,7 +9,7 @@ interface TourDetailPricingProps {
 }
 
 export function TourDetailPricing({ tour }: TourDetailPricingProps) {
-  const message = `Hello Beyond Sea Travels, I would like a precise quote for the ${tour.title} (${tour.durationDays} days, ${tour.country}).`
+  const message = `Hello IslandSea Travels, I would like a precise quote for the ${tour.title} (${tour.durationDays} days, ${tour.country}).`
 
   return (
     <section className="py-14">

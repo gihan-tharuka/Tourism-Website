@@ -11,7 +11,7 @@ interface TourDetailHeroProps {
 }
 
 export function TourDetailHero({ tour }: TourDetailHeroProps) {
-  const message = `Hello Beyond Sea Travels, I would like to book the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send more details.`
+  const message = `Hello IslandSea Travels, I would like to book the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send more details.`
 
   return (
     <section className="relative overflow-hidden bg-slate-950 text-white">
@@ -44,15 +44,15 @@ export function TourDetailHero({ tour }: TourDetailHeroProps) {
             {tour.summary}
           </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-3xl bg-slate-900/80 p-5 text-sm text-slate-200">
               <p className="text-xs uppercase tracking-[0.36em] text-amber-200/80">Duration</p>
               <p className="mt-2 font-semibold text-white">{tour.durationDays} days</p>
             </div>
-            <div className="rounded-3xl bg-slate-900/80 p-5 text-sm text-slate-200">
+            {/* <div className="rounded-3xl bg-slate-900/80 p-5 text-sm text-slate-200">
               <p className="text-xs uppercase tracking-[0.36em] text-amber-200/80">Starting price</p>
               <p className="mt-2 font-semibold text-white">${tour.startingPrice.toLocaleString()}</p>
-            </div>
+            </div> */}
             <div className="rounded-3xl bg-slate-900/80 p-5 text-sm text-slate-200">
               <p className="text-xs uppercase tracking-[0.36em] text-amber-200/80">Best season</p>
               <p className="mt-2 font-semibold text-white">{tour.bestSeason ?? 'Year round'}</p>

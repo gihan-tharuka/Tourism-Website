@@ -6,7 +6,7 @@ import { TourDetailOverview } from '@/components/tours/detail/tour-detail-overvi
 import { TourDetailGallery } from '@/components/tours/detail/tour-detail-gallery'
 import { TourDetailItinerary } from '@/components/tours/detail/tour-detail-itinerary'
 import { TourDetailActivities } from '@/components/tours/detail/tour-detail-activities'
-import { TourDetailPricing } from '@/components/tours/detail/tour-detail-pricing'
+// import { TourDetailPricing } from '@/components/tours/detail/tour-detail-pricing'
 import { TourDetailVehicles } from '@/components/tours/detail/tour-detail-vehicles'
 import { TourDetailCTA } from '@/components/tours/detail/tour-detail-cta'
 import { TourDetailRelated } from '@/components/tours/detail/tour-detail-related'
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
 
   if (!tour) {
     return createPageMetadata({
-      title: 'Tour Not Found | Beyond Sea Travels',
+      title: 'Tour Not Found | IslandSea Travels',
       description: 'The requested tour could not be found.',
       pathname: '/tours',
     })
@@ -63,7 +63,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         <TourDetailGallery tour={tour} />
         <TourDetailItinerary tour={tour} />
         <TourDetailActivities tour={tour} />
-        <TourDetailPricing tour={tour} />
+        {/* <TourDetailPricing tour={tour} /> */}
         <TourDetailVehicles />
         <TourDetailCTA tour={tour} />
         <TourDetailRelated tours={relatedTours} />

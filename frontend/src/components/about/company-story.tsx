@@ -24,7 +24,7 @@ export function CompanyStory() {
 
             <div className="space-y-4 text-gray-300">
               <p className="text-lg leading-relaxed">
-                Beyond Sea Travels was founded by travel enthusiasts who fell in love with Sri Lanka&apos;s beauty,
+                IslandSea Travels was founded by travel enthusiasts who fell in love with Sri Lanka&apos;s beauty,
                 culture, and people. We realized that most travelers deserved more than generic tours—they deserved
                 personalized, authentic experiences.
               </p>

@@ -78,7 +78,7 @@ export function ItineraryPreview({ itinerary, isLoading }: ItineraryPreviewProps
             clipRule="evenodd"
           />
         </svg>
-        <span>Send this itinerary to Beyond Sea Travels for customization!</span>
+        <span>Send this itinerary to IslandSea Travels for customization!</span>
       </motion.div>
     </motion.div>
   )

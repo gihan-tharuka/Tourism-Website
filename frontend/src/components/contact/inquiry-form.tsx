@@ -25,6 +25,7 @@ import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { trackInquiryCreated, trackWhatsAppClick } from '@/lib/analytics'
 import { createContactInquiry } from '@/services/inquiry.service'
+import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 import type { ContactInquiryPayload } from '@/types/inquiry'
 
 interface InquiryFormData {
@@ -101,8 +102,7 @@ export function InquiryForm() {
       })
 
       trackInquiryCreated('contact')
-      const encoded = encodeURIComponent(message)
-      setWhatsappUrl(`https://wa.me/?text=${encoded}`)
+      setWhatsappUrl(getWhatsAppInquiryLink(message))
       setSubmitSuccess(true)
 
       setFormData({

@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/container'
+import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 
 export function WhatsAppContact() {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(
-      'Hello Beyond Sea Travels! I would like to plan a trip to Sri Lanka. Can you help me?'
+    const link = getWhatsAppInquiryLink(
+      'Hello IslandSea Travels! I would like to plan a trip to Sri Lanka. Can you help me?'
     )
-    window.open(`https://wa.me/?text=${message}`, '_blank')
+    window.open(link, '_blank')
   }
 
   return (

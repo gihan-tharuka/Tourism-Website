@@ -14,7 +14,7 @@ export function SiteFooter() {
       <Container>
         <div className="grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1fr]">
           <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.36em] text-amber-200/80">Beyond Sea Travels</p>
+            <p className="text-sm uppercase tracking-[0.36em] text-amber-200/80">IslandSea Travels</p>
             <p className="max-w-md text-sm leading-7 text-slate-400">
               Designing private Sri Lanka journeys that feel cinematic, elevated and effortless — with luxury transfers, curated guides and seamless planning.
             </p>
@@ -34,15 +34,15 @@ export function SiteFooter() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-100">Contact</h3>
             <div className="mt-6 space-y-3 text-sm text-slate-400">
-              <p>info@beyondseatravels.com</p>
-              <p>+94 77 123 4567</p>
+              <p>islandsea.travels@gmail.com</p>
+              <p>+94 76 025 3208</p>
               <p>Colombo, Sri Lanka</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/10 py-6 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} Beyond Sea Travels. Crafted for premium travel experiences.
+          © {new Date().getFullYear()} IslandSea Travels. Crafted for premium travel experiences.
         </div>
       </Container>
     </footer>

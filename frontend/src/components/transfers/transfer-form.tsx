@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { LocationSelector } from './location-selector'
 import { PassengerSelector } from './passenger-selector'
 import { VehicleCard } from './vehicle-card'
-import { PricingSummary } from './pricing-summary'
+// import { PricingSummary } from './pricing-summary'
 import { RecommendedStops } from './recommended-stops'
 import {
   calculateTransferPrice,
@@ -259,7 +259,7 @@ export function TransferForm() {
               <VehicleCard vehicle={recommendedVehicle} />
 
               {/* Pricing Summary */}
-              {formData.pickupLocation && formData.dropoffLocation && (
+              {/* {formData.pickupLocation && formData.dropoffLocation && (
                 <PricingSummary
                   pickupName={getLocationName(formData.pickupLocation)}
                   dropoffName={getLocationName(formData.dropoffLocation)}
@@ -267,7 +267,7 @@ export function TransferForm() {
                   vehicleName={recommendedVehicle?.name}
                   passengerCount={formData.passengerCount}
                 />
-              )}
+              )} */}
 
               {/* Info Card */}
               <motion.div

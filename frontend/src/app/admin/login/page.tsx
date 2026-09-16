@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
           className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-[0_30px_90px_rgba(15,23,42,0.45)] backdrop-blur-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.36em] text-amber-200">
-            Beyond Sea Travels
+            IslandSea Travels
           </p>
           <h1 className="mt-4 text-3xl font-semibold text-white">Admin Login</h1>
           <p className="mt-3 text-sm leading-6 text-slate-300">

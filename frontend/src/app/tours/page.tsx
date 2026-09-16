@@ -3,7 +3,7 @@ import { ToursPageContent } from '@/components/tours/tours-page-content'
 import { createPageMetadata } from '@/lib/seo'
 
 export const metadata = createPageMetadata({
-  title: 'Sri Lanka Tour Packages | Beyond Sea Travels',
+  title: 'Sri Lanka Tour Packages | IslandSea Travels',
   description:
     'Explore premium tour packages across Sri Lanka, Thailand, and Malaysia. Discover luxury itineraries, private transfers, and curated travel experiences.',
   pathname: '/tours',

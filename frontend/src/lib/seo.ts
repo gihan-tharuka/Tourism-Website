@@ -3,12 +3,12 @@ import { createElement } from 'react'
 import { DEFAULT_META_DESCRIPTION, SITE_URL } from '@/lib/constants'
 import type { Tour } from '@/types/tour'
 
-const SITE_NAME = 'Beyond Sea Travels'
+const SITE_NAME = 'IslandSea Travels'
 const DEFAULT_OG_IMAGE = '/og/beyond-sea-travels.jpg'
 const DEFAULT_KEYWORDS = [
   'Sri Lanka luxury tours',
   'Sri Lanka private tours',
-  'Beyond Sea Travels',
+  'IslandSea Travels',
   'custom Sri Lanka itinerary',
   'Sri Lanka transfers',
   'luxury travel Sri Lanka',
@@ -118,7 +118,7 @@ export const createTravelAgencyJsonLd = () => ({
   description: DEFAULT_META_DESCRIPTION,
   areaServed: ['Sri Lanka', 'Thailand', 'Malaysia'],
   serviceType: ['Luxury tours', 'Custom itineraries', 'Private transfers'],
-  email: 'info@beyondseatravels.com',
+  email: 'islandsea.travels@gmail.com',
 })
 
 export const createFaqJsonLd = (items: FaqItem[]) => ({

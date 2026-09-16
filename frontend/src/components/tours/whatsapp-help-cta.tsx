@@ -2,7 +2,7 @@
 
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 
-const message = 'Hello Beyond Sea Travels, I need help choosing the best tour package for my dates and group size.'
+const message = 'Hello IslandSea Travels, I need help choosing the best tour package for my dates and group size.'
 
 export function WhatsAppHelpCTA() {
   const link = getWhatsAppInquiryLink(message)

@@ -6,12 +6,12 @@ import { Container } from '@/components/ui/container'
 const contactInfoItems = [
   {
     title: 'WhatsApp',
-    value: '+94 76 123 4567',
+    value: '+94 76 025 3208',
     description: 'Chat with us for instant replies',
   },
   {
     title: 'Email',
-    value: 'hello@beyondseatravels.com',
+    value: 'islandsea.travels@gmail.com',
     description: 'For detailed inquiries',
   },
   {

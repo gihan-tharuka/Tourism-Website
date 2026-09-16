@@ -22,7 +22,7 @@ export function SiteHeader() {
       <Container>
         <div className="flex h-20 items-center justify-between gap-4">
           <Link href="/" className="inline-flex max-w-[220px] items-center gap-3 text-base font-semibold uppercase tracking-[0.16em] text-amber-300 transition hover:text-amber-200 sm:max-w-none sm:text-lg sm:tracking-[0.28em]">
-            Beyond Sea Travels
+            IslandSea Travels
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

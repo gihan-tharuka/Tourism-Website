@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { createFaqJsonLd, createPageMetadata, JsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Private Sri Lanka Transfers | Beyond Sea Travels',
+  title: 'Private Sri Lanka Transfers | IslandSea Travels',
   description:
     'Book reliable private transfers across Sri Lanka with premium vehicles and personalized travel experiences. Instant WhatsApp quotes and 24/7 customer support.',
   keywords: ['transfers', 'private transport', 'Sri Lanka', 'airport pickups', 'luxury transport'],
@@ -26,7 +26,7 @@ export default function TransfersPage() {
       <section className="border-t border-white/5 py-12 md:py-20">
         <Container>
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Why Choose Beyond Sea Travels?</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Why Choose IslandSea Travels?</h2>
             <p className="text-gray-400">Experience premium transportation with a trusted team</p>
           </div>
 

@@ -19,7 +19,7 @@ export const buildInquiryMessage = ({
   dropoffLocation?: string
 }) => {
   const lines = [
-    'Hello Beyond Sea Travels,',
+    'Hello IslandSea Travels,',
     '',
     tourName ? `I am interested in the ${tourName}.` : 'I am interested in your tours.',
     travelDate ? `Travel Date: ${travelDate}` : 'Travel Date: (to be confirmed)',

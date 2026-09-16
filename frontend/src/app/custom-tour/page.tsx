@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 import { createFaqJsonLd, createPageMetadata, JsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Custom Sri Lanka Tours | Beyond Sea Travels',
+  title: 'Custom Sri Lanka Tours | IslandSea Travels',
   description:
     'Build a personalized Sri Lanka travel itinerary based on your interests, destinations, and budget. Get instant WhatsApp quotes from our luxury tour experts.',
   keywords: [

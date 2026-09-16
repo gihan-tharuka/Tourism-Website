@@ -62,11 +62,11 @@ export function TourCard({
             ))}
           </div>
           <Separator className="bg-white/10" />
-          <CardFooter className="justify-between gap-4 px-0 pt-2">
-            <div>
+          <CardFooter className="justify-end gap-4 px-0 pt-2">
+            {/* <div>
               <p className="text-sm uppercase tracking-[0.28em] text-slate-400">Starting price</p>
               <p className="mt-1 text-xl font-semibold text-white">${tour.startingPrice.toLocaleString()}</p>
-            </div>
+            </div> */}
             <Link
               href={href ?? `/tours/${tour.slug}`}
               className={cn(

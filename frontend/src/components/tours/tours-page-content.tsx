@@ -139,7 +139,7 @@ export function ToursPageContent({ tours, featuredTours }: ToursPageContentProps
                   Reset filters
                 </Button>
                 <a
-                  href={getWhatsAppInquiryLink('Hello Beyond Sea Travels, I need help choosing the best tour package for my group.')}
+                  href={getWhatsAppInquiryLink('Hello IslandSea Travels, I need help choosing the best tour package for my group.')}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex rounded-full bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-white transition hover:bg-white/20"

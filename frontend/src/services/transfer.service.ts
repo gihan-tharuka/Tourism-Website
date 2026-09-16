@@ -91,7 +91,7 @@ export const buildTransferMessage = (formData: TransferFormData): string => {
   const lines = [
     '🚗 *Transfer Booking Inquiry* 🚗',
     '',
-    'Hello Beyond Sea Travels!',
+    'Hello IslandSea Travels!',
     '',
     'I would like to book a private transfer. Here are my details:',
     '',

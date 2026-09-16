@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Container } from '@/components/ui/container'
+import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 
 export function AboutCTA() {
+  const whatsappLink = getWhatsAppInquiryLink(
+    'Hello IslandSea Travels, I would like to plan a trip to Sri Lanka.'
+  )
+
   return (
     <section className="border-t border-white/5 bg-gradient-to-r from-amber-900/20 to-blue-900/20 py-12 md:py-20">
       <Container>
@@ -19,7 +24,7 @@ export function AboutCTA() {
             Ready to Explore Sri Lanka?
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            Start your personalized journey with Beyond Sea Travels. Let us create an experience you&apos;ll treasure forever.
+            Start your personalized journey with IslandSea Travels. Let us create an experience you&apos;ll treasure forever.
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -30,7 +35,7 @@ export function AboutCTA() {
               Explore Tours
             </Link>
             <a
-              href="https://wa.me/?text=Hello%20Beyond%20Sea%20Travels%2C%20I%20would%20like%20to%20plan%20a%20trip%20to%20Sri%20Lanka"
+              href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-lg border border-white/20 px-8 py-3 font-semibold text-white transition-all hover:bg-white/10"

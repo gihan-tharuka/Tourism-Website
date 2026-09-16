@@ -8,10 +8,10 @@ export const swaggerSpec = swaggerJsdoc({
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Beyond Sea Travels API",
+      title: "IslandSea Travels API",
       version: "1.0.0",
       description:
-        "REST API for the Beyond Sea Travels fullstack tourism lead management platform. Includes public catalogue APIs, inquiry capture, JWT admin authentication, and protected inquiry management endpoints.",
+        "REST API for the IslandSea Travels fullstack tourism lead management platform. Includes public catalogue APIs, inquiry capture, JWT admin authentication, and protected inquiry management endpoints.",
     },
     servers: [
       {
@@ -1089,5 +1089,5 @@ export const swaggerSpec = swaggerJsdoc({
 export const swaggerUiServe = swaggerUi.serve;
 export const swaggerUiSetup = swaggerUi.setup(swaggerSpec, {
   explorer: true,
-  customSiteTitle: "Beyond Sea Travels API Docs",
+  customSiteTitle: "IslandSea Travels API Docs",
 });

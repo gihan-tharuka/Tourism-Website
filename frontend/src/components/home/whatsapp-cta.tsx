@@ -4,7 +4,7 @@ import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 import { motion } from 'framer-motion'
 
 export function WhatsAppCTA() {
-  const message = 'Hello Beyond Sea Travels, I am interested in planning a custom luxury itinerary. Please share more details.'
+  const message = 'Hello IslandSea Travels, I am interested in planning a custom luxury itinerary. Please share more details.'
   const link = getWhatsAppInquiryLink(message)
 
   return (

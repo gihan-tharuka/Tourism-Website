@@ -7,7 +7,7 @@ export const testimonials: Testimonial[] = [
     location: 'Colombo, Sri Lanka',
     role: 'Honeymoon Couple',
     quote:
-      'Beyond Sea Travels crafted a perfect luxury itinerary for us with private transport, incredible dining, and attentive service from start to finish.',
+      'IslandSea Travels crafted a perfect luxury itinerary for us with private transport, incredible dining, and attentive service from start to finish.',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
   },

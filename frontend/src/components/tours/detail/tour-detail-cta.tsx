@@ -6,7 +6,7 @@ interface TourDetailCTAProps {
 }
 
 export function TourDetailCTA({ tour }: TourDetailCTAProps) {
-  const message = `Hello Beyond Sea Travels, I am interested in the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send details and availability.`
+  const message = `Hello IslandSea Travels, I am interested in the ${tour.title} (${tour.durationDays} days, ${tour.country}). Please send details and availability.`
 
   return (
     <section className="py-14">
