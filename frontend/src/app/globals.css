@@ -1,34 +1,41 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ *  Coastal Luxe design tokens (light / premium tourism theme)
+ * ------------------------------------------------------------------ */
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --surface: rgba(15, 23, 42, 0.85);
-  --border: rgba(148, 163, 184, 0.14);
-  --accent: #fbbf24;
-  --muted: #94a3b8;
-  --card: var(--surface);
-  --card-foreground: var(--foreground);
-  --popover: #0f172a;
-  --popover-foreground: var(--foreground);
-  --primary: var(--accent);
-  --primary-foreground: #020617;
-  --secondary: #1e293b;
-  --secondary-foreground: var(--foreground);
-  --muted-foreground: var(--muted);
-  --accent-foreground: #020617;
-  --destructive: #ef4444;
-  --destructive-foreground: #fff7ed;
-  --input: var(--border);
-  --ring: var(--accent);
-  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #0b1b2b;
+  --surface: #f5f8fa;
+  --card: #ffffff;
+  --card-foreground: #0b1b2b;
+  --popover: #ffffff;
+  --popover-foreground: #0b1b2b;
+  --primary: #0e7c86;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f8;
+  --secondary-foreground: #0b1b2b;
+  --muted: #f5f8fa;
+  --muted-foreground: #55657a;
+  --accent: #f5a524;
+  --accent-foreground: #0b1b2b;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e6ebf0;
+  --input: #e6ebf0;
+  --ring: #0e7c86;
+  --deep: #0b1b2b;
+  --deep-foreground: #e8eef3;
+  --radius: 0.75rem;
 }
 
 @theme inline {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-accent: var(--font-accent);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -46,17 +53,18 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 12px);
 }
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at top, rgba(251, 191, 36, 0.12), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.1), transparent 18%),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -69,22 +77,103 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 ::selection {
-  background-color: rgba(251, 191, 36, 0.35);
-  color: #020617;
+  background-color: rgba(14, 124, 134, 0.18);
+  color: #0b1b2b;
 }
 
+/* Light frosted glass (nav / floating cards over hero) */
+.glass-light {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(11, 27, 43, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Dark frosted glass (used sparingly over photo scrims) */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px);
+  background: rgba(11, 27, 43, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-display), Georgia, serif;
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+
+  .font-accent {
+    font-family: var(--font-accent), Georgia, serif;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(11, 27, 43, 0.04),
+      0 12px 32px -12px rgba(11, 27, 43, 0.16);
+  }
+
+  .shadow-float {
+    box-shadow:
+      0 2px 6px rgba(11, 27, 43, 0.05),
+      0 28px 60px -22px rgba(11, 27, 43, 0.28);
+  }
+
+  .gradient-text {
+    background: linear-gradient(100deg, #0e7c86 0%, #14a0a0 55%, #f5a524 130%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-ken-burns {
+    animation: ken-burns 18s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
