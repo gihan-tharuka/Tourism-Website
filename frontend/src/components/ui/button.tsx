@@ -4,11 +4,11 @@ import { twMerge } from 'tailwind-merge'
 
 const buttonVariants = {
   primary:
-    'bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-[#0b6b74] focus-visible:ring-primary',
+    'bg-amber-300 text-slate-950 shadow-lg shadow-amber-300/15 hover:bg-amber-200 focus-visible:ring-amber-200',
   secondary:
-    'bg-white text-foreground border border-border shadow-sm hover:border-primary/40 hover:text-primary focus-visible:ring-primary',
+    'bg-slate-900/90 text-slate-100 border border-white/10 hover:bg-slate-900 focus-visible:ring-slate-200/40',
   ghost:
-    'bg-transparent text-foreground hover:bg-secondary focus-visible:ring-primary',
+    'bg-transparent text-slate-100 hover:bg-white/5 focus-visible:ring-slate-200/40',
 }
 
 const buttonSizes = {
@@ -38,7 +38,7 @@ export function Button({
       type={type}
       className={twMerge(
         clsx(
-          'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950',
           buttonVariants[variant],
           buttonSizes[size],
           className,
