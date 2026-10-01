@@ -26,7 +26,7 @@ export default async function Home() {
   ])
 
   return (
-    <main className="overflow-hidden">
+    <main className="relative">
       <HeroSection />
       <FeaturedTours tours={tours} />
       <DestinationsShowcase destinations={destinations} />

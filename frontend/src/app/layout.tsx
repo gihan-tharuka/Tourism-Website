@@ -1,20 +1,28 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Fraunces, Manrope, Sora } from 'next/font/google'
 import './globals.css'
 import { SiteLayout } from '@/components/layout/site-layout'
 import { SITE_URL } from '@/lib/constants'
 import { createPageMetadata, createTravelAgencyJsonLd, JsonLd } from '@/lib/seo'
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const playfair = Playfair_Display({
+const sora = Sora({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-accent',
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
   display: 'swap',
 })
 
@@ -37,9 +45,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased text-slate-100`}
+      className={`${manrope.variable} ${sora.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-screen bg-slate-950 text-slate-100">
+      <body className="min-h-screen bg-background text-foreground">
         <JsonLd data={createTravelAgencyJsonLd()} />
         <SiteLayout>{children}</SiteLayout>
       </body>
