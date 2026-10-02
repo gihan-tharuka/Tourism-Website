@@ -1,20 +1,9 @@
-import Link from 'next/link'
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { BackToTop } from '@/components/ui/back-to-top'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
-
-const exploreLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Tours', href: '/tours' },
-  { label: 'Custom Tour', href: '/custom-tour' },
-  { label: 'Transfers', href: '/transfers' },
-]
-
-const companyLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-]
+import { FOOTER_COMPANY_LINKS, FOOTER_EXPLORE_LINKS, HOME_ANCHORS } from '@/lib/navigation'
 
 const contactEmail = 'islandsea.travels@gmail.com'
 const contactPhone = '+94 76 025 3208'
@@ -29,11 +18,11 @@ export function SiteFooter() {
       <Container>
         <div className="grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:py-20">
           <div className="space-y-5">
-            <Link href="/" className="inline-flex items-center">
+            <SiteLink href="/" className="inline-flex items-center">
               <span className="font-display text-lg font-semibold text-white">
                 IslandSea Travels
               </span>
-            </Link>
+            </SiteLink>
             <p className="max-w-sm text-sm leading-7 text-deep-foreground/70">
               Designing private Sri Lanka journeys that feel cinematic, elevated and effortless —
               with luxury transfers, curated guides and seamless planning.
@@ -43,14 +32,14 @@ export function SiteFooter() {
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Explore</h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {exploreLinks.map((link) => (
+              {FOOTER_EXPLORE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <SiteLink
                     href={link.href}
                     className="text-deep-foreground/70 transition-colors hover:text-white hover:underline"
                   >
                     {link.label}
-                  </Link>
+                  </SiteLink>
                 </li>
               ))}
             </ul>
@@ -59,20 +48,20 @@ export function SiteFooter() {
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Company</h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {companyLinks.map((link) => (
+              {FOOTER_COMPANY_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <SiteLink
                     href={link.href}
                     className="text-deep-foreground/70 transition-colors hover:text-white hover:underline"
                   >
                     {link.label}
-                  </Link>
+                  </SiteLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
+          <div id={HOME_ANCHORS.contact} className="scroll-mt-24">
             <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Contact</h3>
             <ul className="mt-5 space-y-4 text-sm">
               <li>

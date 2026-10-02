@@ -7,6 +7,7 @@ import { CustomTourCTA } from '@/components/home/custom-tour-cta'
 import { getFeaturedTours } from '@/services/tour.service'
 import { getDestinations } from '@/services/destination.service'
 import { createPageMetadata } from '@/lib/seo'
+import { HOME_ANCHORS } from '@/lib/navigation'
 
 export const metadata = createPageMetadata({
   title: 'Luxury Sri Lanka Tours',
@@ -28,12 +29,23 @@ export default async function Home() {
 
   return (
     <main className="relative">
+      {/* Anchor ids keep in-page navigation working during homepage-only preview mode. */}
       <HeroSection />
-      <FeaturedTours tours={tours} destinationLabels={destinationLabels} />
-      <DestinationsShowcase destinations={destinations} />
-      <WhyChooseUs />
-      <TravelExperience />
-      <CustomTourCTA />
+      <div id={HOME_ANCHORS.tours} className="scroll-mt-24">
+        <FeaturedTours tours={tours} destinationLabels={destinationLabels} />
+      </div>
+      <div id={HOME_ANCHORS.destinations} className="scroll-mt-24">
+        <DestinationsShowcase destinations={destinations} />
+      </div>
+      <div id={HOME_ANCHORS.whyUs} className="scroll-mt-24">
+        <WhyChooseUs />
+      </div>
+      <div id={HOME_ANCHORS.experience} className="scroll-mt-24">
+        <TravelExperience />
+      </div>
+      <div id={HOME_ANCHORS.plan} className="scroll-mt-24">
+        <CustomTourCTA />
+      </div>
     </main>
   )
 }

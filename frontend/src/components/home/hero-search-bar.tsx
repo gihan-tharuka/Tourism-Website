@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MapPin, Search, Sparkles, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { HOME_ANCHORS, isHomepageOnly } from '@/lib/navigation'
 
 const destinations = [
   'Anywhere in Sri Lanka',
@@ -34,6 +35,17 @@ export function HeroSearchBar({ className }: { className?: string }) {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    // Homepage-only preview: the tours page is not redesigned yet, so scroll
+    // to the featured tours section instead of leaving the home page.
+    if (isHomepageOnly()) {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      document
+        .getElementById(HOME_ANCHORS.tours)
+        ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+      return
+    }
+
     const params = new URLSearchParams({
       destination,
       experience,

@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { Destination } from '@/types/destination'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, staggerDelay } from '@/components/ui/reveal'
@@ -28,13 +28,13 @@ export function DestinationsShowcase({ destinations }: DestinationsShowcaseProps
           description="From ancient rock fortresses to peaceful coastal escapes, each destination is designed to inspire your next private journey."
           align="left"
           action={
-            <Link
+            <SiteLink
               href="/tours"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               View all destinations
               <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+            </SiteLink>
           }
         />
 
@@ -48,7 +48,7 @@ export function DestinationsShowcase({ destinations }: DestinationsShowcaseProps
                 delay={staggerDelay(index)}
                 className={cn('h-full', isFeature && 'lg:col-span-2 lg:row-span-2')}
               >
-                <Link
+                <SiteLink
                   href={`/tours?destination=${encodeURIComponent(destination.name)}`}
                   className="group relative flex h-full min-h-[18rem] flex-col justify-end overflow-hidden rounded-[2rem] border border-border shadow-soft transition duration-300 hover:shadow-float focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
@@ -87,7 +87,7 @@ export function DestinationsShowcase({ destinations }: DestinationsShowcaseProps
                       </div>
                     </div>
                   </div>
-                </Link>
+                </SiteLink>
               </Reveal>
             )
           })}

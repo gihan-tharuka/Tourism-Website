@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { ArrowRight, Compass, Headset, MapPin, Sparkles } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, staggerDelay } from '@/components/ui/reveal'
@@ -42,13 +42,13 @@ export function WhyChooseUs() {
               description="We combine private hospitality, local knowledge and premium logistics for a travel experience that feels effortless and exceptional."
               align="left"
             />
-            <Link
+            <SiteLink
               href="/custom-tour"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             >
               Start planning
               <ArrowRight size={18} aria-hidden="true" />
-            </Link>
+            </SiteLink>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">

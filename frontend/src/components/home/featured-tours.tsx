@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { Tour } from '@/types/tour'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, staggerDelay } from '@/components/ui/reveal'
@@ -29,13 +29,13 @@ export function FeaturedTours({ tours, destinationLabels }: FeaturedToursProps) 
           description="Each journey is carefully curated with private guides, exclusive stays and seamless transport across Sri Lanka."
           align="left"
           action={
-            <Link
+            <SiteLink
               href="/tours"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             >
               View all tours
               <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+            </SiteLink>
           }
         />
 

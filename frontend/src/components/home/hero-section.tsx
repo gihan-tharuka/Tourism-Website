@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { HeroSearchBar } from '@/components/home/hero-search-bar'
 
 export function HeroSection() {
@@ -35,13 +35,13 @@ export function HeroSection() {
             <span className="font-accent italic text-accent">differently</span>
           </h1>
 
-          <Link
+          <SiteLink
             href="/tours"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-9 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
           >
             Explore tours
             <ArrowRight size={18} aria-hidden="true" />
-          </Link>
+          </SiteLink>
         </motion.div>
       </Container>
 

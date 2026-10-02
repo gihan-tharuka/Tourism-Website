@@ -1,21 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { MessageCircle, Menu, X } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { cn } from '@/lib/utils'
+import { isHomepageOnly, NAV_LINKS, resolveHref } from '@/lib/navigation'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
-
-const navLinks = [
-  { label: 'Tours', href: '/tours' },
-  { label: 'Custom Tour', href: '/custom-tour' },
-  { label: 'Transfers', href: '/transfers' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-]
 
 const whatsappHref = getWhatsAppInquiryLink(
   'Hello IslandSea Travels, I would like help planning a trip.',
@@ -25,9 +18,29 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeHash, setActiveHash] = useState('')
 
   const isHome = pathname === '/'
   const transparent = isHome && !scrolled
+  const previewMode = isHomepageOnly()
+
+  // In preview mode every link resolves to an anchor on `/`, so the active
+  // underline has to follow the hash instead of the pathname.
+  useEffect(() => {
+    if (!previewMode) return
+
+    const syncHash = () => setActiveHash(window.location.hash)
+    syncHash()
+    window.addEventListener('hashchange', syncHash)
+    return () => window.removeEventListener('hashchange', syncHash)
+  }, [previewMode])
+
+  const isActive = (href: string) => {
+    if (previewMode) {
+      return activeHash !== '' && resolveHref(href) === `/${activeHash}`
+    }
+    return pathname === href || pathname.startsWith(`${href}/`)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -65,7 +78,7 @@ export function SiteHeader() {
             scrolled ? 'h-16' : 'h-20',
           )}
         >
-          <Link href="/" className="group inline-flex items-center" aria-label="IslandSea Travels home">
+          <SiteLink href="/" className="group inline-flex items-center" aria-label="IslandSea Travels home">
             <span className="flex flex-col leading-none">
               <span
                 className={cn(
@@ -84,13 +97,13 @@ export function SiteHeader() {
                 Travels
               </span>
             </span>
-          </Link>
+          </SiteLink>
 
           <nav className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => {
-              const active = pathname === link.href || pathname.startsWith(`${link.href}/`)
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href)
               return (
-                <Link
+                <SiteLink
                   key={link.href}
                   href={link.href}
                   className={cn(
@@ -111,7 +124,7 @@ export function SiteHeader() {
                     )}
                     aria-hidden="true"
                   />
-                </Link>
+                </SiteLink>
               )
             })}
           </nav>
@@ -131,7 +144,7 @@ export function SiteHeader() {
             >
               <MessageCircle size={18} />
             </a>
-            <Link
+            <SiteLink
               href="/contact"
               className={cn(
                 'hidden items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300 md:inline-flex',
@@ -141,7 +154,7 @@ export function SiteHeader() {
               )}
             >
               Plan Your Trip
-            </Link>
+            </SiteLink>
             <button
               type="button"
               aria-label={open ? 'Close menu' : 'Open menu'}
@@ -195,8 +208,8 @@ export function SiteHeader() {
               </div>
 
               <nav className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 py-6">
-                {navLinks.map((link, index) => {
-                  const active = pathname === link.href || pathname.startsWith(`${link.href}/`)
+                {NAV_LINKS.map((link, index) => {
+                  const active = isActive(link.href)
                   return (
                     <motion.div
                       key={link.href}
@@ -204,7 +217,7 @@ export function SiteHeader() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.06 * index + 0.05 }}
                     >
-                      <Link
+                      <SiteLink
                         href={link.href}
                         onClick={() => setOpen(false)}
                         className={cn(
@@ -216,20 +229,20 @@ export function SiteHeader() {
                       >
                         {link.label}
                         <span className="text-muted-foreground">&rarr;</span>
-                      </Link>
+                      </SiteLink>
                     </motion.div>
                   )
                 })}
               </nav>
 
               <div className="space-y-3 border-t border-border px-6 py-6">
-                <Link
+                <SiteLink
                   href="/contact"
                   onClick={() => setOpen(false)}
                   className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:bg-[#0b6b74]"
                 >
                   Plan Your Trip
-                </Link>
+                </SiteLink>
                 <a
                   href={whatsappHref}
                   target="_blank"

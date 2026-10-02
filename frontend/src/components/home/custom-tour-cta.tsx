@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowRight, Check, MessageCircle } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { SiteLink } from '@/components/ui/site-link'
 import { Reveal } from '@/components/ui/reveal'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 
@@ -59,13 +59,13 @@ export function CustomTourCTA() {
             delay={0.1}
             className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur"
           >
-            <Link
+            <SiteLink
               href="/custom-tour"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
             >
               Build your custom tour
               <ArrowRight size={18} aria-hidden="true" />
-            </Link>
+            </SiteLink>
             <a
               href={whatsappLink}
               target="_blank"

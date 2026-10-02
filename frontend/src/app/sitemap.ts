@@ -1,18 +1,30 @@
 import type { MetadataRoute } from 'next'
 import { getTours } from '@/services/tour.service'
 import { absoluteUrl } from '@/lib/seo'
+import { isHomepageOnly } from '@/lib/navigation'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
-  const tours = await getTours()
 
-  const staticRoutes: MetadataRoute.Sitemap = [
+  const homeRoute: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl('/'),
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1,
     },
+  ]
+
+  // Homepage-only preview: the other pages are still on the old design, so keep
+  // them out of the sitemap until the redesign lands.
+  if (isHomepageOnly()) {
+    return homeRoute
+  }
+
+  const tours = await getTours()
+
+  const staticRoutes: MetadataRoute.Sitemap = [
+    ...homeRoute,
     {
       url: absoluteUrl('/tours'),
       lastModified: now,
