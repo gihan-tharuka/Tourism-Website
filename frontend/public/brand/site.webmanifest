@@ -1,0 +1,21 @@
+{
+  "name": "IslandSea Travels",
+  "short_name": "IslandSea",
+  "description": "Luxury Sri Lanka tours, private transfers and custom itineraries.",
+  "icons": [
+    {
+      "src": "/brand/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0e7c86",
+  "background_color": "#0b1b2b",
+  "display": "standalone",
+  "start_url": "/"
+}

@@ -28,7 +28,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  manifest: '/beyond-sea-travels-favicon-yellow/site.webmanifest',
+  manifest: '/brand/site.webmanifest',
   ...createPageMetadata({
     title: 'IslandSea Travels',
     description:

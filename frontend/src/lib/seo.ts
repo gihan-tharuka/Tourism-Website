@@ -4,7 +4,7 @@ import { DEFAULT_META_DESCRIPTION, SITE_URL } from '@/lib/constants'
 import type { Tour } from '@/types/tour'
 
 const SITE_NAME = 'IslandSea Travels'
-const DEFAULT_OG_IMAGE = '/og/beyond-sea-travels.jpg'
+const DEFAULT_OG_IMAGE = '/og/islandsea-travels-og.jpg'
 const DEFAULT_KEYWORDS = [
   'Sri Lanka luxury tours',
   'Sri Lanka private tours',
