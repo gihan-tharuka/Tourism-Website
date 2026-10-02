@@ -1,55 +1,98 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import type { Destination } from '@/types/destination'
 import { Container } from '@/components/ui/container'
+import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal, staggerDelay } from '@/components/ui/reveal'
+import { cn } from '@/lib/utils'
 
 interface DestinationsShowcaseProps {
   destinations: Destination[]
 }
 
 export function DestinationsShowcase({ destinations }: DestinationsShowcaseProps) {
+  if (!destinations.length) {
+    return null
+  }
+
   return (
-    <section className="py-16 lg:py-20">
+    <Section tone="white">
       <Container>
         <SectionHeading
           eyebrow="Destination highlights"
           title="Discover Sri Lanka’s most iconic places, styled for luxury travel."
           description="From ancient rock fortresses to peaceful coastal escapes, each destination is designed to inspire your next private journey."
           align="left"
+          action={
+            <Link
+              href="/tours"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              View all destinations
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          }
         />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {destinations.map((destination, index) => (
-            <motion.div
-              key={destination.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_24px_80px_rgba(15,23,42,0.25)]"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <Image
-                  src={destination.image}
-                  alt={destination.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-sm uppercase tracking-[0.28em] text-amber-200/90">{destination.country}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">{destination.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{destination.description}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:auto-rows-[15rem] lg:grid-cols-3">
+          {destinations.map((destination, index) => {
+            const isFeature = index === 0
+
+            return (
+              <Reveal
+                key={destination.id}
+                delay={staggerDelay(index)}
+                className={cn('h-full', isFeature && 'lg:col-span-2 lg:row-span-2')}
+              >
+                <Link
+                  href={`/tours?destination=${encodeURIComponent(destination.name)}`}
+                  className="group relative flex h-full min-h-[18rem] flex-col justify-end overflow-hidden rounded-[2rem] border border-border shadow-soft transition duration-300 hover:shadow-float focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <Image
+                    src={destination.image}
+                    alt={destination.name}
+                    fill
+                    sizes={
+                      isFeature
+                        ? '(max-width: 1024px) 100vw, 66vw'
+                        : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                    }
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep/85 via-deep/30 to-transparent" />
+                  <div className="relative p-6">
+                    <h3
+                      className={cn(
+                        'font-display font-semibold text-white',
+                        isFeature ? 'text-3xl sm:text-4xl' : 'text-2xl',
+                      )}
+                    >
+                      {destination.name}
+                    </h3>
+                    <div className="mt-3 grid grid-rows-[0fr] opacity-0 transition-all duration-300 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100 max-lg:grid-rows-[1fr] max-lg:opacity-100">
+                      <div className="overflow-hidden">
+                        <div className="rounded-2xl bg-white/15 p-4 backdrop-blur-sm">
+                          <p className="line-clamp-2 max-w-md text-sm leading-6 text-white/90">
+                            {destination.description}
+                          </p>
+                          <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                            Explore
+                            <ArrowRight size={16} aria-hidden="true" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            )
+          })}
         </div>
       </Container>
-    </section>
+    </Section>
   )
 }

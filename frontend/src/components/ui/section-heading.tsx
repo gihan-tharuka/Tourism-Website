@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SectionHeadingProps {
@@ -5,6 +6,8 @@ interface SectionHeadingProps {
   title: string
   description?: string
   align?: 'center' | 'left'
+  /** Optional right-aligned slot (e.g. a "View all" link) for editorial rows. */
+  action?: ReactNode
   className?: string
 }
 
@@ -13,14 +16,14 @@ export function SectionHeading({
   title,
   description,
   align = 'center',
+  action,
   className,
 }: SectionHeadingProps) {
-  return (
+  const block = (
     <div
       className={cn(
-        'mx-auto flex max-w-4xl flex-col gap-4',
+        'flex flex-col gap-4',
         align === 'left' ? 'items-start text-left' : 'items-center text-center',
-        className,
       )}
     >
       {eyebrow ? (
@@ -39,4 +42,20 @@ export function SectionHeading({
       ) : null}
     </div>
   )
+
+  if (action) {
+    return (
+      <div
+        className={cn(
+          'flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between',
+          className,
+        )}
+      >
+        {block}
+        <div className="shrink-0">{action}</div>
+      </div>
+    )
+  }
+
+  return <div className={cn('mx-auto max-w-4xl', className)}>{block}</div>
 }

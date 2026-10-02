@@ -1,48 +1,122 @@
 import Link from 'next/link'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { BackToTop } from '@/components/ui/back-to-top'
+import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
 
-const footerLinks = [
+const exploreLinks = [
   { label: 'Home', href: '/' },
   { label: 'Tours', href: '/tours' },
   { label: 'Custom Tour', href: '/custom-tour' },
   { label: 'Transfers', href: '/transfers' },
 ]
 
+const companyLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+]
+
+const contactEmail = 'islandsea.travels@gmail.com'
+const contactPhone = '+94 76 025 3208'
+
 export function SiteFooter() {
+  const whatsappLink = getWhatsAppInquiryLink(
+    'Hello IslandSea Travels, I would like help planning my trip.',
+  )
+
   return (
-    <footer className="border-t border-white/10 bg-slate-950/95 text-slate-300">
+    <footer className="border-t border-white/10 bg-deep text-deep-foreground">
       <Container>
-        <div className="grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1fr]">
-          <div className="space-y-4">
-            <p className="text-sm uppercase tracking-[0.36em] text-amber-200/80">IslandSea Travels</p>
-            <p className="max-w-md text-sm leading-7 text-slate-400">
-              Designing private Sri Lanka journeys that feel cinematic, elevated and effortless — with luxury transfers, curated guides and seamless planning.
+        <div className="grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:py-20">
+          <div className="space-y-5">
+            <Link href="/" className="inline-flex items-center">
+              <span className="font-display text-lg font-semibold text-white">
+                IslandSea Travels
+              </span>
+            </Link>
+            <p className="max-w-sm text-sm leading-7 text-deep-foreground/70">
+              Designing private Sri Lanka journeys that feel cinematic, elevated and effortless —
+              with luxury transfers, curated guides and seamless planning.
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-100">Quick Links</h3>
-            <div className="mt-6 flex flex-col gap-3 text-sm text-slate-400">
-              {footerLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="transition hover:text-white">
-                  {link.label}
-                </Link>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Explore</h3>
+            <ul className="mt-5 space-y-3 text-sm">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-deep-foreground/70 transition-colors hover:text-white hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-100">Contact</h3>
-            <div className="mt-6 space-y-3 text-sm text-slate-400">
-              <p>islandsea.travels@gmail.com</p>
-              <p>+94 76 025 3208</p>
-              <p>Colombo, Sri Lanka</p>
-            </div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Company</h3>
+            <ul className="mt-5 space-y-3 text-sm">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-deep-foreground/70 transition-colors hover:text-white hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-white">Contact</h3>
+            <ul className="mt-5 space-y-4 text-sm">
+              <li>
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="inline-flex items-center gap-3 text-deep-foreground/70 transition-colors hover:text-white"
+                >
+                  <Mail size={16} className="text-primary" aria-hidden="true" />
+                  {contactEmail}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${contactPhone.replace(/\s+/g, '')}`}
+                  className="inline-flex items-center gap-3 text-deep-foreground/70 transition-colors hover:text-white"
+                >
+                  <Phone size={16} className="text-primary" aria-hidden="true" />
+                  {contactPhone}
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-3 text-deep-foreground/70">
+                <MapPin size={16} className="text-primary" aria-hidden="true" />
+                Colombo, Sri Lanka
+              </li>
+              <li>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 text-deep-foreground/70 transition-colors hover:text-white"
+                >
+                  <MessageCircle size={16} className="text-primary" aria-hidden="true" />
+                  Chat on WhatsApp
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 py-6 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} IslandSea Travels. Crafted for premium travel experiences.
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 sm:flex-row">
+          <p className="text-xs text-deep-foreground/60">
+            © {new Date().getFullYear()} IslandSea Travels. Crafted for premium travel experiences.
+          </p>
+          <BackToTop />
         </div>
       </Container>
     </footer>

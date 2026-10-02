@@ -1,9 +1,11 @@
 'use client'
 
-import { Award, Compass, Headset, MapPin, ShieldCheck, Sparkles } from 'lucide-react'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight, Compass, Headset, MapPin, Sparkles } from 'lucide-react'
 import { Container } from '@/components/ui/container'
+import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal, staggerDelay } from '@/components/ui/reveal'
 
 const cards = [
   {
@@ -22,16 +24,6 @@ const cards = [
     icon: Sparkles,
   },
   {
-    title: 'Local expertise',
-    description: 'Insider access to hidden gems beyond the typical tourist route.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Flexible travel',
-    description: 'Adaptable plans and seamless adjustments for changing preferences.',
-    icon: Award,
-  },
-  {
     title: '24/7 support',
     description: 'Dedicated assistance every step of the journey, from arrival to departure.',
     icon: Headset,
@@ -40,37 +32,48 @@ const cards = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-16 lg:py-20">
+    <Section tone="surface">
       <Container>
-        <SectionHeading
-          eyebrow="Why choose us"
-          title="Built for discerning travelers who expect thoughtful luxury and seamless planning."
-          description="We combine private hospitality, local knowledge and premium logistics for a travel experience that feels effortless and exceptional."
-          align="left"
-        />
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="space-y-8">
+            <SectionHeading
+              eyebrow="Why choose us"
+              title="Built for discerning travelers who expect thoughtful luxury and seamless planning."
+              description="We combine private hospitality, local knowledge and premium logistics for a travel experience that feels effortless and exceptional."
+              align="left"
+            />
+            <Link
+              href="/custom-tour"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-[#0b6b74] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+            >
+              Start planning
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {cards.map((card, index) => {
-            const Icon = card.icon
-            return (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="glass-panel rounded-[2rem] border border-white/10 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.2)]"
-              >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-amber-300/10 text-amber-200">
-                  <Icon size={24} />
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-white">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-300">{card.description}</p>
-              </motion.div>
-            )
-          })}
+          <div className="grid gap-6 sm:grid-cols-2">
+            {cards.map((card, index) => {
+              const Icon = card.icon
+
+              return (
+                <Reveal key={card.title} delay={staggerDelay(index)} className="h-full">
+                  <div className="group h-full rounded-3xl border border-border bg-card p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-float">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon size={22} aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg font-semibold text-foreground">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                      {card.description}
+                    </p>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
         </div>
       </Container>
-    </section>
+    </Section>
   )
 }

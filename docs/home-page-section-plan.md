@@ -1,10 +1,26 @@
 # Home Page — Section-by-Section Redesign Plan ("Coastal Luxe")
 
-Status: Proposed, pending implementation
+Status: Implemented — sections shipped (home page light "Coastal Luxe" redesign + footer)
 Companion doc: `home-redesign-plan.md` (foundation + navbar + hero — hero is DONE)
 Scope: Each home-page section, planned and delivered separately; ends with the footer
-Branch: vercel-render
-Last updated: 2026-01-10
+Branch: ui-ux-v1
+Last updated: 2026-02-10
+
+---
+
+# 0. Resolved Decisions (owner answers)
+
+| # | Question | Decision |
+| --- | --- | --- |
+| 1 | Why Choose Us layout | **Option A** — split editorial (heading + CTA left, 2-col card grid right) |
+| 2 | Testimonials | **Do NOT re-enable** — Section 6 removed from scope |
+| 3 | Conversion bands | **Only one** — Custom Tour CTA + WhatsApp merged into a single navy band |
+| 4 | Footer | **Navy** (`bg-deep`) 4-column footer |
+| 5 | Destination/tour images | **Deferred** — no new/replacement photos this pass |
+| 6 | Navy band vs navy footer | Conversion band is **image-backed**; footer is **flat navy + top hairline** |
+
+Resulting rhythm (7 bands): Hero → Featured Tours → Destinations → Why Choose Us →
+Travel Experience → single Conversion band → Footer.
 
 ---
 
@@ -43,12 +59,10 @@ Manrope (body), Fraunces (accent). Utilities already available: `shadow-soft`,
 | 1 | Hero | `hero-section.tsx` | full-bleed photo | centered + search card |
 | 2 | Featured Tours | `featured-tours.tsx` | surface band | 3-col cards |
 | 3 | Destinations | `destinations-showcase.tsx` | white | bento mosaic |
-| 4 | Why Choose Us | `why-choose-us.tsx` | surface band | split heading + grid |
+| 4 | Why Choose Us | `why-choose-us.tsx` | surface band | split (Option A) |
 | 5 | Travel Experience | `travel-experience.tsx` | white | alternating rows |
-| 6 | Testimonials | `testimonials.tsx` | surface band | 3-col cards |
-| 7 | Custom Tour CTA | `custom-tour-cta.tsx` | deep navy band | split image + copy |
-| 8 | WhatsApp CTA | `whatsapp-cta.tsx` | white | slim inline bar |
-| 9 | Footer | `footer.tsx` | deep navy | 4 columns |
+| 6 | Conversion band | `custom-tour-cta.tsx` | deep navy + photo | split copy + CTAs |
+| 7 | Footer | `footer.tsx` | deep navy + hairline | 4 columns |
 
 ## 2.4 Cross-cutting rules
 
@@ -137,6 +151,11 @@ over imagery; mobile stacks cleanly.
 
 # 6. Section 4 — Why Choose Us
 
+**Status: Shipped (decision 1 — Option A).** Split editorial layout: left column =
+`SectionHeading` + paragraph + teal "Start planning" CTA; right column = 2-col grid
+of 6 white cards with teal icon chips (`bg-primary/10 text-primary`), hover lift and
+chip fill. No `glass-panel` / amber remaining.
+
 Status: Not started
 Files: `home/why-choose-us.tsx`
 
@@ -186,7 +205,11 @@ Micro-interactions: image fade-in + slight scale, list items fade in sequence.
 Acceptance: rows read as premium editorial; no dark shadows-on-dark; works
 stacked on mobile.
 
-# 8. Section 6 — Testimonials (currently disabled)
+# 8. Section 6 — Testimonials — WON'T DO
+
+**Status: Removed from scope (decision 2).** Testimonials stay disabled; do not
+re-enable. `home/testimonials.tsx` and `home/testimonial-card.tsx` are untouched
+(they still use dark classes but are not rendered).
 
 Status: Not started (commented out in `page.tsx`)
 Files: `home/testimonials.tsx`, `home/testimonial-card.tsx`, `page.tsx`,
@@ -210,7 +233,11 @@ Micro-interactions: staggered reveal, subtle card lift on hover.
 Acceptance: section renders with real data; no dark classes; empty-state guarded
 if no testimonials.
 
-# 9. Section 7 — Custom Tour CTA
+# 9. Section 7 — Single Conversion Band (merged Custom Tour CTA + WhatsApp)
+
+**Status: Shipped (decision 3 — one conversion band).** Full-bleed `bg-deep` band
+with a faint photo overlay; copy + 3 bullets left, CTA card right (teal
+"Build your custom tour" + ghost "Chat on WhatsApp" with online dot).
 
 Status: Not started
 Files: `home/custom-tour-cta.tsx`
@@ -237,7 +264,11 @@ reduced-motion safe).
 Acceptance: strong single focal CTA; clear contrast with the next slim band;
 internal + hero CTA styling consistent.
 
-# 10. Section 8 — WhatsApp CTA
+# 10. Section 8 — WhatsApp CTA (MERGED — file removed)
+
+**Status: Absorbed into Section 7 (decision 3).** `home/whatsapp-cta.tsx` was deleted
+and its `getWhatsAppInquiryLink(...)` call now lives inside `custom-tour-cta.tsx`.
+`page.tsx` no longer renders a standalone WhatsApp band.
 
 Status: Not started
 Files: `home/whatsapp-cta.tsx`, `services/whatsapp.service.ts`
@@ -262,6 +293,11 @@ Acceptance: visually lighter than Section 7; link still opens WhatsApp with the
 prefilled message; aligned to the page grid.
 
 # 11. Section 9 — Footer
+
+**Status: Shipped (decision 4 — navy).** `bg-deep` 4-column footer with a top
+hairline, brand mark, Explore / Company / Contact columns with lucide icons,
+dynamic year, and a back-to-top button. Conversion band above it is image-backed
+so the two navy bands read distinctly.
 
 Status: Not started
 Files: `layout/footer.tsx`
@@ -294,23 +330,23 @@ collapses to 1-2 columns on mobile; year is dynamic.
 
 # 12. Shared Primitives To Add
 
-* `ui/reveal.tsx` — `<Reveal delay>` + `stagger` helpers.
-* `ui/section.tsx` (optional) — tone-based section wrapper.
-* `ui/section-heading.tsx` — add `action` slot.
-* `ui/premium-card.tsx` (optional) — shared card chrome.
+* `ui/reveal.tsx` — DONE (`<Reveal delay amount as>` + `staggerDelay`, reduced-motion aware).
+* `ui/section.tsx` — DONE (`<Section tone="white|surface|deep">` wrapper).
+* `ui/section-heading.tsx` — DONE (`action` slot added).
+* `ui/premium-card.tsx` — SKIPPED (cards are class-styled directly; no shared chrome needed).
+* `ui/back-to-top.tsx` — ADDED (footer back-to-top, reduced-motion aware).
 
 # 13. Implementation Order (each step independently shippable)
 
-1. Shared primitives (`Reveal`, optional `Section`, heading `action`).
-2. Featured Tours (clears the hero overlap + biggest visual win).
-3. Destinations Showcase.
-4. Why Choose Us.
-5. Travel Experience.
-6. Testimonials (re-enable).
-7. Custom Tour CTA.
-8. WhatsApp CTA.
-9. Footer.
-10. Full-page pass: rhythm, spacing, contrast, reduced-motion, lint + build.
+1. Shared primitives — DONE (`Reveal`, `Section`, heading `action`, `back-to-top`).
+2. Featured Tours — DONE (light `TourCard`, surface band, hero-overlap padding, label map).
+3. Destinations Showcase — DONE (bento mosaic, tile links, "View all destinations").
+4. Why Choose Us — DONE (Option A split layout, teal chips, CTA).
+5. Travel Experience — DONE (light editorial rows + lucide check-lists).
+6. Testimonials — SKIPPED (decision 2: not re-enabled).
+7. Single Conversion band — DONE (navy + photo, teal CTA + WhatsApp; `whatsapp-cta.tsx` removed).
+8. Footer — DONE (navy, 4 columns, icon rows, back-to-top, dynamic year).
+9. Full-page pass — DONE (`npm run lint` + `npm run build` clean; 0 dark-class nodes in live home).
 
 # 14. Verification
 
@@ -322,12 +358,31 @@ collapses to 1-2 columns on mobile; year is dynamic.
 
 # 15. Risks / Open Questions
 
-* Section 4: Option A (split benefits) vs Option B (stats band) — needs a pick.
-* Section 6: re-enabling testimonials changes page length and the section rhythm.
-* Section 7 vs 8: both are conversion bands; keeping two stacked must stay
-  visually distinct (navy vs slim light).
-* Footer: dark navy vs light — recommendation is navy for contrast closure.
-* Destination/tour images: a few are reused; consider adding more distinct photos.
+* Section 4 — RESOLVED: Option A shipped.
+* Section 6 — RESOLVED: testimonials stay disabled (removed from scope).
+* Section 7 vs 8 — RESOLVED: merged into one image-backed navy conversion band.
+* Footer — RESOLVED: navy shipped (flat navy + top hairline).
+* Destination/tour images — DEFERRED: reused photos (e.g. Sigiriya) to be replaced later.
+
+## 15.1 Deviations from the original plan
+
+* **Footer socials:** lucide-react in this project ships **no brand glyphs**
+  (Instagram / Facebook / Youtube all absent) and no social URLs exist, so the brand
+  social row was replaced with functional contact links (Mail, Phone, MapPin, WhatsApp).
+* **Company column:** lists only About + Contact — `/privacy` and `/terms` routes do
+  not exist, so those placeholder links were omitted to avoid dead links.
+* **Shared `TourCard`:** also used by `tours/featured-preview.tsx` and
+  `tours/tours-page-content.tsx`; it is now light, so those (not-yet-reskinned) tours
+  pages render white cards on the old dark background until the tours reskin lands.
+* **`testimonial-card.tsx`** still contains dark classes but is not rendered.
+
+## 15.2 Shipped files
+
+New: `ui/reveal.tsx`, `ui/section.tsx`, `ui/back-to-top.tsx`.
+Changed: `ui/section-heading.tsx`, `home/featured-tours.tsx`, `home/tour-card.tsx`,
+`home/destinations-showcase.tsx`, `home/why-choose-us.tsx`, `home/travel-experience.tsx`,
+`home/custom-tour-cta.tsx`, `layout/footer.tsx`, `app/page.tsx`.
+Removed: `home/whatsapp-cta.tsx`.
 
 
 

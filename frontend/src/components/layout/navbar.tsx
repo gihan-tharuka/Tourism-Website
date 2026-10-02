@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Compass, MessageCircle, Menu, X } from 'lucide-react'
+import { MessageCircle, Menu, X } from 'lucide-react'
 import { Container } from '@/components/ui/container'
 import { cn } from '@/lib/utils'
 import { getWhatsAppInquiryLink } from '@/services/whatsapp.service'
@@ -55,7 +55,7 @@ export function SiteHeader() {
         'sticky top-0 z-50 transition-all duration-300',
         transparent
           ? 'border-b border-transparent bg-transparent'
-          : 'glass-light border-b border-border/70 shadow-soft',
+          : 'bg-background border-b border-border/70 shadow-soft',
       )}
     >
       <Container>
@@ -65,17 +65,7 @@ export function SiteHeader() {
             scrolled ? 'h-16' : 'h-20',
           )}
         >
-          <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="IslandSea Travels home">
-            <span
-              className={cn(
-                'inline-flex h-10 w-10 items-center justify-center rounded-xl transition-colors duration-300',
-                transparent
-                  ? 'bg-white/15 text-white ring-1 ring-white/25 backdrop-blur'
-                  : 'bg-primary text-primary-foreground shadow-sm',
-              )}
-            >
-              <Compass size={20} />
-            </span>
+          <Link href="/" className="group inline-flex items-center" aria-label="IslandSea Travels home">
             <span className="flex flex-col leading-none">
               <span
                 className={cn(

@@ -152,7 +152,7 @@ export const tours: Tour[] = [
     summary: 'The ultimate island tour, blending luxury resorts, wildlife, heritage and coastal serenity.',
     destinationIds: ['sigiriya', 'kandy', 'ella', 'mirissa', 'galle'],
     country: 'Sri Lanka',
-    isFeatured: false,
+    isFeatured: true,
     images: [
       '/images/cinematic.webp',
       '/images/mirissa.jpg',
